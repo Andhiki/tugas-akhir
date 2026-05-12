@@ -1,0 +1,2724 @@
+
+
+=== PAGE 1 ===
+
+i 
+ 
+ 
+Panduan Tugas Akhir Program 
+Sarjana 
+Departemen Ilmu Komputer dan Elektronika 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fakultas Matematika dan Ilmu 
+Pengetahuan Alam Universitas Gadjah 
+Mada 
+Januari 2025 
+
+
+=== PAGE 2 ===
+
+ii 
+ 
+ 
+PERATURAN REKTOR UNIVERSITAS GADJAH MADA 
+ 
+ 
+
+
+=== PAGE 3 ===
+
+iii 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PAGE 4 ===
+
+iv 
+ 
+ 
+DAFTAR ISI 
+ 
+PERATURAN REKTOR UNIVERSITAS GADJAH MADA .......................................... II 
+DAFTAR ISI ...................................................................................................... IV 
+DAFTAR TABEL ............................................................................................... VII 
+BAB 1 PENDAHULUAN .................................................................................. 1 
+1.1 Latar Belakang ....................................................................................... 1 
+1.2 Tujuan ................................................................................................... 2 
+1.3 Bentuk TA ............................................................................................. 2 
+1.4 Ketentuan Umum .................................................................................. 4 
+1.4.1 Syarat pendaftaran ............................................................................... 4 
+1.4.2 Ketentuan umum penilaian .................................................................. 4 
+1.5 Kerangka Umum Penulisan .................................................................... 5 
+1.5.1 Bagian awal ........................................................................................... 5 
+1.5.2 Bagian utama ........................................................................................ 7 
+1.5.3 Bagian akhir ........................................................................................... 7 
+1.6 Ketentuan Penulisan Naskah TA ............................................................ 7 
+1.6.1 Ukuran kertas, font, spasi, dan jenis baris ............................................ 8 
+1.6.2 Penulisan judul bab, sub bab, dan sub sub bab .................................... 8 
+1.6.3 Tata bahasa dan bahasa yang digunakan ............................................. 9 
+1.6.4 Penyajian algoritma ............................................................................. 10 
+1.6.5 Penyajian tabel dan gambar ............................................................... 11 
+1.6.6 Penomoran ......................................................................................... 13 
+1.6.7 Rincian ke bawah ................................................................................ 14 
+1.6.8 Letak simetris ...................................................................................... 14 
+1.6.9 Aturan pencetakan buku TA ............................................................... 14 
+1.6.10 Ketentuan umum pustaka ................................................................... 14 
+1.6.11 Catatan bawah, istilah baru dan kutipan ............................................ 18 
+1.7 Mekanisme Pelaksanaan dan Penilaian TA ........................................... 19 
+1.7.1 Mahasiswa mengambil mata kuliah proposal .................................... 19 
+1.7.2 Mahasiswa mengambil mata kuliah seminar hasil ............................. 21 
+1.7.3 Mahasiswa mengambil mata kuliah Skripsi ........................................ 21 
+BAB 2 SKRIPSI ILMIAH AKADEMIK .............................................................. 24 
+
+
+=== PAGE 5 ===
+
+v 
+ 
+ 
+2.1. Pendahuluan ....................................................................................... 24 
+2.1.1 Tujuan skripsi ilmiah akademik ........................................................... 24 
+2.1.2 Manfaat skripsi ilmiah akademik ........................................................ 24 
+2.2 Luaran ................................................................................................. 25 
+2.3 Sistematika Penulisan Skripsi Ilmiah Akademik .................................... 25 
+2.3.1 Sistematika penulisan proposal penelitian ......................................... 25 
+2.3.2 Sistematika penulisan laporan TA skripsi ilmiah akademik ................ 26 
+BAB 3 SKRIPSI INOVASI PRODUK ................................................................ 36 
+3.1 Pendahuluan ....................................................................................... 36 
+3.1.1 Tujuan skripsi inovasi produk .............................................................. 36 
+3.1.2 Manfaat skripsi inovasi produk ........................................................... 37 
+3.2 Luaran ................................................................................................. 38 
+3.3 Sistematika Penulisan Skripsi Inovasi Produk ....................................... 39 
+3.3.1 Sistematika penulisan proposal penelitian ......................................... 39 
+3.3.2 Sistematika penulisan laporan TA skripsi inovasi produk ................... 40 
+BAB 4 PROYEK KOLABORATIF (CAPSTONE PROJECT) ................................... 45 
+4.1 Pendahuluan ....................................................................................... 45 
+4.1.1 Tujuan TA proyek kolaboratif .............................................................. 46 
+4.1.2 Manfaat TA proyek kolaboratif ........................................................... 47 
+4.2 Luaran ................................................................................................. 49 
+4.2.1 Prototipe aplikasi atau sistem ............................................................. 49 
+4.2.2 Produk versi akhir ................................................................................ 49 
+4.2.3 Hasil pengujian produk ....................................................................... 49 
+4.3 Sistematika Penulisan TA Proyek Kolaboratif ....................................... 49 
+4.3.1 Sistematika penulisan proposal penelitian ......................................... 49 
+4.3.2 Sistematika penulisan laporan TA skripsi proyek kolaboratif ............ 51 
+BAB 5 PROYEK INDUSTRI ............................................................................ 56 
+5.1 Pendahuluan ....................................................................................... 56 
+5.1.1 Tujuan skripsi proyek industri ............................................................. 56 
+5.1.2 Manfaat bagi mahasiswa .................................................................... 57 
+5.2 Luaran ................................................................................................. 57 
+
+
+=== PAGE 6 ===
+
+vi 
+ 
+ 
+5.3 Sistematika Penulisan TA Proyek Industri ............................................ 58 
+5.3.1 Sistematika penulisan proposal penelitian ......................................... 58 
+5.3.2 Sistematika penulisan laporan TA proyek industri.............................. 59 
+BAB 6 PUBLIKASI ILMIAH ............................................................................ 66 
+6.1 Pendahuluan ....................................................................................... 66 
+6.2 Luaran ................................................................................................. 67 
+6.3 Sistematika Penulisan TA Publikasi Ilmiah ............................................ 68 
+6.3.1 Sistematika penulisan proposal penelitian ......................................... 68 
+6.3.2 Sistematika penulisan laporan TA publikasi ilmiah ............................. 69 
+DAFTAR PUSTAKA .......................................................................................... 72 
+LAMPIRAN ..................................................................................................... 73 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PAGE 7 ===
+
+vii 
+ 
+ 
+DAFTAR TABEL 
+Tabel  1.1 Komponen penilaian ujian proposal .................................................... 20 
+Tabel  1.2 Komponen penilaian ujian seminar hasil ............................................. 21 
+Tabel  1.3 Komponen penilaian bentuk TA skripsi ilmiah akademik, skripsi inovasi 
+produk, proyek kolaboratif, dan proyek industri .................................................. 23 
+Tabel  1.4 Komponen penilaian bentuk TA publikasi ilmiah ................................. 23 
+Tabel  6.1 Kontribusi penulis pada TA publikasi ilmiah ......................................... 70 
+Tabel  6.2 Daftar histori pengiriman jurnal ........................................................... 71 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PAGE 8 ===
+
+1 
+ 
+ 
+BAB 1 PENDAHULUAN 
+1.1 Latar Belakang 
+Penyusunan Tugas Akhir (TA) merupakan salah satu persyaratan dalam 
+menyelesaikan studi jenjang Sarjana (S1) di Departemen Ilmu Komputer dan 
+Elektronika (DIKE), Fakultas Matematika dan Ilmu Pengetahuan Alam (FMIPA), 
+Universitas Gadjah Mada (UGM). TA berperan sebagai bukti kemampuan setiap 
+mahasiswa dalam menerapkan ilmu yang telah diperoleh selama masa studi, 
+serta menjadi sarana untuk melatih keterampilan dalam melakukan penelitian 
+dan menyusun karya ilmiah secara mandiri. 
+Dalam penyusunan TA, mahasiswa dihadapkan pada berbagai 
+permasalahan faktual yang relevan dan diberi kebebasan untuk memilih topik 
+penelitian yang akan diselesaikan melalui pendekatan ilmiah. Permasalahan 
+yang dipilih harus diselesaikan dengan merujuk pada aturan hukum terkait 
+yang berlaku (Peraturan rektor UGM Nomor 23 Tahun 2024 tentang kurikulum 
+atau pembelajaran), yaitu terwujudnya capaian pembelajaran lulusan (CPL) 
+yang ditetapkan dalam kurikulum, dengan minimal 70% topik terkait dengan 
+tujuan- tujuan Sustainable Development Goals (SDGs), serta hasil akhir dari TA 
+jenjang S1 lebih berfokus pada pemahaman dan penerapan konsep dasar 
+serta penyelesaian masalah, bukan menciptakan inovasi baru. 
+Buku Panduan TA ini disusun dengan tujuan memberikan pedoman 
+yang komprehensif kepada mahasiswa terkait bentuk TA yang dapat dilakukan, 
+prosedur, struktur penulisan,  serta ketentuan formal yang harus dipenuhi 
+dalam pembuatan  TA. Selain itu, juga diharapkan  dapat mempermudah 
+mahasiswa dalam memahami tahapan-tahapan yang harus dilalui, sehingga 
+mereka dapat menyelesaikan TA dengan baik dan tepat waktu. Sebagai 
+tambahan, diharapkan kualitas TA yang dihasilkan oleh mahasiswa dapat lebih 
+terjaga dan sesuai  dengan standar akademik yang ditetapkan oleh perguruan 
+tinggi. Hal ini penting tidak hanya bagi mahasiswa, tetapi juga bagi reputasi 
+
+
+=== PAGE 9 ===
+
+2 
+ 
+ 
+akademik institusi pendidikan itu sendiri. 
+1.2 Tujuan 
+Tujuan dari penyusunan TA adalah untuk memberikan kontribusi yang 
+signifikan dalam  pemahaman dan penyelesaian masalah yang dipilih melalui 
+penelitian atau kajian yang mendalam. Secara spesifik, tujuan dari TA ini 
+meliputi: 
+1. Mengidentifikasi masalah utama yang relevan dengan topik yang dipilih dan 
+menganalisis berbagai aspek terkait masalah tersebut. Dengan analisis yang 
+mendalam, diharapkan dapat memahami isu yang dihadapi dengan lebih 
+jelas. 
+2. Mengembangkan kemampuan mengkaji permasalahan secara kualitatif dan 
+kuantitatif, serta solusi permasalahan yang berbasis pada hasil penelitian. 
+Solusi ini diharapkan dapat memberikan kontribusi positif dalam 
+penyelesaian masalah yang diteliti. 
+3. Memberikan kontribusi akademis dalam bidang studi tertentu. 
+4. Menerapkan metodologi penelitian yang tepat  untuk mendapatkan data 
+yang valid dan dapat diandalkan. Metodologi ini akan digunakan untuk 
+memastikan bahwa hasil penelitian dapat dipertanggungjawabkan secara 
+akademis. 
+5. Meningkatkan kemampuan komunikasi dan presentasi terkait ide dan 
+temuan penelitian secara efektif. 
+Dengan mencapai tujuan-tujuan tersebut, diharapkan TA ini tidak hanya 
+dapat memenuhi persyaratan akademis tetapi juga memberikan dampak 
+positif dan bermanfaat dalam konteks penelitian dan praktek di bidang yang 
+diteliti. 
+1.3 Bentuk TA 
+DIKE FMIPA UGM menyediakan berbagai bentuk TA yang dapat dipilih 
+oleh mahasiswa sebagai bentuk hasil akhir penelitian penyelesaian studi 
+sarjana nya, yaitu sebagai berikut: 
+
+
+=== PAGE 10 ===
+
+3 
+ 
+ 
+1. Skripsi ilmiah akademik: menyajikan temuan penelitian dalam bentuk 
+tulisan akademik yang terstruktur secara individu. Selain itu, mahasiswa 
+juga dapat menunjukkan model (sebagai bentuk perluasan dari tulisan 
+skripsi) yang dibuat dalam kegiatan TA yang dapat menggambarkan 
+masalah yang ada beserta solusi yang diharapkan. Skripsi ilmiah 
+akademik menuntut mahasiswa untuk menunjukkan kemampuan analitis, 
+keterampilan penelitian, dan kemampuan untuk menyajikan serta  
+mempertahankan argumen secara logis dan sistematis di sidang skripsi. 
+2. Skripsi inovasi produk : hasil penelitian TA oleh mahasiswa secara 
+individu yang berbentuk produk, yaitu prototipe baik dalam bentuk 
+perangkat lunak maupun perangkat keras, khususnya yang berkaitan 
+dengan bidang ilmu komputer dan elektronika. 
+3. Proyek Kolaboratif : bentuk penelitian TA yang memiliki target 
+menyelesaikan suatu proyek atau prototipe. Proyek kolaboratif dilakukan 
+dalam kelompok dengan ketentuan jumlah mahasiswa yang berlatar 
+belakang multidisiplin bidang ilmu. 
+4. Proyek Industri : penelitian TA dilakukan secara individu dengan dan di 
+perusahaan yang terdaftar dalam daftar perusahaan mitra pembimbingan 
+penelitian TA yang ditentukan oleh DIKE, FMIPA, UGM. Kegiatan 
+penelitian berbentuk proyek industri berbeda dengan magang. 
+Pengambilan topik permasalahan dalam proyek industri dapat dilakukan 
+saat mahasiswa  melaksanakan penelitian di perusahaan mitra, salah 
+satunya saat kerja praktek (KP) di suatu perusahaan mitra yang kemudian 
+dilakukan penyelesaian permasalahan yang hanya bisa dilakukan di 
+perusahaan mitra tersebut  dan diangkat menjadi tema kegiatan 
+penelitian. Seluruh hasil penelitian proyek industri harus dapat disajikan 
+dan dipresentasikan di hadapan penguji dari pihak universitas dan 
+representatif perusahaan mitra tanpa ada yang perlu ditutupi karena 
+
+
+=== PAGE 11 ===
+
+4 
+ 
+ 
+konfidensial. 
+5. Publikasi: hasil penelitian TA disajikan dalam bentuk karya tulis ilmiah 
+yang dipublikasikan pada jurnal internasional minimal kuartal 4 (Q4) atau 
+konferensi internasional sebagai penulis pertama. Biaya jurnal yang 
+dituju maksimal adalah Rp 10.000.000,- (sepuluh juta rupiah). 
+Setiap bentuk TA memiliki tujuan dan metodologi yang berbeda, 
+sehingga mahasiswa perlu memahami dengan jelas pedoman dan ekspektasi 
+yang berlaku. Rincian mengenai aturan masing -masing bentuk TA diatas dapat 
+dilihat pada Bab -Bab yang ada dalam buku pedoman ini. Dengan memahami 
+berbagai bentuk TA ini, mahasiswa diharapkan dapat memilih dan menyusun 
+TA yang tidak hanya memenuhi syarat akademik, tetapi juga mencerminkan 
+minat dan keahlian yang mahasiswa kembangkan selama masa studi. 
+1.4 Ketentuan Umum 
+Dalam penyusunan TA, terdapat ketentuan yang perlu diperhatikan 
+secara seksama dan diterapkan dalam proses penyusunan TA. Ketentuan 
+umum dalam penyusunan TA meliputi syarat pendaftaran, ketentuan umum 
+penilaian, serta tata cara penulisan sitasi dan judul gambar dan tabel. 
+1.4.1 Syarat pendaftaran 
+Sebelum memulai proses pembuatan dan penulisan TA, mahasiswa 
+perlu mempersiapkan syarat yang dibutuhkan dalam pendaftaran proposal, 
+seminar, maupun TA. Syarat pendaftaran ini mengikuti aturan  masing-masing 
+program studi. Setelah melakukan  dan memenuhi syarat pendaftaran, 
+mahasiswa baru diperbolehkan untuk memulai proses pembuatan dan 
+penulisan TA. 
+1.4.2 Ketentuan umum penilaian 
+Penilaian dilakukan secara menyeluruh untuk mengevaluasi 
+kemampuan mahasiswa dalam mengintegrasikan pengetahuan akademik, 
+keterampilan teknis, serta pemahaman terhadap  permasalahan yang diangkat. 
+
+
+=== PAGE 12 ===
+
+5 
+ 
+ 
+Ketentuan umum penilaian mengikuti bentuk TA yang dipilih oleh masing -
+masing mahasiswa. Penjelasan lebih lanjut dan detail dapat dilihat pada 
+masing-masing bab bentuk TA. 
+1.5 Kerangka Umum Penulisan 
+1.5.1 Bagian awal 
+Bagian awal terdiri dari elemen-elemen penting yang menjadi pembuka 
+dokumen TA, yaitu Sampul Luar, Halaman Judul, Halaman Pengesahan, 
+Halaman Pernyataan, Halaman motto dan persembahan, Prakata, Daftar Isi, 
+Daftar Tabel, Daftar Gambar, Intisari, Abstract. Contoh penulisan kerangka 
+umum penulisan TA dapat dilihat pada dokumen terpisah ( Template TA LaTeX 
+dan MS W ord, dapat diakses melalui link yang ada di Lampiran ). Penjelasan 
+lebih rinci adalah sebagai berikut. 
+1. Sampul luar 
+Sampul luar memuat judul TA, logo Universitas Gadjah Mada, nama dan 
+nomor mahasiswa, nama dan kota institusi serta tahun penyelesaian TA. 
+Semua tulisan atau logo dibuat dengan format rata tengah. Urutan isi sampul 
+luar adalah: 
+a. Judul 
+Judul TA ditulis dalam dua bahasa, yaitu bahasa Indonesia dan bahasa 
+Inggris, dibuat sesingkat -singkatnya, jelas, dan menunjukkan masalah 
+yang diteliti dengan tepat serta tidak membuka peluang penafsiran yang 
+beraneka ragam. Mahasiswa dapat menggunakan subjudul jika 
+diperlukan. 
+b. Logo Universitas Gadjah Mada. 
+Cantumkan logo UGM yang berbentuk bundar (bukan segi lima) dengan 
+diameter 5,5 cm. 
+c. Nama dan nomor mahasiswa. 
+Nama ditulis lengkap, tidak boleh disingkat. Nomor mahasiswa secara 
+lengkap dituliskan di bawah nama. 
+
+
+=== PAGE 13 ===
+
+6 
+ 
+ 
+d. Nama dan kota institusi. 
+Perlu diperhatikan bahwa urutan penulisan institusi sesuai dengan 
+hierarki: program studi, Departemen Ilmu Komputer da n Elektronika , 
+Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Gadjah 
+Mada, Yogyakarta. 
+e. Tahun. 
+Tahun yang ditulis pada bagian ini adalah tahun ujian TA terakhir dan 
+ditempatkan di bawah Yogyakarta dalam nama institusi. 
+2. Halaman judul 
+Secara umum, halaman judul ini sama dengan halaman sampul luar, 
+tetapi ditulis dengan tambahan informasi "Diajukan untuk memenuhi salah 
+satu syarat memperoleh derajat Sarjana Ilmu Komputer/Sarjana Sains 
+Elektronika dan Instrumentasi". 
+3. Halaman pengesahan 
+Halaman pengesahan harus ditandatangani oleh pembimbing maupun 
+tim penguji. 
+4. Halaman pernyataan 
+Halaman ini berisi pernyataan bahwa isi TA tidak merupakan jiplakan, 
+juga bukan dari karya orang lain. 
+5. Halaman motto dan persembahan (jika diperlukan) 
+Bahasa yang digunakan harus mengikuti kaidah bahasa Indonesia yang 
+baku. 
+6. Prakata 
+Prakata merupakan pernyataan resmi untuk menyampaikan ucapan 
+terima kasih oleh penulis kepada pihak lain, misalnya kepada para pembimbing, 
+penguji, dan semua pihak yang terkait dalam penyelesaian TA termasuk orang 
+tua dan penyandang dana. Nama harus ditulis secara lengkap termasuk gelar 
+akademik dan harus dihindari ucapan terima kasih kepada pihak yang tidak 
+terkait. Dalam Prakata, ungkapan ilmiah perlu dihindari. Bahasa yang 
+
+
+=== PAGE 14 ===
+
+7 
+ 
+ 
+digunakan harus mengikuti kaidah bahasa Indonesia yang baku. Prakata 
+diakhiri dengan mencantumkan kota dan tanggal penulisan diikuti di bawahnya 
+dengan kata “Penulis”. 
+7. Daftar isi 
+Daftar isi memberikan gambaran tentang isi TA secara menyeluruh, 
+untuk digunakan sebagai  petunjuk bagi pembaca. Secara lengkap, daftar isi 
+memuat seluruh bagian TA, disertai dengan nomor halaman bagian tersebut. 
+Apabila di dalam TA memuat daftar tabel, daftar gambar, daftar lampiran, atau 
+daftar lambang dan singkatan, maka daftar-daftar tersebut harus dicantumkan 
+pada daftar isi. 
+8. Intisari 
+Bagian ini memuat uraian singkat (tidak lebih dari 250 kata) tetapi 
+padat dan jelas serta memberikan gambaran menyeluruh tentang isi TA. 
+Intisari TA memuat apa dan mengapa penelitian dikerjakan, bagaimana 
+dikerjakan, dan apa hasil penting yang diperoleh dari penelitian. Contoh intisari 
+disajikan pada Lampiran. 
+9. Abstract 
+Abstract merupakan intisari yang ditulis dalam bahasa Inggris. 
+1.5.2 Bagian utama 
+Bagian ini memuat inti dari dokumen TA yang terdiri dari Bab 1 hingga 
+bab-bab berikutnya, sesuai dengan struktur TA yang ditentukan. Penjelasan 
+lebih rinci mengenai isi masing-masing bab di tiap bentuk TA dapat dilihat pada 
+Bab 2 hingga Bab 6. 
+1.5.3 Bagian akhir 
+Bagian akhir berisi komponen pendukung, yaitu Daftar Pustaka dan 
+Lampiran, yang melengkapi keseluruhan dokumen TA. 
+1.6 Ketentuan Penulisan Naskah TA 
+Bab ini memuat pedoman yang berkaitan dengan tata cara penulisan 
+usulan penelitian atau TA di DIKE FMIPA UGM. 
+
+
+=== PAGE 15 ===
+
+8 
+ 
+ 
+1.6.1 Ukuran kertas, font, spasi, dan jenis baris 
+Penulisan TA diketik mengikuti aturan penulisan seperti berikut: 
+1. Menggunakan ukuran kertas A4 (21 cm x 29.7 cm) dengan batas tepi atas  
+dan tepi kiri 4 cm, dan tepi bawah dan tepi kanan 3 cm. 
+2. Naskah laporan diketik dengan komputer menggunakan jenis huruf Times 
+New Roman, Calibri atau Liberation Serif berukuran 12 pt, dan untuk seluruh 
+naskah harus dipakai jenis huruf yang sama. 
+3. Huruf miring dipakai untuk pernyataan dalam definisi, teorema, akibat dan 
+istilah dalam bahasa asing. 
+4. Huruf khusus lain (seperti huruf tebal atau huruf miring bergaris bawah) 
+dapat dipakai untuk tujuan tertentu, misalnya untuk menandai istilah 
+dalam bahasa asing atau dalam bahasa daerah. 
+5. Simbol-simbol yang tidak dapat diketik, harus ditulis dengan rapi memakai 
+tinta hitam. Jarak antara dua baris diketik dengan jarak 1.5 spasi, kecuali 
+untuk daftar isi, intisari, kutipan langsung, judul tabel, judul gambar, dan 
+daftar pustaka diketik dengan jarak 1 spasi. 
+6. Rumus diketik dengan jarak spasi sesuai dengan kebutuhan. 
+7. Ruangan yang terdapat pada halaman naskah sedapat mungkin diisi 
+penuh. Pengetikan dimulai dari batas tepi kiri kecuali alinea baru, 
+persamaan, daftar, gambar, judul, atau hal-hal yang khusus. 
+8. Alinea baru dimulai pada ketukan ke-6 (1.27 cm) dari batas tepi kiri. 
+1.6.2 Penulisan judul bab, sub bab, dan sub sub bab 
+Aturan penulisan judul  bab, sub bab,  dan sub  sub bab dalam  TA 
+mengikuti ketentuan sebagai berikut: 
+1. Judul bab ditulis seluruhnya dengan huruf besar, diketik tebal dengan 
+ukuran 14 pt,  dan diatur supaya simetris, dengan jarak 4 cm dari tepi atas 
+tanpa diakhiri dengan titik. 
+2. Judul sub bab dicetak tebal tanpa diakhiri dengan titik. Semua kata diawali 
+dengan huruf besar,  kecuali kata penghubung dan kata depan. Kalimat 
+
+
+=== PAGE 16 ===
+
+9 
+ 
+ 
+pertama sesudah judul sub bab dimulai dengan alinea baru. Judul sub bab 
+bila lebih dari satu baris maka ditulis satu spasi. 
+3. Judul sub sub bab diketik mulai dari batas tepi kiri dan dicetak tebal, hanya 
+kata pertama diawali huruf besar, tanpa diakhiri dengan titik. Kalimat 
+pertama sesudah judul sub sub bab dimulai dengan alinea baru. 
+1.6.3 Tata bahasa dan bahasa yang digunakan 
+Semua kalimat ditulis menggunakan tata bahasa baku. Penggunaan kata 
+ganti orang dihindari (menggunakan kalimat pasif) dan sedapat mungkin 
+menggunakan istilah Bahasa Indonesia yang sesuai dengan Kamus Besar 
+Bahasa Indonesia (KBBI). Apabila, karena sangat sulit  mencari kata baku dalam 
+Bahasa Indonesia di KBBI, terpaksa harus menggunakan istilah asing atau istilah 
+daerah, istilah tersebut harus ditulis miring atau digaris -bawahi secara 
+konsisten. Dalam penulisan usulan penelitian atau TA, sebaiknya digunakan 
+kalimat atau alinea  penyambung antara definisi yang satu dengan definisi yang 
+lain, sehingga alur isi usulan penelitian atau TA menjadi jelas. Hindari penulisan 
+yang hanya mendaftar definisi, teorema dan lain-lainnya. 
+Beberapa ketentuan tata tulis berikut perlu diperhatikan dalam 
+penulisan usulan penelitian atau TA: 
+1. Kata hubung, misalnya “maka”, “sehingga”, “sedangkan” tidak boleh 
+digunakan sebagai awal suatu kalimat. 
+2. Penerjemahan kata “where”, “when”, dan “of” dalam bahasa Inggris tidak 
+selalu menjadi kata “di mana”, “ketika”, dan “dari” dalam bahasa Indonesia, 
+tetapi harus diterjemahkan/ diartikan dengan tepat, sesuai dengan bahasa 
+Indonesia baku.  Perlu diperhatikan bahwa penulisan “ke” dan “di” 
+sebagai awalan, harus dibedakan dengan penulisan “ke” dan “di” sebagai 
+kata depan. 
+3. Pemenggalan kata harus dilakukan secara cermat, sesuai dengan 
+kaidah penulisan Bahasa Indonesia yang benar. 
+4. Bilangan yang mengawali suatu kalimat harus dieja, misalnya: Sepuluh ekor 
+
+
+=== PAGE 17 ===
+
+10 
+ 
+ 
+kucing. 
+5. Simbol atau rumus tidak boleh berada di awal kalimat. 
+6. Tanda baca dan penulisan anak kalimat mengikuti EYD. 
+Selain itu, TA disusun dalam bahasa Indonesia yang baku, sesuai dengan 
+ketentuan ejaan Bahasa Indonesia yang disempurnakan. Apabila penulisan 
+dalam Bahasa Inggris, pedoman penulisan ejaan dan tata bahasa mengikuti 
+sistem spelling dan grammar berdasarkan tipe US atau British English terkait 
+dengan perangkat lunak yang digunakan. 
+1.6.4 Penyajian algoritma 
+1. Judul algoritma 
+Setiap algoritma harus diberikan judul yang jelas dan informatif, 
+sehingga pembaca dapat dengan mudah memahami fungsinya. 
+Contoh: 
+• Algoritma penyortiran data menggunakan metode QuickSort 
+• Algoritma pencarian jalur terpendek dengan Dijkstra 
+2. Format penulisan 
+• Gunakan format pseudo-code atau bahasa pemrograman yang 
+disederhanakan agar algoritma mudah dipahami. 
+• Pseudo-code harus konsisten dalam gaya penulisan (misalnya, format 
+indentasi, penulisan kata kunci seperti IF, FOR, WHILE, dll.). 
+• Jika menggunakan bahasa pemrograman, tambahkan komentar di setiap 
+bagian penting agar pembaca memahami logika algoritma. 
+3. Penyajian dalam blok teks 
+Algoritma sebaiknya disajikan dalam kotak atau blok yang terpisah 
+dari paragraf utama untuk memudahkan pembaca membedakan antara 
+deskripsi naratif dan algoritma.  Selain itu, algoritma diketik menggunakan jenis 
+dan ukuran huruf yang berbeda dengan yang dipakai dalam badan teks. 
+
+
+=== PAGE 18 ===
+
+11 
+ 
+ 
+import math 
+ 
+def luas_lingkaran(r): 
+    return math.pi * r**2 
+ 
+hasil = luas_lingkaran(7) 
+print(hasil)   
+Contoh Format: 
+ 
+4. Pemilihan notasi 
+Gunakan notasi yang konsisten, baik untuk variabel, parameter, atau 
+langkah algoritma. Berikan penjelasan singkat mengenai simbol atau notasi 
+yang digunakan, terutama jika notasi tersebut tidak umum. 
+1.6.5 Penyajian tabel dan gambar 
+Perlu diperhatikan bahwa penyajian tabel dan gambar harus memuat 
+semua informasi yang diperlukan secara lengkap dan jelas, sehingga pembaca 
+tidak perlu mencari informasi itu dari uraian naskah. Apabila pada uraian teks 
+dipandang perlu merujuk tabel/gambar tertentu cukup mencantumkan nomor 
+tabel/gambar. 
+1. Penyajian tabel 
+Judul tabel ditulis secara singkat tetapi jelas, dan ditempatkan di atas 
+tabel, ditulis dengan huruf tebal dan tanpa diakhiri dengan titik. Huruf pertama 
+pada kata pertama judul  ditulis kapital, kata selanjutnya dengan huruf kecil. 
+Apabila judul tabel lebih dari satu baris maka harus ditulis satu spasi. 
+Pada prinsipnya tabel tidak boleh dipenggal. Apabila tabel berukuran 
+cukup besar maka, jika diperlukan, ukuran huruf dapat diperkecil tetapi harus 
+tetap mudah terbaca. Apabila tabel terpaksa dipenggal, maka pada halaman 
+lanjutan tabel dicantumkan nomor tabel dan ditulis kata (lanjutan) tanpa judul. 
+Apabila tabel harus dibuat dalam bentuk horisontal ( landscape), maka bagian 
+atas tabel harus diletakkan di sebelah kiri. Tabel yang lebih dari dua halaman 
+
+
+=== PAGE 19 ===
+
+12 
+ 
+ 
+atau yang harus dilipat, ditempatkan pada lampiran. 
+Jika tabel dikutip dari referensi maka sitasi dituliskan pada bagian 
+terakhir judul. Perkecualian  untuk tabel yang memodifikasi beberapa data 
+yang berasal dari berbagai sumber, maka sitasi ditunjukkan dengan simbol 
+pada data dan di bagian bawah tabel dituliskan referensi yang dimaksudkan.  
+2. Penyajian gambar 
+Gambar dalam skripsi meliputi bagan alir, grafik, peta, foto, dan 
+diagram kerja. Penyajian gambar dalam penyusunan naskah skripsi mengikuti 
+ketentuan berikut. 
+Judul gambar diletakkan di bawah gambar, ditulis dengan huruf tebal 
+dan tanpa diakhiri dengan titik. Huruf pertama pada kata pertama judul ditulis 
+kapital, kata selanjutnya dengan huruf kecil. Apabila judul gambar lebih dari 
+satu baris maka harus ditulis satu spasi. Keterangan  gambar dituliskan pada 
+tempat-tempat yang kosong di dalam gambar dan jangan pada halaman lain. 
+Bila gambar disajikan melebar sepanjang tinggi kertas, maka bagian atas 
+gambar diletakkan di sebelah kiri. 
+Untuk gambar yang terdiri dari beberapa bagian harus digunakan 
+keterangan urutan menggunakan (a), (b), dan seterusnya, dengan keterangan 
+yang tercakup pada bagian judul gambar.  Seluruh gambar harus diatur pada 
+satu halaman yang sama. Untuk gambar berwarna hendaknya dapat dicetak 
+warna atau diatur dengan pewarnaan yang kontras. 
+Jika gambar dikutip dari referensi maka sitasi dituliskan pada bagian 
+terakhir judul gambar. Untuk gambar yang dikutip dari internet, hendaknya 
+diperhatikan resolusi dan ketajaman gambar. 
+Untuk gambar yang berasal dari hasil scanning harap diperhatikan 
+tingkat resolusi dan ketajaman  gambar. Jika diperlukan, hasil scan dapat 
+dilengkapi dengan teks tertentu.  
+3. Penulisan Bilangan dan Satuan 
+Aturan penulisan bilangan dan satuan dalam TA mengikuti ketentuan 
+
+
+=== PAGE 20 ===
+
+13 
+ 
+ 
+sebagai berikut: 
+1. Bilangan diketik dengan angka, kecuali pada permulaan kalimat. 
+2. Bilangan desimal ditandai dengan koma, bukan dengan titik. 
+3. Satuan dinyatakan dengan singkatan resmi tanpa titik di belakangnya, misal 
+10 kg, 70 cm, 34 s, dan yang lain. 
+1.6.6 Penomoran 
+Bagian ini menjelaskan tata cara penomoran halaman, penomoran bab 
+dan sub bab, penomoran  tabel dan gambar, penomoran definisi dan teorema, 
+dan penomoran persamaan matematika dan reaksi kimia. 
+1. Penomoran halaman 
+a. Bagian awal usulan penelitian/TA, diberi nomor halaman dengan 
+angka Romawi kecil ditempatkan pada bagian bawah tengah secara 
+simetris. 
+b. Bagian utama dan bagian akhir untuk usulan penelitian/TA diberi 
+nomor dengan memakai angka Arab. Untuk halaman yang memuat 
+judul bab maka nomor halaman diletakkan pada bagian bawah secara 
+simetris, sedangkan untuk halaman -halaman berikutnya pada bagian 
+kanan atas. 
+2. Penomoran bab, sub bab, dan anak sub bab 
+a. Nomor bab ditulis dengan huruf Romawi Besar. 
+b. Nomor sub bab ditulis dengan angka Arab sesuai dengan nomor 
+Bab diikuti dengan nomor urut Sub Bab. 
+c. Nomor anak sub bab ditulis dengan angka Arab sesuai dengan nomor 
+Sub Bab diikuti dengan nomor urut Anak Sub Bab. 
+d. Apabila terdapat bagian lebih lanjut dari anak sub bab , judul diketik 
+tanpa nomor dan menggunakan huruf tebal (bold). 
+3. Penomoran tabel dan gambar 
+Tabel atau gambar diberi nomor urut dengan angka Arab sesuai dengan 
+nomor bab diikuti dengan nomor urut tabel atau gambar. Judul tabel diletakkan 
+
+
+=== PAGE 21 ===
+
+14 
+ 
+ 
+di atas tabel, sedangkan judul gambar diletakkan dibagian bawah gambar.  
+4. Penomoran definisi, teorema, akibat, lemma, algoritma, dan contoh 
+Nomor definisi, teorema, akibat, lemma, dan contoh ditulis dengan 
+angka Arab sebagai satu kesatuan sesuai dengan nomor urut bab atau sub bab. 
+5. Penomoran persamaan Matematika atau reaksi Kimia 
+Nomor persamaan matematika atau reaksi kimia ditulis dengan angka 
+Arab sesuai dengan nomor bab diikuti dengan urutan persamaan matematika 
+atau reaksi kimia. Nomor diketik  dalam tanda kurung, sebagai contoh untuk 
+persamaan ke 52 pada Bab 3 maka ditulis (3.52). Nomor tersebut ditempatkan 
+di dekat batas tepi kanan. 
+1.6.7 Rincian ke bawah 
+Jika pada penulisan naskah ada rincian yang harus disusun ke bawah, 
+dapat digunakan urutan dengan angka atau huruf sesuai dengan derajat 
+rincian. 
+1.6.8 Letak simetris 
+Gambar, tabel dan judul gambar/tabel diletakkan simetris terhadap tepi 
+kiri dan kanan pengetikan. 
+1.6.9 Aturan pencetakan buku TA 
+Buku TA harus dicetak (tidak boleh bolak -balik) pada kertas HVS 70 
+g/m2, berukuran kuarto  atau A4 (21 cm x 28 cm), dan dijilid rapi dengan 
+menggunakan sampul laminasi kertas buffalo berwarna biru. 
+1.6.10 Ketentuan umum pustaka 
+1. Sitasi pustaka 
+Pengacuan sitasi pustaka dilakukan dengan sistem Harvard. Untuk 
+pencantuman pustaka yang melibatkan nama penulis berjumlah lebih dari dua 
+digunakan nama belakang penulis  pertama diikuti dengan dkk. atau et al. (pilih 
+salah satu secara konsisten). Jika artikel ditulis oleh dua orang, nama belakang 
+kedua penulis harus dicantumkan. 
+ 
+
+
+=== PAGE 22 ===
+
+15 
+ 
+ 
+Contoh : 
+a. Penulis tunggal 
+• Ross (2004) menyatakan ... 
+• Menurut Ross (2004) ... 
+• Himpunan A subset Rn kompak jika dan hanya jika ... (Lang, 2007). 
+b. Penulis dua orang 
+• Brauer dan Castillo-Chavez (2001) menyatakan bahwa ... 
+• Jika titik ekuilibrium sistem non linier hiperbolik, maka … (Nayfeh dan 
+Balachandra, 1995). 
+c. Penulis lebih dari dua orang 
+• Nagle et al. (2004) menyatakan bahwa ... 
+• Nagle dkk. (2004) menyatakan bahwa ... 
+d. Jika sitasi terpaksa dilakukan tidak dari sumber asli 
+• Dalam Hirsch dan Smale (1999), Liapunov menyatakan bahwa, jika 
+terdapat fungsi Liapunov yang terdefinisi pada persekitaran suatu titik 
+ekuilibrium, maka ... 
+2. Penulisan daftar pustaka 
+Perlu diperhatikan bahwa pustaka yang dicantumkan dalam daftar 
+pustaka adalah pustaka yang benar -benar diacu di dalam skripsi, dengan 
+susunan sebagai berikut : 
+a. Daftar pustaka 
+Daftar pustaka disusun menurut urutan abjad nama belakang penulis 
+pertama. Daftar pustaka ditulis  dalam spasi tunggal. Antara satu pustaka dan 
+pustaka berikutnya diberi jarak satu setengah spasi. Baris pertama rata kiri dan 
+baris berikutnya menjorok ke dalam. 
+b. Urutan penulisan berbagai bentuk pustaka 
+1) Pustaka dalam bentuk buku dan buku terjemahan 
+• Buku dengan urutan penulisan:  
+Penulis, tahun, Judul Buku (harus ditulis miring) , volume (jika ada), 
+
+
+=== PAGE 23 ===
+
+16 
+ 
+ 
+edisi (jika ada), nama penerbit dan kota penerbit. 
+• Buku Terjemahan dengan urutan penulisan:  
+Penulis asli, tahun buku terjemahan, Judul Buku Terjemahan (harus 
+ditulis miring), volume (jika ada), edisi (jika ada), (diterjemahkan 
+oleh: nama penerjemah), nama penerbit terjemahan dan kota 
+penerbit terjemahan. 
+• Artikel dalam Buku dengan urutan penulisan:  
+Penulis artikel, tahun, Judul Artikel (harus ditulis miring) , Nama 
+Editor, Judul Buku (harus ditulis miring), volume (jika ada), edisi (jika 
+ada), Nama Penerbit dan Kota Penerbit. 
+2) Pustaka dalam bentuk artikel dalam majalah ilmiah 
+Urutan penulisan: 
+Penulis, tahun, Judul Artikel , Nama Majalah  (harus ditulis miring 
+sebagai singkatan resminya), nomor, volume dan halaman. 
+3) Pustaka dalam bentuk artikel dalam seminar ilmiah 
+• Artikel dalam prosiding seminar dengan urutan penulisan:  
+Penulis, tahun, Judul Artikel, Judul Prosiding Seminar (harus ditulis 
+miring), kota seminar. 
+• Artikel lepas tidak dimuat dalam prosiding seminar dengan urutan 
+penulisan:  
+Penulis, tahun, Judul Artikel, Judul Prosiding Seminar (harus ditulis 
+miring), Kota Seminar, dan tanggal seminar. 
+4) Pustaka dalam bentuk Skripsi/Tesis/Disertasi 
+Urutan penulisan:  
+Penulis, tahun, Judul Skripsi/Tesis/Disertasi (harus ditulis miring), nama 
+fakultas/ program pasca sarjana, universitas, dan kota. 
+5) Pustaka dalam bentuk Laporan Penelitian 
+Urutan penulisan:  
+Peneliti, tahun, Judul Laporan Penelitian , Nama Laporan Penelitian  
+
+
+=== PAGE 24 ===
+
+17 
+ 
+ 
+(harus ditulis miring), nama proyek penelitian, nama institusi, dan kota. 
+6) Pustaka dalam bentuk artikel dalam surat kabar 
+Urutan penulisan:  
+Penulis, tahun, Judul Artikel, Nama Surat Kabar  (harus ditulis miring), 
+Nama Surat Kabar, tanggal terbit dan halaman. 
+7) Pustaka dalam bentuk dokumen paten 
+Urutan penulisan:  
+Penemu, tahun, Judul Paten  (harus ditulis miring), Paten Negara , 
+Nomor. 
+8) Pustaka dalam bentuk artikel dalam internet (tidak diperkenankan 
+melakukan sitasi artikel dari internet yang tidak ada nama penulisnya) 
+• Artikel majalah ilmiah versi cetakan dengan urutan penulisan: 
+Penulis, tahun, Judul Artikel , Nama Majalah  (harus ditulis miring 
+sebagai singkatan resminya), nomor, volume dan halaman. 
+• Artikel majalah ilmiah versi online dengan urutan penulisan: 
+Penulis, tahun , Judul Artikel , Nama Majalah  (harus ditulis miring 
+sebagai singkatan resminya), nomor, volume, halaman dan alamat 
+website. 
+• Artikel umum dengan urutan penulisan:  
+Penulis, tahun, Judul Artikel, alamat website (harus ditulis miring), 
+diakses tanggal … 
+3. Tata cara penulisan 
+a. Nama penulis lebih dari satu kata 
+Jika nama penulis terdiri atas dua nama atau lebih, cara penulisannya 
+menggunakan nama keluarga atau nama utama diikuti dengan koma dan 
+singkatan nama-nama lainnya masing-masing diikuti titik. 
+Contoh: 
+• Soeparna Darmawijaya ditulis: Darmawijaya, S. 
+• Shepley L. Ross ditulis: Ross, S. L. 
+
+
+=== PAGE 25 ===
+
+18 
+ 
+ 
+b. Nama yang diikuti dengan singkatan 
+Nama utama atau nama keluarga yang diikuti dengan singkatan, ditulis 
+sebagai nama yang menyatu. 
+Contoh: 
+• Mawardi A.I. Ditulis: Mawardi, A.I. 
+• William D. Ross Jr., ditulis: Ross Jr., W.D. 
+c. Nama dengan garis penghubung 
+Nama yang lebih dari dua kata tetapi merupakan kesatuan yang 
+tidak dapat dipisahkan dirangkai dengan garis penghubung. 
+Contoh: 
+• Ronnie McDouglas ditulis: McDouglas, R. 
+• Hassan El-Bayanu ditulis: El-Bayanu, H. 
+• Edwin van de Saar ditulis: van de Saar, E. 
+d. Penulisan gelar kesarjanaan, anonim dan nama-nama penulis 
+• Gelar kesarjanaan dan gelar lainnya tidak boleh dicantumkan dalam 
+penulisan nama, kecuali dalam ucapan terima kasih atau prakata. 
+• Gunakan istilah “anonim” untuk referensi tanpa nama penulis 
+• Dalam daftar pustaka, semua nama penulis harus dicantumkan, tidak boleh 
+menggunakan dkk. atau et al. 
+1.6.11 Catatan bawah, istilah baru dan kutipan 
+• Catatan bawah (kalau tidak perlu sekali) sebaiknya dihindari. Jika terpaksa 
+membuat catatan bawah maka harus ditulis dengan jarak satu spasi. 
+• Istilah baru yang belum dibakukan dalam bahasa Indonesia dapat 
+digunakan asal konsisten.  Pada penggunaan yang pertama kali perlu 
+diberikan padanannya dalam bahasa asing  (dalam kurung). Kalau banyak 
+sekali menggunakan istilah baru, sebaiknya dibuatkan daftar istilah di 
+belakang. 
+• Kutipan ditulis  dalam bahasa aslinya  dan ditulis  menjorok ke dalam.  
+Kutipan bahasa asing dituliskan dengan huruf miring. Kalau panjang 
+
+
+=== PAGE 26 ===
+
+19 
+ 
+ 
+kutipan lebih dari tiga baris maka diketik satu spasi, dan kalau kurang dari 
+tiga baris diketik dua spasi. 
+1.7 Mekanisme Pelaksanaan dan Penilaian TA 
+Salah satu syarat kelulusan bagi mahasiswa program sarjana Ilmu 
+Komputer serta Elektronika dan Instrumentasi adalah menyelesaikan TA– mulai 
+mendaftar di platform terintegrasi bagi civitas akademika UGM sampai ujian 
+dan dinyatakan lulus. TA dengan total 9 sks terdiri dari tiga tahap, yaitu 
+Proposal (2 sks), Seminar Hasil (1 sks), dan bentuk TA yang dipilih (6 sks). Oleh 
+karena itu,  untuk bisa menyelesaikan TA,  mahasiswa harus mulai dengan 
+mengambil mata kuliah Proposal dan diakhiri dengan pengambilan mata kuliah 
+Skripsi Ilmiah (sesuai dengan bentuk TA yang dipilih).  Mekanisme pelaksanaan 
+TA untuk semua jenis bentuk TA mengikuti urutan seperti dibawah ini. 
+1.7.1 Mahasiswa mengambil mata kuliah proposal 
+1. Mahasiswa mendaftarkan mata kuliah Proposal di platform terintegrasi 
+bagi civitas akademika UGM setelah menetapkan bentuk TA mana yang 
+akan dilakukan. 
+2. Program studi menetapkan dosen pembimbing mata kuliah Proposal untuk 
+mahasiswa berdasarkan  usulan mahasiswa (jika ada usulan), topik 
+penelitian (jika diisi), kuota dosen pembimbing, melalui rapat pleno 
+program studi. 
+3. Mahasiswa melakukan pembimbingan dengan dosen pembimbing untuk 
+menyusun proposal penelitian sesuai jadwal yang ditetapkan oleh dosen 
+pembimbing. 
+a. Proses pembimbingan dilakukan sampai dosen pembimbing 
+menyatakan bahwa rencana penelitiannya sudah jelas dan layak untuk 
+dilaksanakan, ditulis ke dalam Naskah Proposal, dan mahasiswa siap 
+untuk Ujian Proposal. 
+b. Selama proses pembimbingan, dosen pembimbing memberikan 
+arahan, koreksi, masukan dan saran khususnya tentang substansi 
+
+
+=== PAGE 27 ===
+
+20 
+ 
+ 
+rencana penelitian yang harus direspon mahasiswa dengan melakukan 
+perbaikan-perbaikan sesuai dengan arahan, koreksi, masukan dan 
+saran dosen pembimbing. 
+c. Adapun yang dimaksud dengan substansi rencana penelitian adalah 
+seperti, topik, spesifik  masalah yang akan diselesaikan, data atau 
+dataset yang akan digunakan (jika memerlukan), dan tahapan-tahapan 
+penelitian yang akan dilaksanakan. 
+d. Dalam menyusun proposal, mahasiswa bertanggung jawab pada 
+kesesuaian format baik struktur maupun tata tulis dan panduan yang 
+sudah disediakan. 
+4. Setelah mendapat persetujuan dosen pembimbing untuk ujian Proposal, 
+mahasiswa mendaftar ke Sekretariat Program Studi untuk penjadwalan. 
+5. Mahasiswa melaksanakan Ujian Proposal sesuai dengan jadwal yang 
+ditetapkan oleh Program Studi. Dalam ujian Proposal, mahasiswa diuji oleh 
+tim dosen pembimbing Skripsi Ilmiah  Akademik dan dua dosen selain 
+pembimbing Skripsi Ilmiah Akademik. Apabila tim pembimbing terdiri dari 
+dua dosen, maka masing-masing dosen memiliki bobot nilai yang sama, 
+namun jika tim pembimbing hanya terdiri dari satu dosen, maka dosen 
+pembimbing memiliki bobot 50% dan masing -masing dosen penguji non 
+pembimbing memiliki  bobot 25%. Terdapat tujuh komponen penilaian 
+ujian proposal. Penilaian dilakukan menggunakan rubrik penilaian yang 
+telah ditetapkan oleh Departemen. Adapun bobot penilaian ujian Proposal 
+bentuk Skripsi Ilmiah Akademik untuk setiap komponen ditunjukan pada 
+Tabel 1.1. 
+Tabel  1.1 Komponen penilaian ujian proposal 
+No Komponen Penilaian PLO Bobot Rentang Nilai 
+1 Sasaran dan kontribusi topik penelitian PLO4 20% [0, 100] 
+2 Relevansi latar belakang masalah dan referensi Pustaka PLO5 20% [0, 100] 
+3 Metodologi dan rancangan penelitian PLO2 20% [0, 100] 
+4 Penguasaan terhadap usulan penelitian PLO3 20% [0, 100] 
+
+
+=== PAGE 28 ===
+
+21 
+ 
+ 
+5 Presentasi PLO5 10% [0, 100] 
+6 Bahasa dan tata tulis PLO1 10% [0, 100] 
+1.7.2 Mahasiswa mengambil mata kuliah seminar hasil  
+1. Mahasiswa mendaftarkan mata kuliah Seminar Hasil di platform 
+terintegrasi bagi civitas akademika UGM. 
+2. Untuk mendapatkan nilai mata kuliah Seminar Hasil, mahasiswa harus 
+mempresentasikan hasil dari penelitian  TA yang  telah didapatkan di 
+hadapan dua dosen penilai  yang ditugasi oleh Program Studi dengan 
+masing-masing memiliki bobot nilai yang sama. Untuk bentuk TA Skripsi 
+Inovasi Produk dan Proyek Kolaboratif, seminar hasil dapat  dilakukan 
+melalui pameran produk dan poster. Penilaian dilakukan menggunakan 
+rubrik penilaian yang telah ditetapkan oleh Departemen. Adapun bobot 
+penilaian ujian Seminar Hasil untuk setiap komponen ditunjukan pada 
+Tabel 1.2. 
+Tabel  1.2 Komponen penilaian ujian seminar hasil 
+No Komponen Penilaian PLO Bobot Rentang Nilai 
+1 Permasalahan dan tujuan penelitian PLO4 20% [0, 100] 
+2 Metodologi penelitian PLO2 25% [0, 100] 
+3 Hasil penelitian PLO4 15% [0, 100] 
+4 Penguasaan terhadap materi penelitian PLO3 25% [0, 100] 
+5 Presentasi PLO5 15% [0, 100] 
+ 
+1.7.3 Mahasiswa mengambil mata kuliah Skripsi  
+1. Mahasiswa mendaftarkan mata kuliah Skripsi di platform terintegrasi bagi 
+civitas akademika UGM. 
+2. Mahasiswa melakukan pembimbingan dengan dosen pembimbing 
+dalam melakukan penelitian sesuai jadwal yang ditetapkan oleh dosen 
+pembimbing. 
+a. Proses pembimbingan dilakukan sampai dosen pembimbing 
+menyatakan bahwa penelitiannya sudah selesai dan hasilnya siap untuk 
+dilaporkan dalam bentuk naskah skripsi , dan mahasiswa siap untuk 
+Ujian Skripsi. 
+
+
+=== PAGE 29 ===
+
+22 
+ 
+ 
+b. Selama proses pembimbingan dosen pembimbing memberikan 
+arahan, koreksi, masukan dan saran khususnya tentang substansi 
+penelitian yang harus direspon mahasiswa dengan melakukan 
+perbaikan-perbaikan sesuai dengan arahan, koreksi, masukan dan 
+saran dosen pembimbing. 
+c. Adapun yang dimaksud dengan substansi penelitian adalah kesesuaian 
+data yang digunakan, kebenaran tahapan-tahapan penelitian yang 
+dilaksanakan, keabsahan hasil penelitian, kesesuaian analisis dan 
+argumentasi, dan kesesuaian kesimpulan dan hasil penelitian. 
+d. Dalam menyusun naskah skrips i, mahasiswa bertanggung jawab pada 
+kesesuaian format baik struktur maupun tata tulis dan panduan yang 
+sudah disediakan. 
+3. Setelah mendapat persetujuan dosen pembimbing untuk ujian Skripsi, 
+mahasiswa mendaftar ke Sekretariat Program Studi untuk penjadwalan. 
+4. Mahasiswa melaksanakan Ujian Skripsi sesuai dengan jadwal yang 
+ditetapkan oleh Program Studi. 
+5. Untuk mendapatkan nilai mata kuliah  Skripsi, mahasiswa harus 
+mempresentasikan keseluruhan hasil dari penelitian  TA yang  telah 
+didapatkan di hadapan dua dosen penilai  yang ditugasi oleh Program Studi 
+dengan masing-masing memiliki bobot nilai yang sama. Untuk bentuk TA 
+Proyek Kolaboratif, sidang akhir  kelompok dilaksanakan dalam satu hari 
+yang bersamaan dengan waktu yang berturut turut . Selain melakukan 
+penilaian, para penguji memberi masukan berdasarkan kepakarannya 
+untuk menjamin kualitas skripsi dari jenis TA manapun , baik dari segi 
+penulisan maupun konten. 
+6. Adapun bobot penilaian untuk setiap komponen dalam TA Skripsi Ilmiah 
+Akademik, Skripsi Inovasi Produk, Proyek Kolaboratif, dan Proyek Industri 
+ditunjukan pada Tabel 1.3. 
+ 
+
+
+=== PAGE 30 ===
+
+23 
+ 
+ 
+Tabel  1.3 Komponen penilaian bentuk TA skripsi ilmiah akademik, skripsi 
+inovasi produk, proyek kolaboratif, dan proyek industri 
+No Komponen Penilaian PLO Bobot Rentang Nilai 
+1 Permasalahan dan tujuan penelitian PLO4 5% [0, 100] 
+2 Relevansi latar belakang masalah dan referensi Pustaka PLO5 5% [0, 100] 
+3 Metodologi penelitian PLO2 15% [0, 100] 
+4 Hasil dan pembahasan PLO4 25% [0, 100] 
+5 Kesimpulan dan saran PLO3 10% [0, 100] 
+6 Penguasaan terhadap materi penelitian PLO3 20% [0, 100] 
+7 Presentasi PLO5 10% [0, 100] 
+8 Bahasa dan tata tulis PLO1 10% [0, 100] 
+ 
+7. Adapun bobot penilaian untuk bentuk TA Publikasi Ilmiah di setiap 
+komponen ditunjukan pada Tabel 1.4. 
+Tabel  1.4 Komponen penilaian bentuk TA publikasi ilmiah 
+No Komponen Penilaian PLO Bobot Nilai 
+1 Kualitas Jurnal Ilmiah PLO5 30% [0, 100] 
+Jurnal Internasional Q1/Q2 100 
+Jurnal Internasional Q3/Q4 atau Jurnal Nasional 
+Terakreditasi SINTA 1 dan 2 
+90 
+Jurnal Nasional Terakreditasi SINTA 3 sampai dengan 6 80 
+Jurnal Internasional Tidak Bereputasi atau Jurnal Nasional 
+Tidak Terakreditasi 
+70 
+Seminar Internasional 60 
+2 Kecukupan dan kemutakhiran data dan metodologi PLO3 25% [0, 100] 
+3 Ruang lingkup kedalaman pembahasan PLO4 30% [0, 100] 
+4 Teknik Presentasi PLO5 10% [0, 100] 
+5 Sikap Saat Presentasi PLO1 5% [0, 100] 
+Total 100% [0, 100] 
+
+
+=== PAGE 31 ===
+
+24 
+ 
+ 
+BAB 2 SKRIPSI ILMIAH AKADEMIK 
+2.1. Pendahuluan 
+Penulisan skripsi ilmiah merupakan salah satu tahap penting dalam 
+menyelesaikan studi di perguruan tinggi. Skripsi ilmiah berfungsi sebagai 
+bentuk laporan penelitian yang dilakukan  oleh mahasiswa secara individu 
+sebagai bukti pemahaman, penguasaan materi, dan keterampilan analisis yang 
+telah diperoleh selama menjalani pendidikan di jenjang tertentu. Skripsi ilmiah 
+juga menjadi kontribusi akademik yang bernilai bagi institusi pendidikan serta 
+bidang ilmu yang ditekuni mahasiswa. 
+2.1.1 Tujuan skripsi ilmiah akademik 
+Tujuan dari penulisan skripsi ilmiah akademik ini adalah sebagai berikut: 
+1. Mengasah kemampuan penelitian. Mahasiswa diarahkan untuk mampu 
+mengidentifikasi dan menganalisis permasalahan secara mendalam, serta 
+menerapkan metodologi penelitian yang relevan untuk mendapatkan data 
+yang valid dan dapat diandalkan. 
+2. Mengembangkan kemampuan ilmiah. Mahasiswa menyajikan temuan 
+penelitian dalam bentuk skripsi ilmiah akademik yang sistematis dan sesuai 
+dengan standar akademik. 
+3. Mendorong pemecahan masalah. Skripsi ilmiah akademik bertujuan untuk 
+memberikan solusi atau kontribusi yang dapat diaplikasikan dalam 
+menyelesaikan masalah faktual di bidang ilmu komputer dan elektronika. 
+4. Melatih presentasi dan komunikasi. Melalui sidang skripsi, mahasiswa 
+dilatih untuk menyampaikan ide, hasil, dan analisis secara efektif kepada 
+tim penguji. 
+2.1.2 Manfaat skripsi ilmiah akademik 
+Manfaat yang diharapkan dari penyusunan skripsi ilmiah akademik 
+adalah agar mahasiswa mampu meningkatkan keterampilan analitis, teknis, 
+
+
+=== PAGE 32 ===
+
+25 
+ 
+ 
+dan konseptual dalam penelitian. Selain itu, skripsi ilmiah akademik diharapkan 
+dapat memperkaya referensi ilmiah dalam bidang ilmu komputer dan 
+elektronika yang dapat menjadi acuan untuk penelitian selanjutnya. 
+2.2 Luaran 
+Luaran dari bentuk TA skripsi ilmiah akademik adalah laporan skripsi 
+ilmiah, yaitu dokumen tertulis yang sistematis dan terstruktur yang ditulis 
+dalam Bahasa ilmiah sesuai dengan pedoman penulisan yang telah 
+ditetapkan. 
+2.3 Sistematika Penulisan Skripsi Ilmiah Akademik 
+Bentuk TA yang pertama adalah skripsi ilmiah akademik, yaitu hasil 
+penelitian yang disajikan dalam bentuk tulisan akademik yang terstruktur 
+menggunakan Bahasa Indonesia baku yang baik dan benar atau bahasa 
+Inggris.  
+2.3.1 Sistematika penulisan proposal penelitian 
+Penulisan proposal penelitian terdiri dari beberapa bagian yaitu: 
+1. Bagian Awal 
+Bagian awal  mencakup halaman sampul, halaman pengesahan, daftar 
+isi, dan intisari (bahasa Indonesia). Ketentuan penulisan bagian awal mengikuti 
+ketentuan bagian awal yang telah dijelaskan di Sub Sub Bab 1.5.1. 
+2. Bagian Utama 
+Komponen bagian utama memuat butir-butir berikut: 
+a. Bab 1 Pendahuluan 
+Pendahuluan penelitian  berisi beberapa elemen penting yang 
+membangun dasar dari kajian yang  dilakukan. Bagian ini  diawali dengan latar 
+belakang yang menjelaskan alasan dan urgensi penelitian, memberikan konteks 
+tentang relevansi topik yang dipilih. Selain itu, pendahuluan menghubungkan 
+roadmap riset atau teknologi dengan roadmap departemen, fakultas,  atau 
+universitas, sehingga penelitian ini sejalan dengan arah perkembangan institusi. 
+Di samping itu, pendahuluan mengidentifikasi permasalahan penelitian yang 
+
+
+=== PAGE 33 ===
+
+26 
+ 
+ 
+spesifik, tujuan yang ingin dicapai, serta manfaat yang diharapkan, baik bagi 
+komunitas akademik maupun masyarakat luas. 
+b. Bab 2 Penelitian Terkait 
+State of the art  dalam bidang yang diteliti mencakup pemahaman 
+tentang teknologi atau metode terbaru yang digunakan dan dianggap paling 
+maju saat ini. Bagian ini juga memaparkan  hasil-hasil penelitian sebelumnya 
+yang relevan, memberikan gambaran tentang apa saja yang sudah dicapai dan 
+batasan-batasan yang masih ada. 
+c. Bab 3 Metode dan Rancangan Penelitian 
+Rancangan penelitian yang diusulkan akan menjelaskan langkah -
+langkah sistematis yang akan diambil  untuk mencapai tujuan penelitian, 
+mencakup metodologi yang digunakan  serta teknik pengumpulan data yang 
+relevan. Untuk memperjelas alur penelitian, dilengkapi dengan bagan alir yang 
+menggambarkan secara visual apa saja yang telah dilaksanakan dan apa  yang 
+akan dikerjakan di setiap tahap penelitian. Bagan alir ini harus mencakup 
+penahapan yang jelas, mulai dari tahap perencanaan, pelaksanaan, analisis 
+data, hingga hasil akhir yang diharapkan, dengan indikator capaian yang terukur 
+untuk menilai efektivitas dan keberhasilan setiap langkah dalam proses 
+penelitian. 
+d. Bab 4 Jadwal Penelitian 
+Jadwal penelitian dapat dibuat dengan menggunakan Gantt Chart 
+berbasis bulan. 
+3. Bagian Akhir 
+Bagian akhir mencakup Daftar Pustaka . Ketentuan penulisan Daftar 
+Pustaka mengikuti ketentuan pada Sub Sub Bab 1. 6.10 bagian nomor 2 
+(Penulisan daftar pustaka). 
+2.3.2 Sistematika penulisan laporan TA skripsi ilmiah akademik 
+1. Bagian Awal 
+Bagian awal mencakup halaman sampul luar, halaman judul, halaman 
+
+
+=== PAGE 34 ===
+
+27 
+ 
+ 
+pengesahan, prakata, daftar isi, intisari (bahasa Indonesia), dan abstract 
+(bahasa Inggris). Jika diperlukan daftar tabel, daftar gambar, daftar lampiran, 
+arti lambang, dan singkatan disajikan setelah daftar isi tetapi sebelum intisari. 
+Ketentuan penulisan bagian awal mengikuti ketentuan bagian awal yang telah 
+dijelaskan di Sub Sub Bab 1.5.1. 
+2. Bagian Utama 
+Komponen bagian utama memuat butir-butir berikut: 
+a. Bab 1. Pendahuluan 
+1) Latar Belakang 
+Setiap penelitian yang diajukan untuk TA harus mempunyai latar 
+belakang masalah aktual yang memang memerlukan pemecahan. Latar 
+belakang timbulnya masalah perlu diuraikan secara jelas dengan sejauh 
+mungkin didukung oleh hasil studi terdahulu atau data sekunder. 
+Bagian awal latar belakang berisi persoalan nyata yang akan 
+diselesaikan melalui penelitian,  disertai dengan menyampaikan alasan dan 
+disertai fenomena nyata (jika mungkin) yang memotivasi atau urgensi 
+dilakukannya penelitian. Bagian kedua menyampaikan apa yang telah 
+dilakukan oleh para peneliti sebelumnya dalam rangka mengatasi (atau 
+menyelesaikan) persoalan yang berkaitan dengan fenomena tersebut, 
+dengan mengacu pada karya ilmiah (laporan TA  dan/atau laporan 
+penelitian, publikasi nasional atau internasional). 
+Berdasarkan kajian pada bagian pertama dan kedua tersebut, 
+kemudian, menyampaikan  solusi dalam menyelesaikan fenomena atau 
+masalah tersebut dengan mengimplementasikan metode, pendekatan, 
+teknik, atau strategi tertentu yang sudah ada atau yang berbeda. Pada 
+bagian akhir menyampaikan target (atau target -target) yang akan dicapai 
+dalam penelitian. 
+2) Perumusan Masalah 
+Rumusan masalah adalah formulasi yang  jelas dan spesifik  tentang 
+
+
+=== PAGE 35 ===
+
+28 
+ 
+ 
+masalah yang akan dipecahkan atau pertanyaan yang akan dijawab dalam 
+penelitian. Rumusan ini menjadi panduan bagi peneliti untuk 
+mengembangkan penelitian secara sistematis. Sebaiknya rumusan masalah 
+tidak dinyatakan sebagai pertanyaan penelitian ( research question ), atau 
+penyebab masalah (akar permasalahan). 
+Permasalahan penelitian harus dituliskan dalam bentuk deklaratif 
+atau kalimat-kalimat pertanyaan yang tegas dan jelas. Masalah penelitian 
+merupakan perumusan kesenjangan antara keadaan yang ada dengan 
+keadaan yang akan dicapai. Masalah biasanya berkaitan dengan hasil akhir, 
+seperti kinerja dari sebuah sistem, aplikasi, fungsionalitas sistem. 
+• Contoh rumusan masalah S1 Ilkom : kinerja sistem manajemen basis 
+data (DBMS) dalam  aplikasi e-commerce menunjukkan tantangan 
+signifikan dalam hal waktu respons dan skalabilitas. 
+• Contoh rumusan masalah S1 Elins : Sistem pemantauan suhu berbasis 
+sensor dalam aplikasi  industri menghadapi tantangan dalam hal 
+kecepatan respon dan akurasi pengukuran. 
+3) Batasan Penelitian 
+Batasan penelitian merujuk pada aspek -aspek tertentu yang 
+diidentifikasi dan dibatasi oleh  peneliti dalam suatu penelitian. Hal ini 
+penting untuk menghindari perluasan yang tidak perlu dan menjaga agar 
+penelitian tetap terfokus. Batasan masalah merujuk pada aspek - aspek 
+tertentu yang diidentifikasi dan dibatasi oleh peneliti dalam suatu 
+penelitian. Hal ini penting untuk menghindari perluasan yang tidak perlu 
+dan menjaga agar penelitian tetap terfokus. 
+Batasan penelitian dapat mencakup ruang lingkup penelitian, asumsi, 
+data atau data set yang akan digunakan, lokasi penelitian atau lokasi 
+pengambilan data. 
+• Contoh batasan penelitian S1 Ilmu Komputer (Ilkom): data diambil dari 
+pengambilan keputusan pemilihan pejabat baru dalam lingkungan 
+
+
+=== PAGE 36 ===
+
+29 
+ 
+ 
+instansi X. 
+• Contoh batasan penelitian S1 Elektronika dan Instrumentasi (Elins): 
+fokus penelitian ini hanya pada performa sistem kendali suhu dalam hal 
+akurasi dan waktu respons. 
+4) Tujuan Penelitian 
+Tujuan penelitian menggambarkan apa yang akan dikerjakan dalam 
+penelitian, serta hasil yang diharapkan, dalam rangka menyelesaikan 
+permasalahan yang dinyatakan dalam rumusan masalah.  Tujuan penelitian 
+akan digunakan sebagai target selesainya penelitian. 
+• Contoh tujuan penelitian  S1 ilkom : mengevaluasi  efisiensi dan 
+kecepatan respon DBMS saat menangani berbagai beban kerja dan 
+transaksi data dalam aplikasi e-commerce. 
+• Contoh tujuan penelitian S1 Elins : mengembangkan sistem pemantauan 
+suhu berbasis sensor untuk aplikasi industri. 
+5) Manfaat Penelitian 
+Manfaat penelitian menggambarkan manfaat penelitian bagi dunia 
+nyata dan atau lingkungan ilmiah. 
+• Contoh manfaat penelitian S1 Ilkom: Optimalisasi sistem deteksi intrusi 
+untuk efisiensi dan akurasi yang lebih baik. 
+• Contoh manfaat penelitian S1 Elins: Peningkatan kinerja sistem kontrol 
+lingkungan. 
+b. Bab 2. Tinjauan Pustaka 
+Tinjauan pustaka memuat uraian sistematis tentang hasil mengkaji 
+penelitian sebelumnya yang disajikan dalam pustaka dan menghubungkannya 
+dengan masalah penelitian yang sedang diteliti. Fakta -fakta yang dikemukakan 
+sejauh mungkin diacu dari sumber  aslinya, dengan mengikuti cara sitasi nama-
+tahun dalam kurung biasa. Sitasi tidak dari sumber asli hanya boleh dilakukan 
+dalam keadaan terpaksa yaitu ketika sumber aslinya sangat sulit ditemukan. 
+ 
+
+
+=== PAGE 37 ===
+
+30 
+ 
+ 
+c. Bab 3. Metodologi Penelitian 
+Metodologi penelitian memberikan penjelasan tentang deskripsi metode 
+dan tahap penelitian yang digunakan dan didukung dengan referensi yang 
+memadai. Setidaknya, metodologi penelitian harus memuat minimal empat 
+subbab utama yaitu deskripsi umum penelitian, deskripsi data yang digunakan, 
+deskripsi rancangan metode, dan deskripsi rancangan analisis dan teknik/cara 
+pengujian yang direncanakan untuk dilakukan. 
+1) Deskripsi Umum 
+Pada bagian ini perlu dijelaskan gambar umum dari tahapan dan 
+metode penelitian secara ringkas yang harus disertai dengan bagan alir 
+yang mendukung sebelum dijelaskan lebih detail pada subbab selanjutnya. 
+Gambaran umum dapat berupa penjelasan tentang tahapan  penelitian, 
+lokasi penelitian, tahapan metode yang digunakan, target penelitian 
+apakah berupa analisis model, pengembangan model, pengembangan 
+prototipe, atau pengembangan sistem.  
+2) Data 
+Sub bab ini menjelaskan tentang karakteristik data yang digunakan 
+dalam penelitian. Penjelasan dapat dimulai dengan bagaimana data 
+diperoleh jika menggunakan data primer yang  diambil secara langsung, 
+atau dari mana sumber data diperoleh jika menggunakan data sekunder 
+yang tersedia secara publik. Kemudian, karakteristik data perlu dijelaskan 
+dengan menyebutkan jumlah data yang digunakan, seperti apa isi dari data 
+beserta representasinya, dan visualisasi contoh dari data. Terakhir, perlu 
+dijelaskan bagaimana data dibagi ke dalam beberapa subdata seperti data 
+pelatihan, data validasi, dan data uji dalam  bentuk tabel. Jika ada proses 
+data augmentasi (data tambahan berdasar data yang ada) maka metode 
+yang digunakan juga perlu dijelaskan. 
+3) Rancangan Metode/Model 
+Bagian ini berisi penjelasan detail tentang metode/model/desain 
+
+
+=== PAGE 38 ===
+
+31 
+ 
+ 
+yang digunakan dalam penelitian. Pembahasan diawali dengan penjelasan 
+secara umum tahap -tahap metode/model/desain/algoritma yang 
+dilengkapi dengan bagan alir, kemudian setiap sub - bab menjelaskan lebih 
+detail setiap tahapan yang disertai dengan sumber referensi yang terkait, 
+ilustrasi/bagan/bagan alir bagaimana tahap dilakukan, dan persamaan -
+persamaan yang digunakan. Dalam rancangan metode ini yang 
+dideskripsikan bisa berupa algoritma, perangkat lunak , pperangkat keras  
+atau hal lainnya yang terkait dengan penelitian. Berikut adalah salah satu 
+contoh kerangka penulisan untuk kasus Estimasi Umur Berbasis Citra 
+Wajah Menggunakan Ciri Tekstur dan Metode Support Vector Machine:  
+Rancangan Metode: 
+a. Prapemrosesan Citra 
+b. Lokalisasi Citra Wajah 
+c. Ekstraksi Ciri Tekstur 
+d. Model Support Vector Machine 
+4) Rancangan Pengujian dan Analisis 
+Bagian ini berisi penjelasan tentang bagaimana pengujian dan 
+analisis pada metode/model  yang diusulkan dalam penelitian dilakukan. 
+Pada bagian pengujian, penjelasan bisa berupa tahap/langkah/skenario 
+pengujian, validasi dan alat yang digunakan, sedangkan pada bagian 
+analisis menjelaskan protokol/ evaluation metrics . Rancangan pengujian 
+dan analisis perlu disertai dengan sumber referensi terkait. Analisis yang 
+dilakukan harus berupa analisis kuantitatif (akurasi, performa, waktu 
+pemrosesan, kompleksitas, dll) dan dapat juga disertai dengan analisis 
+kualitatif. Berikut adalah salah satu contoh dari kerangka rancangan 
+pengujian dan analisis pada kasus pencarian objek pada video 
+menggunakan Oriented Fast and Rotated Brief: 
+ 
+ 
+ 
+
+
+=== PAGE 39 ===
+
+32 
+ 
+ 
+Rancangan Pengujian dan Analisis: 
+a. Protokol evaluasi/metrik 
+b. Rancangan pengujian terhadap variasi jumlah fitu 
+c. Rancangan pengujian terhadap variasi jumlah poin utama 
+d. Rancangan pengujian terhadap ketepatan waktu 
+ 
+ 
+d. Bab 4. Implementasi 
+Bab Implementasi memuat penjelasan langkah -langkah yang diambil 
+dalam proses implementasi berdasarkan rancangan yang telah dibuat, misalnya 
+penulisan kode, dan integrasi  modul. Untuk modul-modul yang diadopsi atau 
+dimodifikasi harus diacu sumbernya. Alat dan teknologi yang digunakan dalam 
+proses implementasi juga perlu disebutkan, seperti bahasa pemrograman, 
+kerangka kerja, atau pengembangan perangkat lunak. 
+Jika menggunakan koding dalam implementasi, sertakan kode yang 
+relevan dengan penjelasan dan penjelasan mengenai bagian -bagian penting 
+dari kode tersebut. Kode dapat disajikan dalam bentuk penggalan program 
+dengan penjelasan singkat. 
+Selain itu, bab implementasi memerlukan deskripsi pendekatan yang 
+digunakan untuk menguji hasil implementasi dengan teknik sesuai dengan yang 
+disampaikan di rancangan. Hasil pengujian dipaparkan beserta hasil tes yang 
+diperoleh. Penjelasan proses pelacakan kesalahan dan penyelesaiannya selama 
+pengujian juga perlu dituliskan dalam bab ini. Jika dalam implementasi 
+digunakan program maka harus disertakan dokumentasi kode lengkap  dengan 
+komentar dalam kode untuk memudahkan  proses pemahaman dan 
+pemeliharaan di masa depan sehingga diharapkan dapat terus dikembangkan. 
+ 
+ 
+e. Bab 5. Hasil dan Pembahasan 
+Bab Hasil dan Pembahasan merupakan bagian yang paling penting dari 
+sebuah TA. Bagian ini memuat semua temuan ilmiah yang secara logis dapat 
+
+
+=== PAGE 40 ===
+
+33 
+ 
+ 
+menerangkan alasan diperolehnya hasil-hasil penelitian. Bab ini diawali dengan 
+rancangan eksperimen yang menjelaskan dengan detail bagaimana pengujian 
+dilakukan, detail skenario seperti apa yang digunakan, parameter -parameter 
+atau kombinasinya, dan lain-lain yang mengantarkan ke hasil eksperimen. 
+Bagian ini diharapkan dapat memberikan penjelasan ilmiah untuk 
+menjawab rumusan masalah,  tujuan penelitian, dan menguji hipotesis (jika 
+ada). Bab ini disusun secara sistematis yang disertai dengan argumentasi 
+rasional tentang informasi ilmiah yang diperoleh dalam penelitian, khususnya 
+informasi yang relevan dengan masalah penelitian. Pembahasan terhadap hasil 
+penelitian yang diperoleh dapat disajikan dalam bentuk uraian teoritik, baik 
+secara kualitatif maupun kuantitatif. Dalam pelaksanaannya, bagian ini juga 
+menunjukkan perbandingan hasil -hasil penelitian saat ini dengan yang telah 
+dilaporkan oleh peneliti terdahulu. Secara ilmiah, hasil penelitian yang 
+diperoleh dalam penelitian dapat berupa perbaikan, penegasan, atau 
+penolakan interpretasi suatu fenomena ilmiah dari peneliti sebelumnya. 
+Hasil penelitian disajikan secara cermat dalam bentuk tabel, kurva, 
+grafik, foto, atau bentuk lain, sesuai keperluan secara lengkap dan jelas (dengan 
+menyebutkan satuan, kondisi eksperimen, dan lain -lain yang terkait) agar 
+mudah dipahami. Perlu diusahakan agar saat membaca hasil penelitian TA 
+tersebut, pembaca tidak perlu mencari informasi terkait dari uraian dalam 
+pembahasan. 
+Terkait dengan data yang sudah disajikan dalam tabel tidak boleh 
+disajikan ulang dalam bentuk gambar, dan begitu sebaliknya. Selanjutnya, hasil 
+yang disampaikan dalam uraian teks diutamakan hasil penting dari penelitian. 
+Gambar dan tabel juga harus dirujuk dalam teks , serta tidal boleh muncul 
+sebelum dirujuk dalam teks. 
+ 
+f. Bab 6. Simpulan dan Saran 
+Simpulan atau penutup adalah bagian akhir dari bagian utama skripsi 
+ilmiah akademik, yang  menyampaikan simpulan apakah implementasi dari 
+
+
+=== PAGE 41 ===
+
+34 
+ 
+ 
+penelitian yang telah dilakukan mampu menjawab permasalahan yang 
+dirumuskan dan sesuai dengan tujuan yang diharapkan. Beberapa hal yang perlu 
+diperhatikan dalam menulis simpulan adalah: 
+1) Simpulan harus mampu menjawab tujuan dan rumusan permasalahan 
+yang dikemukan di bab 1. 
+2) Pernyataan simpulan harus dikemukakan secara cermat dan hati-hati. 
+Simpulan ini dapat disampaikan sebanyak tiga kali, yakni dalam bab 
+Pembahasan, Simpulan, dan Intisari/Ringkasan sehingga diperlukan 
+kecermatan untuk menyajikannya dengan ungkapan yang berbeda-beda. 
+3) Simpulan atau penutup ditulis dalam bentuk paragraf yang efektif sesuai  
+dengan tujuan dan rumusan penelitian. 
+4) Simpulan harus menjelaskan terkait permasalahan yang ingin dipecahkan, 
+metode yang dipakai, dan alasan yang dipakai kenapa 
+mengimplementasikan metode tersebut. 
+5) Simpulan harus dapat menjelaskan hasil implementasi yang didapat secara 
+singkat, padat, dan jelas. 
+6) Simpulan harus menunjukkan kekurangan pada penelitian yang dilakukan 
+mahasiswa yang bisa disarankan untuk penelitian lanjut. 
+3. Bagian Akhir 
+Bagian ini merupakan bagian akhir TA yang berisikan Daftar Pustaka serta 
+Lampiran. 
+a. Daftar Pustaka 
+Bagian ini merupakan bagian yang wajib ada di bagian akhir yang secara 
+cermat memuat pustaka atau sumber referensi yang digunakan dalam 
+penelitian dan penulisan sebuah skripsi ilmiah akademik. Penulisan daftar 
+pustaka harus mengikuti ketentuan yang telah dituliskan pada  Sub S ub Bab 
+1.6.10. bagian nomor 2. 
+b. Lampiran 
+Lampiran adalah bagian tambahan yang berisi informasi pendukung untuk 
+
+
+=== PAGE 42 ===
+
+35 
+ 
+ 
+skripsi ilmiah akademik,  namun terlalu panjang atau detail jika dimasukkan 
+dalam bagian utama. Lampiran dapat berupa prosedur, program komputer, 
+algoritma, hasil simulasi, kuisioner, bukti atau keterangan lain yang tidak 
+mungkin disingkat. Lampiran juga dapat digunakan untuk menampilkan  data 
+primer yang diperoleh dalam penelitian yang tidak dapat diinterpretasikan 
+secara langsung. Lampiran bukan merupakan arsip catatan hasil analisis seperti 
+kumpulan kromatogram, spektra atau data kasar lainnya. 
+
+
+=== PAGE 43 ===
+
+36 
+ 
+ 
+BAB 3 SKRIPSI INOVASI PRODUK 
+3.1 Pendahuluan 
+Skripsi Inovasi Produk ini bertujuan untuk melatih mahasiswa dalam 
+memahami, mengaplikasikan,  dan menggabungkan pengetahuan serta 
+kemampuan teknis yang diperoleh selama masa studi. Mahasiswa diharapkan 
+mampu menerapkan keterampilan ini dalam menghasilkan solusi nyata yang 
+dapat mengatasi masalah yang ada, sehingga menghasilkan inovasi yang 
+relevan dan praktis secara individu. Selain itu, mahasiswa juga dilatih untuk 
+mengasah keterampilan komunikasi lisan melalui presentasi kepada dosen 
+pembimbing dan penguji,  sehingga mampu mempertahankan argumen secara 
+logis dan sistematis di sidang uji produk. 
+Garis besar kegiatan dari skripsi inovasi produk mahasiswa berfokus pada 
+perancangan, pengujian, dan penyempurnaan prototipe, baik dalam bentuk 
+perangkat lunak maupun perangkat keras, sebagai solusi inovatif. 
+3.1.1 Tujuan skripsi inovasi produk 
+1. Mengasah Kemampuan Pemecahan Masalah 
+Melalui skripsi berbentuk solusi atau inovasi  produk, mahasiswa dilatih untuk 
+mengidentifikasi masalah nyata, kemudian menganalisis dan merancang 
+solusi yang efektif. Hal ini mengembangkan kemampuan analitis dan kritis 
+dalam menyelesaikan permasalahan yang relevan dengan kebutuhan di 
+lapangan. 
+2. Penerapan Teori ke Praktik 
+Mahasiswa dapat mengaplikasikan teori dan konsep yang dipelajari selama 
+perkuliahan dalam bentuk yang lebih nyata dan praktis. Ini memungkinkan 
+mahasiswa untuk memahami hubungan antara teori dan implementasi di 
+dunia kerja, baik itu dalam pengembangan perangkat lunak, perangkat keras, 
+atau sistem elektronik dan instrumentasi. 
+ 
+
+
+=== PAGE 44 ===
+
+37 
+ 
+ 
+3. Pengembangan Produk yang Inovatif dan Kreatif 
+Skripsi dalam bentuk inovasi produk  mendorong mahasiswa untuk berpikir 
+kreatif dalam merancang produk yang berbeda dan memiliki nilai tambah, 
+baik dari segi teknologi, kegunaan, maupun daya saing. Inovasi ini bisa 
+mencakup perangkat lunak, perangkat keras, atau sistem elektronik dan 
+instrumentasi. 
+4. Persiapan untuk Karier Profesional 
+Melalui TA, mahasiswa dipersiapkan untuk menghadapi tantangan di dunia 
+kerja, terutama dalam bidang pengembangan perangkat lunak, perangkat 
+keras, atau sistem elektronik dan instrumentasi. Keterampilan teknis yang 
+dikembangkan akan menjadi modal berharga bagi mahasiswa untuk karier 
+profesional di masa depan. 
+5. Kontribusi terhadap Dunia Ilmu Pengetahuan dan Teknologi 
+Produk inovasi yang dikembangkan berpotensi memberikan kontribusi nyata 
+bagi dunia pendidikan, industri, atau masyarakat luas, serta membuka 
+peluang untuk penelitian lebih lanjut di bidang teknologi yang relevan. 
+3.1.2 Manfaat skripsi inovasi produk 
+1. Peningkatan Keterampilan Teknis 
+Mendapatkan kesempatan mengasah keterampilan pemrograman, analisis 
+data, atau rekayasa  perangkat lunak melalui pengembangan produk inovasi 
+seperti aplikasi, sistem, atau perangkat lunak khusus. Selain itu juga 
+memperdalam kemampuan dalam merancang  sistem elektronik dan 
+instrumentasi, menggunakan sensor dan aktuator, atau mengembangkan 
+sistem instrumentasi untuk berbagai keperluan praktis. 
+2. Kemampuan Pemecahan Masalah Secara Kreatif 
+Mahasiswa didorong untuk berpikir kritis dan kreatif dalam mencari solusi 
+inovatif untuk permasalahan nyata. Hal ini menyiapkan mereka  menghadapi 
+tantangan teknologi yang beragam di dunia kerja. 
+ 
+
+
+=== PAGE 45 ===
+
+38 
+ 
+ 
+3. Penguasaan Pengembangan Proyek Secara Mandiri 
+Menyelesaikan skripsi jenis ini membuat mahasiswa pengalaman dalam 
+mengelola proyek dari tahap perancangan hingga pengujian, termasuk 
+manajemen waktu, pengelolaan sumber daya, dan penyusunan dokumentasi. 
+Keterampilan ini sangat berguna dalam bekerja sebagai profesional teknologi 
+atau dalam penelitian lanjutan. 
+4. Peluang Pengembangan Lebih Lanjut 
+Skripsi berbasis solusi inovasi membuka peluang untuk penelitian lebih lanjut 
+atau pengembangan lebih  besar. Hasil karya ini bisa menjadi  dasar bagi 
+penelitian lanjutan  di program pascasarjana atau pengembangan produk 
+komersial di industri. 
+5. Kontribusi Terhadap Kemajuan Teknologi 
+Mahasiswa dapat merasakan dampak langsung dari proyek mereka terhadap 
+masyarakat atau industri. Produk inovasi yang dikembangkan, seperti 
+perangkat internet of things  (IoTs), aplikasi pintar, atau alat instrumentasi, 
+bisa berfungsi sebagai solusi yang bermanfaat secara nyata. 
+6. Peningkatan Keterampilan: Presentasi dan Penyusunan Laporan 
+Mahasiswa belajar menyusun laporan akademik yang terstruktur dan teruji 
+serta mempresentasikan hasil kerja mereka dengan jelas. Ini mengasah 
+kemampuan komunikasi dan penyampaian ide secara efektif, yang diperlukan 
+dalam bidang pekerjaan teknologi. 
+3.2 Luaran 
+Luaran merupakan penjelasan tentang produk yang dihasilkan, 
+kemampuan fungsional, spesifikasi, kelebihan dan kekurangan, dan dapat 
+digunakan oleh pengguna yang ditargetkan. Keluaran dapat terdiri dari dua 
+bentuk utama, yaitu: 
+1. Prototipe: Produk fisik yang dikembangkan untuk memecahkan masalah 
+tertentu dalam bidang ilmu komputer dan/atau elektronika instrumentasi. 
+Contoh dari prototipe ini bisa berupa alat elektronik, sistem kontrol, atau 
+
+
+=== PAGE 46 ===
+
+39 
+ 
+ 
+perangkat berbasis mikrokontroler yang diimplementasikan dengan 
+komponen-komponen yang relevan. 
+2. Perangkat lunak: Aplikasi perangkat lunak yang dirancang untuk 
+memenuhi kebutuhan spesifik  pengguna. Dalam konteks sistem informasi, 
+contohnya adalah perangkat bergerak, atau  aplikasi berbasis web. 
+Pengembangan perangkat lunak  harus disertai dengan dokumentasi 
+lengkap mengenai arsitektur sistem, kode sumber, serta panduan 
+pengguna. 
+3.3 Sistematika Penulisan Skripsi Inovasi Produk 
+Sistematika dari setiap tahap skripsi inovasi produk adalah sebagai 
+berikut. 
+3.3.1 Sistematika penulisan proposal penelitian 
+1. Bagian Awal 
+Bagian awal  mencakup halaman sampul, halaman pengesahan,  daftar 
+isi, dan intisari (bahasa Indonesia). Ketentuan penulisan bagian awal mengikuti 
+ketentuan bagian awal yang telah dijelaskan di Sub Sub Bab 1.5.1. 
+2. Bagian Utama 
+a. Bab 1 Pendahuluan 
+Pendahuluan penelitian berisi beberapa elemen penting yang 
+membangun dasar dari kajian yang  dilakukan. Bagian ini diawali dengan latar 
+belakang yang menjelaskan alasan dan urgensi penelitian, memberikan konteks 
+tentang relevansi topik yang dipilih. Selain itu, pendahuluan menghubungkan 
+roadmap riset atau teknologi dengan roadmap departemen, fakultas,  atau 
+universitas, sehingga penelitian ini sejalan dengan arah perkembangan institusi. 
+Di samping itu, pendahuluan mengidentifikasi permasalahan penelitian yang 
+spesifik, tujuan yang ingin dicapai, serta manfaat yang diharapkan, baik bagi 
+komunitas akademik maupun masyarakat luas. 
+b. Bab 2 Penelitian Terkait 
+State of the art  dalam bidang yang diteliti mencakup pemahaman 
+
+
+=== PAGE 47 ===
+
+40 
+ 
+ 
+tentang teknologi atau metode terbaru yang digunakan dan dianggap paling 
+maju saat ini. Bagian ini juga memaparkan  hasil-hasil penelitian sebelumnya 
+yang relevan, memberikan gambaran tentang apa saja yang sudah dicapai dan 
+batasan-batasan yang masih ada. 
+c. Bab 3 Metode dan Rancangan Penelitian 
+Rancangan penelitian yang diusulkan akan menjelaskan langkah -
+langkah sistematis yang akan diambil  untuk mencapai tujuan penelitian, 
+mencakup metodologi yang digunakan serta teknik pengumpulan data yang 
+relevan. Untuk memperjelas alur penelitian, dilengkapi dengan bagan alir yang 
+menggambarkan secara visual apa saja yang telah dilaksanakan dan apa  yang 
+akan dikerjakan di setiap tahap penelitian. Bagan alir ini harus mencakup 
+penahapan yang jelas, mulai dari tahap perencanaan, pelaksanaan, analisis 
+data, hingga hasil akhir yang diharapkan, dengan indikator capaian yang terukur 
+untuk menilai efektivitas dan keberhasilan setiap langkah dalam proses 
+penelitian. 
+d. Bab 4 Jadwal Penelitian 
+Jadwal penelitian dapat dibuat dengan menggunakan Gantt Chart 
+berbasis bulan. 
+3. Bagian Akhir 
+Bagian akhir mencakup daftar pustaka . Ketentuan penulisan daftar 
+pustaka mengikuti ketentuan pada Sub Sub Bab 1. 6.10 bagian nomor 2 
+(Penulisan daftar pustaka). 
+3.3.2 Sistematika penulisan laporan TA skripsi inovasi produk 
+Sistematika dari laporan TA skripsi inovasi produk, yang terdiri atas bagian 
+awal, bagian utama, dan bagian akhir. 
+1. Bagian Awal 
+Sistematika dan ketentuan penulisan skripsi inovasi produk bagian awal 
+mengikuti ketentuan yang telah dituliskan pada Sub Sub Bab 1.5.1. 
+ 
+
+
+=== PAGE 48 ===
+
+41 
+ 
+ 
+2. Bagian Utama 
+Komponen bagian utama memuat butir-butir berikut: 
+a. Bab 1 Pendahuluan 
+1) Latar Belakang 
+Setiap penelitian yang diajukan untuk TA harus mempunyai latar 
+belakang masalah aktual yang memang memerlukan pemecahan. Latar 
+belakang timbulnya masalah perlu diuraikan secara jelas dengan sejauh 
+mungkin didukung oleh hasil studi terdahulu atau data sekunder. 
+Bagian awal latar belakang berisi persoalan nyata yang akan 
+diselesaikan melalui penelitian,  disertai dengan menyampaikan alasan dan 
+disertai fenomena nyata (jika mungkin) yang memotivasi atau urgensi 
+dilakukannya penelitian. 
+Bagian kedua menyampaikan apa yang telah dilakukan oleh para 
+peneliti sebelumnya dalam rangka mengatasi (atau menyelesaikan) 
+persoalan yang berkaitan dengan fenomena tersebut, dengan mengacu 
+pada karya ilmiah (laporan TA dan/atau laporan penelitian, publikasi 
+nasional atau internasional). 
+Berdasarkan kajian pada bagian pertama dan kedua tersebut, penulis 
+menyampaikan solusi dalam menyelesaikan fenomena atau masalah 
+tersebut dengan mengimplementasikan metode, pendekatan, teknik, atau 
+strategi tertentu yang sudah ada atau yang berbeda. Pada bagian akhir 
+menyampaikan target (atau target -target) yang akan dicapai dalam 
+penelitian. 
+2) Perumusan Produk 
+Rumusan produk adalah formulasi yang jelas dan spesifik tentang 
+produk yang akan dibuat atau dikembangkan dalam penelitian. Rumusan 
+ini menjadi panduan bagi peneliti untuk membuat atau mengembangkan 
+produk sebagai penelitian untuk bentuk TA skripsi inovasi produk. 
+Sebaiknya rumusan produk tidak dinyatakan sebagai pertanyaan penelitian 
+
+
+=== PAGE 49 ===
+
+42 
+ 
+ 
+(research question). 
+Produk penelitian harus dituliskan dalam bentuk deklaratif atau 
+kalimat-kalimat pernyataan yang tegas dan jelas. Produk penelitian dibuat 
+atau dikembangkan berdasarkan kesenjangan antara keadaan produk yang 
+sekarang telah tersedia dengan keadaan produk yang akan dicapai. 
+Perumusan produk biasanya berkaitan dengan hasil akhir yang berupa 
+produk. 
+3) Batasan Produk 
+Batasan produk merujuk pada aspek-aspek tertentu dari produk yang 
+dihasilkan dalam skripsi inovasi produk. Penetapan batasan ini bertujuan 
+untuk memastikan fokus dan ketercapaian tujuan penelitian. Batasan 
+produk membantu menyesuaikan ruang lingkup pengembangan dengan 
+sumber daya, waktu, dan kapabilitas yang tersedia. 
+Batasan produk dapat mencakup fitur utama produk, teknologi yang 
+digunakan, jenis pengguna yang menjadi target, platform atau lingkungan  
+tempat produk dikembangkan, serta ruang lingkup pengujian produk. 
+4) Tujuan Penelitian 
+Tujuan penelitian mengarahkan pada apa yang akan dicapai melalui 
+pengembangan produk  dalam skripsi  inovasi. Tujuan ini  dirancang untuk 
+memberikan arah dan sasaran  yang jelas dalam menyelesaikan 
+permasalahan sesuai yang telah diidenfikasi pada rumusan produk. 
+Selanjutnya, tujuan penelitian digunakan sebagai referensi dalam 
+mengukur keberhasilan dari pengembangan produksi 
+Dalam konteks skripsi inovasi produk, tujuan penelitian sering kali 
+berkaitan dengan pengembangan fitur, peningkatan efisiensi, atau 
+penerapan teknologi tertentu yang relevan dengan kebutuhan pengguna 
+atau masalah yang dihadapi. 
+5) Manfaat Penelitian 
+Manfaat penelitian menggambarkan kontribusi nyata dari hasil 
+
+
+=== PAGE 50 ===
+
+43 
+ 
+ 
+penelitian, baik bagi dunia nyata maupun bagi perkembangan keilmuan. 
+Dalam konteks skripsi inovasi produk, manfaat penelitian mencakup 
+dampak positif produk yang dihasilkan, seperti kemudahan pengguna, 
+efisiensi proses, atau kontribusi terhadap pengembangan teknologi dan 
+ilmu pengetahuan. 
+b. Bab 2 Identifikasi Masalah dan Ide Inovatif 
+Bab ini berisi penjelasan tentang identifikasi masalah dan pengembangan 
+ide inovasi dalam menyelesaikan Skripsi Inovasi Produk, dan dasar ilmiah 
+pengembangan produk 
+1) Identifikasi masalah berisi penjelasan tentang masalah nyata yang dapat 
+dipecahkan melalui pengembangan prototipe atau perangkat lunak . 
+Masalah ini harus relevan dengan perkembangan terkini dalam bidang ilmu 
+komputer atau elektronika, serta memiliki potensi untuk memberikan 
+manfaat bagi industri, akademisi, atau masyarakat luas. 
+2) Pengembangan ide inovatif berisi penjelasan tentang bagaimana proses 
+mengembangkan solusi  inovatif melalui  perancangan produk berbasis 
+teknologi. Produk ini bisa berupa prototipe perangkat keras, perangkat 
+lunak, atau kombinasi keduanya. Proses inovasi harus melibatkan kajian 
+teoritis, perencanaan, hingga implementasi. 
+c. Bab 3 Kajian Ilmiah 
+Kajian Ilmiah berisi penjelasan tentang tinjauan pustaka dan penjelasan 
+dasar ilmiah dari pengembangan produk, termasuk metode penelitian yang 
+digunakan, algoritma yang diterapkan (untuk produk perangkat lunak), serta 
+teknologi yang terlibat dalam proses pembuatan produk. 
+d. Bab 4 Perancangan Prototipe/Produk 
+Perancangan prototipe/produk merupakan penjelasan detail tentang 
+perancangan dan pengembangan produk secara teknis. Untuk prototipe, 
+proses ini melibatkan pembuatan model fisik atau simulasi dari perangkat yang 
+diusulkan. Sedangkan untuk perangkat lunak, mahasiswa akan mendesain 
+
+
+=== PAGE 51 ===
+
+44 
+ 
+ 
+sistem perangkat lunak mulai dari arsitektur, pemrograman, hingga pengujian. 
+e. Bab 5 Proses Pembuatan Produk 
+Bab ini berisi penjelasan pembuatan produk berdasarkan hasil 
+perancangan yang diusulkan 
+f. Bab 6 Pengujian dan Evaluasi Produk 
+Bab ini berisi penjelasan tentang proses pengujian Skripsi Inovasi Produk 
+yang memuat pengujian dan evaluasi  produk. Bab pengujian dan evaluasi ini 
+berisi penjelasan tentang proses pengujian untuk memastikan fungsionalita s 
+produk sesuai dengan yang diharapkan. Mahasiswa wajib melakukan evaluasi 
+performa produk, baik dari segi teknis maupun pengalaman pengguna,  untuk 
+memastikan produk tersebut memenuhi kebutuhan yang telah diidentifikasi 
+sebelumnya. Proses evaluasi ini juga harus diikuti dengan perbaikan dan 
+penyempurnaan produk sesuai dengan hasil pengujian. 
+3. Bagian Akhir 
+Bagian ini merupakan bagian akhir TA yang berisikan Daftar Pustaka serta 
+Lampiran. 
+a. Daftar Pustaka 
+Bagian ini merupakan bagian yang wajib ada di bagian akhir yang secara 
+cermat memuat pustaka atau sumber referensi yang digunakan dalam 
+penelitian dan penulisan sebuah skripsi ilmiah akademik. Penulisan daftar 
+pustaka harus mengikuti ketentuan yang telah dituliskan pada Sub Sub Bab 
+1.6.11. 
+b. Lampiran 
+Lampiran adalah bagian tambahan yang berisi informasi pendukung 
+untuk skripsi inovasi produk, namun terlalu panjang atau detail jika 
+dimasukkan dalam bagian utama. Lampiran juga dapat digunakan untuk 
+menampilkan data primer yang diperoleh dalam penelitian yang tidak dapat 
+diinterpretasikan secara langsung. Lampiran bukan merupakan arsip catatan 
+hasil analisis seperti kumpulan kromatogram, spektra atau data kasar lainnya. 
+
+
+=== PAGE 52 ===
+
+45 
+ 
+ 
+BAB 4 PROYEK KOLABORATIF (CAPSTONE PROJECT) 
+4.1 Pendahuluan 
+Proyek kolaboratif adalah bagian penting dalam kurikulum pendidikan 
+tinggi, terutama di  bidang ilmu komputer dan elektronika, karena memberi 
+kesempatan bagi mahasiswa untuk mengimplementasikan pengetahuan 
+teoretis yang telah dipelajari ke dalam konteks nyata secara berkelompok 
+dengan latar belakang bidang ilmu yang berbeda. Melalui proyek ini, 
+mahasiswa didorong untuk menggabungkan keterampilan teknis, analitis, dan 
+konseptual yang telah dipelajari selama masa studi. Proyek kolaboratif 
+dirancang sebagai pengalaman belajar intensif, di mana mahasiswa terlibat 
+dalam proses analisis, perencanaan, pengembangan, dan penyelesaian proyek 
+yang relevan dengan industri atau kebutuhan masyarakat. 
+Latar belakang dari penerapan proyek kolaboratif dalam kurikulum 
+adalah kebutuhan untuk menyiapkan lulusan yang tidak hanya unggul secara 
+teori, tetapi juga memiliki kemampuan praktis dan siap kerja. Banyak lulusan 
+yang menghadapi kesenjangan antara pengetahuan  teoritis yang dipelajari di 
+kelas dengan tantangan yang ada di lapangan. proyek kolaboratif 
+menjembatani kesenjangan ini dengan memberikan mahasiswa kesempatan 
+untuk menghadapi permasalahan nyata yang membutuhkan solusi inovatif. 
+Kegiatan proyek kolaboratif akan mengkolaborasikan minimal dua bidang yaitu 
+bidang ilmu komputer dan bidang elektronika dan instrumentasi, dan maksimal 
+tiga bidang ilmu. 
+Secara keseluruhan,  proyek kolaboratif memberikan mahasiswa  
+pengalaman langsung dalam menangani masalah kompleks, berkolaborasi 
+dalam tim, dan menerapkan berbagai pendekatan  untuk mencapai solusi yang 
+efektif. Dengan demikian, proyek kolaboratif menjadi sarana penting untuk 
+menyiapkan mahasiswa menjadi profesional yang kompeten, inovatif, dan siap 
+menghadapi tantangan di dunia kerja. 
+
+
+=== PAGE 53 ===
+
+46 
+ 
+ 
+4.1.1 Tujuan TA proyek kolaboratif 
+Tujuan dari proyek kolaboratif dalam pendidikan tinggi, terutama di 
+bidang Ilmu Komputer serta Elektronika dan Instrumentasi, adalah untuk 
+memberikan mahasiswa pengalaman  nyata dan terpadu dalam 
+mengembangkan solusi yang inovatif sekaligus mempersiapkan mereka 
+menghadapi dunia kerja yang berkolaborasi dengan bidang ilmu lain. Beberapa 
+tujuan utama dari proyek kolaboratif ini meliputi: 
+1. Mengembangkan Solusi yang Inovatif 
+Proyek ini dirancang untuk mendorong mahasiswa dalam menciptakan solusi 
+berbasis teknologi yang baru atau memperbaiki sistem yang sudah ada di 
+bidang Ilmu Komputer serta Elektronika dan Instrumentasi. Dengan demikian, 
+mahasiswa dapat menerapkan pengetahuan  yang telah mereka pelajari untuk 
+mengatasi permasalahan atau tantangan terkini dalam industri, seperti 
+automasi, keamanan siber, IoT, kecerdasan buatan, dan sebagainya. 
+2. Penerapan Pengetahuan Teoritis 
+Mahasiswa menggunakan teori, konsep, dan teknik yang dipelajari selama 
+perkuliahan untuk memecahkan masalah nyata, membantu mereka memahami 
+relevansi praktis dari pengetahuan akademis mereka. 
+3. Pengembangan Keterampilan Kolaborasi 
+Proyek ini wajib dikerjakan secara berkelompok 2 atau 3 mahasiswa 
+(maksimal), sehingga mahasiswa belajar bekerja sama, berbagi peran, dan 
+berkomunikasi secara efektif dalam tim. Keterampilan ini sangat diperlukan 
+dalam dunia kerja yang mengutamakan kolaborasi lintas disiplin. 
+4. Mempersiapkan Mahasiswa untuk Dunia Kerja 
+Proyek kolaboratif memberikan mahasiswa kesempatan merasakan suasana 
+kerja yang nyata,  di mana mereka perlu berkomunikasi, berkoordinasi, dan 
+bekerja sama dalam tim. Mereka juga belajar menghadapi tenggat waktu, 
+mengatasi hambatan dalam pengembangan  proyek, serta mengelola proyek 
+dari awal hingga akhir. Hal ini membantu mahasiswa lebih siap menghadapi 
+
+
+=== PAGE 54 ===
+
+47 
+ 
+ 
+tantangan profesional setelah lulus. 
+5. Mengasah Kemampuan Teknis dan Manajerial 
+Dalam proyek kolaboratif, mahasiswa mengembangkan keterampilan teknis 
+sesuai bidang masing -masing, seperti pemrograman, perancangan perangkat 
+keras, analisis data, dan pengujian sistem. Selain itu, mereka juga dituntut 
+untuk mengelola waktu, mengatur sumber daya, dan berkoordinasi dengan 
+anggota tim lain, yang merupakan keterampilan manajerial penting dalam 
+proyek besar. Kemampuan mengintegrasikan aspek teknis dan manajerial ini 
+sangat penting untuk menjadi profesional yang kompeten. 
+6. Mendorong Kreativitas dan Inovasi dalam Pemecahan Masalah 
+Proyek kolaboratif mengajarkan mahasiswa  berpikir kreatif dan mencari 
+alternatif solusi yang mungkin belum pernah dicoba sebelumnya. Hal ini 
+mendorong mereka untuk menjadi inovatif, berpikir kritis, dan berani 
+bereksperimen dalam menghadapi masalah yang kompleks. 
+7. Membentuk Pola Pikir Lifelong Learning 
+Dengan tantangan dan teknologi yang terus berkembang, mahasiswa belajar 
+untuk tidak hanya mengandalkan teori atau teknik yang telah mereka pelajari, 
+tetapi juga untuk terus terbuka terhadap pengetahuan baru. Hal ini 
+membentuk pola pikir “belajar sepanjang hayat” yang sangat penting dalam 
+karier berbasis teknologi. 
+Dengan tujuan tersebut, proyek kolaboratif membantu membentuk 
+lulusan yang siap kerja, adaptif, inovatif, serta memiliki kemampuan berpikir 
+kritis dan keterampilan yang relevan dengan kebutuhan industri. 
+4.1.2 Manfaat TA proyek kolaboratif 
+Proyek kolaboratif memberikan manfaat yang luas bagi berbagai pihak, 
+termasuk mahasiswa dan institusi pendidikan. Berikut adalah beberapa 
+manfaat utama dari proyek kolaboratif: 
+1. Manfaat bagi Mahasiswa: 
+a. Penerapan Pengetahuan Teoritis dalam Situasi Nyata 
+
+
+=== PAGE 55 ===
+
+48 
+ 
+ 
+Mahasiswa memiliki kesempatan untuk mengintegrasikan dan 
+menerapkan teori yang telah dipelajari ke dalam proyek praktis. Ini 
+membantu memperdalam pemahaman mereka terhadap materi dan 
+meningkatkan keterampilan pemecahan masalah. 
+b. Pengembangan Keterampilan Teknis dan Keterampilan Nonteknis 
+Melalui proyek ini, mahasiswa mengasah keterampilan teknis yang relevan 
+dengan bidang studi mereka, seperti pemrograman, analisis data, atau 
+perancangan perangkat keras. Selain itu, mereka juga mengembangkan 
+keterampilan nonteknis , termasuk komunikasi, kolaborasi, manajemen 
+waktu, dan kepemimpinan, yang penting untuk dunia kerja. 
+c. Persiapan untuk Dunia Kerja 
+Proyek kolaboratif mensimulasikan situasi kerja yang sebenarnya, sehingga 
+mahasiswa lebih siap secara profesional untuk menghadapi tantangan di 
+industri. Pengalaman ini membuat mereka lebih percaya diri dan adaptif 
+dalam memasuki dunia kerja. 
+d. Portofolio yang Berharga 
+Proyek kolaboratif dapat menjadi portofolio konkret bagi mahasiswa, yang 
+dapat digunakan untuk melamar pekerjaan atau melanjutkan studi. Proyek 
+ini menunjukkan keterampilan dan kompetensi mahasiswa dalam 
+menyelesaikan masalah nyata. 
+2. Manfaat bagi Institusi Pendidikan: 
+a. Peningkatan Relevansi Kurikulum 
+Dengan proyek kolaboratif yang sesuai dengan kebutuhan industri atau 
+masyarakat, institusi dapat memastikan kurikulum tetap relevan dan 
+terkini. Hal ini meningkatkan kredibilitas program studi dan daya saing 
+lulusan di pasar kerja. 
+b. Peningkatan Citra Institusi 
+Ketika mahasiswa sukses dalam menghasilkan proyek inovatif yang 
+memberi dampak positif, institusi akan dikenal sebagai penyedia 
+
+
+=== PAGE 56 ===
+
+49 
+ 
+ 
+pendidikan berkualitas tinggi yang mampu menghasilkan lulusan yang 
+kompeten dan inovatif. 
+Secara keseluruhan, proyek kolaboratif memberikan dampak positif 
+yang signifikan bagi  mahasiswa dalam aspek keterampilan dan kesiapan kerja, 
+serta bagi institusi pendidikan dalam relevansi dan kualitas kurikulum. 
+4.2 Luaran 
+4.2.1 Prototipe aplikasi atau sistem 
+Hasil nyata dari proyek berupa aplikasi, perangkat lunak, perangkat 
+keras, atau sistem yang berfungsi sesuai dengan tujuan awal. 
+4.2.2 Produk versi akhir 
+Jika proyek sudah cukup matang, mahasiswa dapat menghasilkan 
+produk dalam bentuk akhir yang siap diimplementasikan atau digunakan oleh 
+pengguna, baik itu di lingkungan laboratorium, atau di dunia nyata. 
+4.2.3 Hasil pengujian produk 
+Untuk menunjukkan bahwa prototipe atau produk memenuhi standar, 
+mahasiswa perlu  menyertakan hasil pengujian akhir yang mencakup kinerja, 
+akurasi, efisiensi, atau aspek lain sesuai kebutuhan proyek. 
+4.3 Sistematika Penulisan TA Proyek Kolaboratif 
+Sistematika dari laporan TA Proyek kolaboratif, yang terdiri atas bagian awal, 
+bagian utama, dan bagian akhir. 
+4.3.1 Sistematika penulisan proposal penelitian 
+1. Bagian Awal 
+Bagian awal  mencakup halaman sampul, halaman pengesahan,  daftar 
+isi, dan intisari (bahasa Indonesia). Ketentuan penulisan bagian awal mengikuti 
+ketentuan bagian awal yang telah dijelaskan di Sub Sub Bab 1.5.1. 
+2. Bagian Utama 
+a. Bab 1 Pendahuluan 
+Pendahuluan penelitian berisi beberapa elemen penting yang 
+
+
+=== PAGE 57 ===
+
+50 
+ 
+ 
+membangun dasar dari kajian yang  dilakukan. Bagian ini diawali dengan latar 
+belakang yang menjelaskan alasan dan urgensi penelitian, memberikan konteks 
+tentang relevansi topik yang dipilih. Selain itu, pendahuluan menghubungkan 
+roadmap riset atau teknologi dengan roadmap departemen, fakultas,  atau 
+universitas, sehingga penelitian ini sejalan dengan arah perkembangan institusi. 
+Di samping itu, pendahuluan mengidentifikasi permasalahan penelitian yang 
+spesifik, tujuan yang ingin dicapai, serta manfaat yang diharapkan, baik bagi 
+komunitas akademik maupun masyarakat luas. 
+b. Bab 2 Penelitian Terkait 
+State of the art dalam bidang yang diteliti mencakup pemahaman 
+tentang teknologi atau metode terbaru yang digunakan dan dianggap paling 
+maju saat ini. Bagian ini juga memaparkan  hasil-hasil penelitian sebelumnya 
+yang relevan, memberikan gambaran tentang apa saja yang sudah dicapai dan 
+batasan-batasan yang masih ada. 
+c. Bab 3 Metode dan Rancangan Penelitian 
+Rancangan penelitian yang diusulkan akan menjelaskan langkah -
+langkah sistematis yang akan diambil  untuk mencapai tujuan penelitian, 
+mencakup metodologi yang digunakan serta teknik pengumpulan data yang 
+relevan. Untuk memperjelas alur penelitian, dilengkapi dengan bagan alir yang 
+menggambarkan secara visual apa saja yang telah dilaksanakan dan apa yang 
+akan dikerjakan di setiap tahap penelitian, serta peran masing -masing individu 
+peneliti. 
+Bagan alir ini harus mencakup penahapan yang jelas, mulai dari tahap 
+perencanaan, pelaksanaan,  analisis data, hingga hasil akhir yang diharapkan, 
+dengan indikator capaian yang terukur untuk menilai efektivitas dan 
+keberhasilan setiap langkah dalam proses penelitian. 
+d. Bab 4 Jadwal Penelitian 
+Jadwal penelitian dapat dibuat dengan menggunakan Gantt Chart 
+berbasis bulan. 
+
+
+=== PAGE 58 ===
+
+51 
+ 
+ 
+3. Bagian Akhir 
+Bagian akhir mencakup daftar pustaka . Ketentuan penulisan daftar 
+pustaka mengikuti ketentuan pada Sub Sub Bab 1. 6.10 bagian nomor 2 
+(Penulisan daftar pustaka). 
+4.3.2 Sistematika penulisan laporan TA skripsi proyek kolaboratif 
+Hasil TA dalam bentuk proyek kolaboratif disajikan dalam bentuk 
+laporan proyek yang terstruktu r. Sistematika dari laporan proyek terdiri atas 
+bagian awal, bagian utama, dan bagian akhir. 
+1. Bagian Awal 
+Sistematika dan ketentuan penulisan TA proyek kolaboratif bagian awal 
+mengikuti ketentuan yang telah dituliskan pada Sub Sub Bab 1.5.1. 
+2. Bagian Utama 
+Komponen bagian utama memuat butir-butir berikut: 
+a. Bab 1 Pendahuluan 
+Bagian ini menjelaskan latar belakang dan permasalahan yang menjadi 
+dasar pelaksanaan proyek kolaboratif. Pada bagian ini, perlu dituliskan dengan 
+rinci untuk tujuan, ruang  lingkup, serta manfaat dari proyek kolaboratif yang 
+dilakukan. Sistematika pada bagian ini terdiri dari: 
+1) Latar Belakang 
+Pada bagian ini, perlu diuraikan secara umum masalah atau 
+tantangan yang melatarbelakangi pemilihan topik proyek. Jelaskan 
+fenomena atau fakta yang menjadi dasar pentingnya penelitian ini, baik 
+dari segi ilmiah, teknologi, atau kebutuhan masyarakat/industri. 
+2) Tujuan 
+Tujuan harus merujuk pada hasil yang ingin dicapai di akhir proyek, 
+baik secara teknis maupun non -teknis. Perlu dipastikan tujuan dituliskan 
+secara jelas, dapat terukur, dan relevan dengan masalah yang ingin 
+diselesaikan. 
+ 
+
+
+=== PAGE 59 ===
+
+52 
+ 
+ 
+3) Manfaat 
+Manfaat TA proyek kolaboratif mencerminkan kontribusi nyata dari 
+hasil kerja tim mahasiswa,  baik dalam dunia nyata maupun dalam 
+pengembangan keilmuan. Dalam konteks proyek kolaboratif, manfaat ini 
+mencakup dampak positif dari solusi yang dihasilkan, seperti peningkatan 
+efisiensi proses, penyelesaian masalah kompleks secara inovatif, atau 
+pengembangan teknologi yang relevan dengan kebutuhan industri dan 
+masyarakat. Selain itu, dengan manfaat yang jelas, proyek kolaboratif tidak 
+hanya menghasilkan solusi yang bermanfaat, tetapi juga membuka peluang 
+pengembangan lebih lanjut, baik dari sisi teknologi maupun potensi 
+kolaborasi antara dunia akademik dan profesional di masa depan. 
+b. Bab 3 Rancangan Sistem 
+Rancangan sistem mencakup penjelasan rinci mengenai perancangan 
+sistem atau model yang dibangun dalam proyek kolaboratif. Bab ini bertujuan 
+untuk memberikan gambaran lengkap mengenai desain sistem, diagram, dan 
+pendekatan metode yang digunakan. Secara sistematis, bab ini mencakup 
+beberapa elemen penting. 
+Pertama, pada deskripsi rancangan sistem, dijelaskan konsep besar dari 
+sistem yang dibangun. Penjelasan ini dapat berupa skema atau deskripsi umum 
+yang memberikan gambaran menyeluruh tentang sistem. Selanjutnya, Diagram 
+Arsitektur disajikan untuk menunjukkan komponen -komponen utama dalam 
+sistem, seperti melalui diagram blok, diagram alur kerja, atau diagram 
+arsitektur yang relevan. 
+Kemudian, terdapat Work Breakdown Structure (WBS) yang berfungsi 
+memecah proyek menjadi bagian -bagian yang lebih kecil untuk memudahkan 
+manajemen waktu, pembagian tugas, dan alokasi sumber daya. WBS meliputi 
+struktur hierarki tugas, yang merinci pembagian tugas utama menjadi sub -
+tugas yang lebih spesifik beserta penanggung jawabnya, serta output yang 
+diharapkan dari setiap tahap atau sub-tugas. 
+
+
+=== PAGE 60 ===
+
+53 
+ 
+ 
+Selanjutnya, Diagram Alir (Flowchart) digunakan untuk menggambarkan 
+alur proses utama yang terjadi dalam sistem secara visual. Jika sistem memiliki 
+antarmuka pengguna, maka  Rancangan Antarmuka Pengguna (UI) juga perlu 
+dijelaskan, misalnya melalui wireframe atau  mockup untuk memberikan 
+gambaran awal tentang antarmuka yang dirancang. Apabila proyek melibatkan 
+komponen perangkat keras, maka rancangan perangkat keras perlu 
+dicantumkan, mencakup rancangan mekanis, elektronik, desain PCB, atau 
+elemen perangkat keras lainnya. 
+Terakhir, jika sistem menggunakan basis data, maka Rancangan Basis 
+Data juga harus disertakan. Ini mencakup diagram ER, skema tabel, atau 
+rancangan lain yang relevan untuk mendukung  kebutuhan data sistem. Dengan 
+struktur ini, Bab 3 memberikan panduan lengkap dan terstruktur mengenai 
+desain dan perancangan sistem yang dilakukan dalam proyek. 
+c. Bab 4 Implementasi 
+Bab implementasi menguraikan pelaksanaan dari rancangan yang sudah 
+dibuat. Bagian ini fokus pada langkah teknis dalam membangun sistem. 
+Penjelasan dalam bab ini dapat meliputi: 
+1) Teknologi yang Digunakan 
+Perlu dituliskan alat, bahasa pemrograman, kerangka kerj a, atau platform 
+yang digunakan. 
+2) Proses Pengembangan 
+Perlu diuraikan langkah-langkah yang dilakukan dalam implementasi sistem. 
+3) Kode Program (Secara Ringkas) 
+Perlu dituliskan potongan kode yang dianggap penting atau sulit dijelaskan 
+jika hanya dengan deskripsi. 
+4) Integrasi Komponen 
+Perlu dijelaskan bagaimana komponen -komponen sistem diintegrasikan 
+untuk bekerja sebagai kesatuan. 
+ 
+
+
+=== PAGE 61 ===
+
+54 
+ 
+ 
+d. Bab 5 Pengujian dan Evaluasi Produk 
+Bab ini memuat pengujian dari sistem atau model yang telah 
+dikembangkan, mencakup data uji, metode pengujian, serta hasil pengujian. 
+Sistematika yang dapat dituliskan, meliputi: 
+1) Metode Pengujian: Perlu  dijelaskan metode pengujian  yang dipilih, seperti  
+Black Box, White Box, atau pengujian lainnya sesuai karakteristik sistem. 
+2) Skenario Pengujian dan Hasilnya: Perlu dituliskan skenario pengujian yang 
+mencakup data uji dan hasil yang diperoleh dari setiap skenario. 
+3) Analisis Hasil Pengujian: Analisis hasil uji dengan membandingkan hasil 
+aktual dengan hasil yang diharapkan. 
+4) Evaluasi Kinerja: Jika memungkinkan, sertakan evaluasi kinerja sistem dari 
+segi respons waktu, keakuratan, atau parameter lain yang relevan. 
+e. Bab 6 Kesimpulan 
+Perlu dituliskan kesimpulan dari hasil proyek kolaboratif , diantaranya 
+apakah tujuan awal sudah tercapai, dan seberapa efektif solusi yang diberikan 
+dalam menyelesaikan permasalahan. 
+3. Bagian Akhir 
+Bagian ini merupakan bagian akhir TA yang berisikan Daftar Pustaka serta 
+Lampiran. 
+1) Daftar Pustaka 
+Bagian ini merupakan bagian yang wajib ada di bagian akhir yang 
+secara cermat memuat pustaka atau sumber referensi yang digunakan 
+dalam penelitian dan penulisan sebuah skripsi ilmiah akademik. Penulisan 
+daftar pustaka harus mengikuti ketentuan yang telah dituliskan pada Bab 
+1.6.11. 
+2) Lampiran 
+Lampiran adalah bagian tambahan yang berisi informasi pendukung 
+untuk TA Proyek Kolaboratif, namun terlalu panjang atau detail jika 
+dimasukkan dalam bagian utama. Lampiran juga dapat digunakan untuk 
+
+
+=== PAGE 62 ===
+
+55 
+ 
+ 
+menampilkan data primer yang diperoleh dalam penelitian yang tidak 
+dapat diinterpretasikan secara langsung. Lampiran bukan merupakan arsip 
+catatan hasil analisis seperti kumpulan kromatogram, spektra atau data 
+kasar lainnya. 
+
+
+=== PAGE 63 ===
+
+56 
+ 
+ 
+BAB 5 PROYEK INDUSTRI 
+5.1 Pendahuluan 
+Skripsi Proyek industri merupakan salah satu bentuk TA yang dilakukan di 
+perusahaan terdaftar dalam daftar perusahaan mitra pembimbingan 
+Produk/aplikasi/prototipe TA yang ditentukan  oleh DIKE FMIPA UGM. 
+Kegiatan proyek industri berbeda dengan magang. Pengambilan topik 
+permasalahan dalam proyek industri dapat  dilakukan saat mahasiswa 
+melakukan penelitian di perusahaan mitra, salah satunya saat melaksanakan KP di 
+suatu perusahaan mitra. Salah satu diantara beberapa  permasalahan industri 
+yang pernah diketahui saat KP pada perusahaan mitra tersebut  bisa diusulkan 
+penyelesaiannya dan diangkat menjadi tema kegiatan 
+produk/aplikasi/prototipe TA. Hasil Produk/aplikasi/prototipe proyek industri 
+disajikan dalam presentasi  dan melalui tahap pengujian oleh dosen 
+penguji dan pihak representatif perusahaan mitra. 
+5.1.1 Tujuan skripsi proyek industri 
+1. Menerapkan Ilmu yang Didapat: mahasiswa dapat mempraktekkan secara 
+langsung teori-teori yang telah dipelajari di perkuliahan ke dalam proyek nyata 
+di perusahaan, atau industri 
+2. Mengembangkan Keterampilan Teknis: mahasiswa dapat mengasah 
+kemampuan pemrograman, basis data, algoritma, kendali, dan/atau teknologi 
+lain yang relevan dengan bidang studi mereka. 
+3. Mengenal Lingkungan Kerja: mahasiswa akan memperoleh pengalaman 
+mengenai budaya kerja, struktur organisasi, dan dinamika tim dalam sebuah 
+perusahaan teknologi. 
+4. Membangun Jaringan: mahasiswa dapat membangun relasi dengan 
+profesional di industri, membuka peluang untuk mendapatkan mentor atau 
+rekomendasi pekerjaan. 
+5. Meningkatkan Daya Saing: pengalaman magang akan memperkuat  daftar 
+
+
+=== PAGE 64 ===
+
+57 
+ 
+ 
+riwayat hidup dan meningkatkan peluang mendapatkan pekerjaan setelah 
+lulus. 
+5.1.2 Manfaat bagi mahasiswa 
+1. Pengalaman praktis: mahasiswa akan memiliki portofolio proyek nyata 
+yang dapat ditunjukkan kepada calon pemberi kerja. 
+2. Pengetahuan tentang teknologi terbaru : mahasiswa akan diperkenalkan 
+dengan teknologi terkini yang digunakan di industri. 
+3. Keterampilan nonteknis : mahasiswa akan mengembangkan kemampuan 
+komunikasi, kerja sama tim, problem-solving, dan manajemen waktu. 
+4. Kesempatan untuk belajar dari mentor: mahasiswa dapat belajar dari para 
+profesional berpengalaman dan mendapatkan bimbingan dalam 
+mengembangkan karier. 
+5. Pemahaman tentang siklus pengembangan sistem : mahasiswa akan 
+memahami seluruh proses pengembangan perangkat lunak, mulai dari 
+perencanaan hingga deployment. 
+6. Pemahaman dunia kerja: memahami budaya kerja di perusahaan, interaksi 
+dengan rekan kerja, dan proses bisnis. 
+5.2 Luaran 
+Luaran yang diharapkan dari proyek industri adalah 
+1. Prototipe (perangkat lunak/perangkat keras): Produk fisik atau aplikasi 
+perangkat lunak yang dikembangkan untuk memecahkan masalah tertentu 
+dalam bidang ilmu komputer  serta elektronika dan instrumentasi. Contoh dari 
+prototipe perangkat keras ini bisa berupa sistem elektronik, sistem kontrol, 
+atau perangkat berbasis mikrokontroler yang diimplementasikan dengan 
+komponen-komponen yang relevan. Dalam konteks prototipe perangkat lunak, 
+khususnya sistem informasi, contohnya adalah perangkat bergerak, atau 
+aplikasi berbasis web. Pengembangan perangkat lunak  harus disertai dengan 
+dokumentasi lengkap mengenai arsitektur sistem, kode sumber, serta panduan 
+
+
+=== PAGE 65 ===
+
+58 
+ 
+ 
+pengguna. 
+2. Produk fisik: versi akhir yang siap digunakan oleh pengguna yang dirancang 
+untuk memenuhi kebutuhan spesifikasi pengguna. 
+5.3 Sistematika Penulisan TA Proyek Industri 
+Sistematika dari laporan TA proyek industri, terdiri atas bagian awal, 
+bagian utama, dan bagian akhir. 
+5.3.1 Sistematika penulisan proposal penelitian 
+Penulisan proposal penelitian terdiri dari beberapa bagian yaitu: 
+1. Bagian Awal 
+Bagian awal  mencakup halaman sampul, halaman pengesahan,  daftar 
+isi, dan intisari (bahasa Indonesia). Ketentuan penulisan bagian awal mengikuti 
+ketentuan bagian awal yang telah dijelaskan di Sub Sub Bab 1.5.1. 
+2. Bagian Utama 
+a. Bab 1 Pendahuluan 
+Pendahuluan penelitian berisi beberapa elemen penting yang 
+membangun dasar  dari kajian yang  dilakukan. Bagian ini  diawali dengan latar 
+belakang yang menjelaskan alasan dan urgensi penelitian, memberikan konteks 
+tentang relevansi topik yang dipilih. Selain itu, pendahuluan menghubungkan 
+roadmap riset atau teknologi dengan roadmap departemen, fakultas,  atau 
+universitas, sehingga penelitian ini sejalan dengan arah perkembangan institusi. 
+Di samping itu, pendahuluan mengidentifikasi permasalahan penelitian yang 
+spesifik, tujuan yang ingin dicapai, serta manfaat yang diharapkan, baik bagi 
+komunitas akademik maupun masyarakat luas. 
+b. Bab 2 Penelitian Terkait 
+State of the art dalam bidang yang diteliti mencakup pemahaman 
+tentang teknologi atau metode terbaru yang digunakan dan dianggap paling 
+maju saat ini. Bagian ini juga memaparkan  hasil-hasil penelitian sebelumnya 
+yang relevan, memberikan gambaran tentang apa saja yang sudah dicapai dan 
+batasan-batasan yang masih ada. 
+
+
+=== PAGE 66 ===
+
+59 
+ 
+ 
+c. Bab 3 Metode dan Rancangan Penelitian 
+Rancangan penelitian yang diusulkan akan menjelaskan langkah -
+langkah sistematis yang akan diambil  untuk mencapai tujuan penelitian, 
+mencakup metodologi yang digunakan serta teknik pengumpulan data yang 
+relevan. Untuk memperjelas alur penelitian, dilengkapi dengan bagan alir yang 
+menggambarkan secara visual apa saja yang telah dilaksanakan dan apa  yang 
+akan dikerjakan di setiap tahap penelitian. Bagan alir ini harus mencakup 
+penahapan yang jelas, mulai dari tahap perencanaan, pelaksanaan, analisis 
+data, hingga hasil akhir yang diharapkan, dengan indikator capaian yang terukur 
+untuk menilai efektivitas dan keberhasilan setiap langkah dalam proses 
+penelitian. 
+d. Bab 4 Jadwal Penelitian 
+Jadwal penelitian dapat dibuat dengan menggunakan Gantt Chart 
+berbasis bulan. 
+3. Bagian Akhir 
+Bagian akhir mencakup daftar pustaka . Ketentuan penulisan daftar 
+pustaka mengikuti ketentuan pada Sub Sub Bab 1. 6.10 bagian nomor 2 
+(Penulisan daftar pustaka). 
+5.3.2 Sistematika penulisan laporan TA proyek industri 
+Mahasiswa wajib membuat dokumentasi proyek industri berupa laporan 
+akhir TA proyek industri sehingga dokumen tersebut dapat dijadikan pedoman 
+oleh orang lain dalam mereplika/melakukan hal yang sama di kemudian hari. 
+Sistematika penulisan dokumen proyek industri mengikuti ketentuan sebagai 
+berikut. 
+1. Bagian Awal 
+Sistematika dan ketentuan penulisan TA Proyek Industri bagian awal 
+mengikuti ketentuan yang telah dituliskan pada Sub Sub Bab 1.5.1. 
+ 
+ 
+ 
+
+
+=== PAGE 67 ===
+
+60 
+ 
+ 
+2. Bagian Utama 
+a. Bab 1 Pendahuluan 
+Bab ini menjelaskan latar belakang, tujuan, dan manfaat dari TA 
+berbentuk Proyek Industri. Proyek Industri merupakan salah satu bentuk TA 
+yang dilakukan mahasiswa di perusahaan mitra yang telah terdaftar di DIKE, 
+FMIPA, UGM. Berbeda dengan program magang, Proyek Industri berfokus pada 
+penyelesaian permasalahan spesifik yang diangkat dari pengalaman mahasiswa 
+saat melaksanakan KP di perusahaan mitra. 
+1) Latar Belakang 
+Bagian ini menjelaskan masalah atau tantangan yang menjadi dasar 
+pelaksanaan Proyek Industri. Latar belakang diuraikan berdasarkan 
+fenomena atau fakta yang dihadapi perusahaan  mitra, baik dalam konteks 
+ilmiah, teknologi, maupun kebutuhan spesifik industri. Sebagai contoh, 
+perusahaan mungkin menghadapi kendala dalam efisiensi operasional, 
+integrasi teknologi, atau kebutuhan akan solusi berbasis inovasi untuk 
+meningkatkan produktivitas. Pentingnya penelitian ini ditekankan dengan 
+menguraikan bagaimana proyek ini berkontribusi dalam menjawab 
+kebutuhan tersebut secara signifikan. 
+2) Tujuan Penelitian 
+Tujuan Proyek Industri harus dirumuskan secara jelas, terukur, dan 
+relevan dengan permasalahan yang ingin diselesaikan. Tujuan proyek 
+dapat mencakup aspek teknis, seperti pengembangan  sistem berbasis 
+teknologi untuk meningkatkan efisiensi proses di perusahaan, maupun 
+aspek non -teknis, seperti memberikan rekomendasi strategis berbasis 
+data. Tujuan yang dirumuskan menjadi panduan utama dalam pelaksanaan 
+proyek, memastikan hasil yang diinginkan dapat dicapai sesuai dengan 
+kebutuhan perusahaan mitra. 
+3) Manfaat Penelitian 
+Manfaat Proyek Industri mencerminkan kontribusi nyata dari hasil 
+
+
+=== PAGE 68 ===
+
+61 
+ 
+ 
+proyek, baik bagi perusahaan mitra maupun perkembangan ilmu 
+pengetahuan. Dalam konteks industri, manfaat dapat berupa penyelesaian 
+masalah operasional, penghematan sumber daya, atau peningkatan 
+produktivitas melalui solusi yang inovatif. Selain itu, manfaat juga 
+mencakup pengembangan teknologi yang relevan dengan kebutuhan 
+industri saat ini. 
+Bagi mahasiswa, proyek ini memberikan kesempatan untuk 
+mengaplikasikan pengetahuan dan keterampilan yang telah dipelajari di 
+bangku kuliah dalam konteks dunia nyata. Selain itu, Proyek Industri 
+membuka peluang kolaborasi antara dunia akademik dan profesional, 
+memberikan pengalaman berharga yang mempersiapkan mahasiswa untuk 
+tantangan di dunia kerja. Dengan manfaat yang jelas, Proyek Industri tidak 
+hanya memberikan solusi bagi perusahaan, tetapi juga mendorong inovasi 
+dan pengembangan lebih lanjut di bidang teknologi dan keilmuan. 
+b. Bab 2 Identifikasi Masalah dan Ide Proyek Industri 
+Bab ini menjelaskan identifikasi masalah dan pengembangan ide inovasi 
+dalam menyelesaikan TA Proyek Industri, serta dasar ilmiah yang digunakan 
+dalam pengembangan produk, aplikasi, atau prototipe. Proyek Industri 
+difokuskan pada penyelesaian masalah spesifik di perusahaan mitra, dengan 
+pendekatan berbasis teknologi yang relevan dengan kebutuhan industri saat 
+ini. 
+1) Identifikasi Masalah 
+Bagian ini berisi penjelasan mengenai permasalahan nyata yang 
+dihadapi perusahaan mitra, yang dapat diselesaikan melalui 
+pengembangan produk, aplikasi, atau prototipe berbasis teknologi. 
+Masalah yang diidentifikasi harus relevan dengan tren terkini dalam bidang 
+ilmu komputer atau elektronika, seperti efisiensi  proses bisnis,  integrasi 
+sistem, atau otomatisasi. Permasalahan  yang dipilih juga harus memiliki 
+potensi memberikan manfaat nyata, baik bagi perusahaan mitra, dunia 
+
+
+=== PAGE 69 ===
+
+62 
+ 
+ 
+industri, maupun masyarakat luas. 
+2) Pengembangan Ide Inovatif 
+Bagian ini menjelaskan proses pengembangan solusi inovatif 
+berdasarkan masalah yang telah diidentifikasi. Solusi ini dapat berupa 
+perangkat keras, perangkat lunak, atau kombinasi keduanya, yang 
+dirancang untuk menjawab kebutuhan spesifik perusahaan mitra. Proses 
+inovasi melibatkan kajian teoritis untuk mendukung pendekatan yang 
+diusulkan, perencanaan   strategis  untuk  mengimplementasikan  ide  
+tersebut,  serta  tahapan implementasi yang menghasilkan produk atau 
+prototipe yang dapat diuji. Inovasi yang dikembangkan harus didasarkan 
+pada teknologi terkini dan dirancang untuk memberikan dampak yang 
+signifikan dalam meningkatkan efisiensi, produktivitas, atau kualitas 
+layanan perusahaan mitra. 
+c. Bab 3 Rancangan Sistem 
+Bab 3, Rancangan Sistem, dalam TA Proyek Industri berisi penjelasan 
+rinci mengenai perancangan sistem atau model yang dirancang untuk 
+menyelesaikan masalah spesifik di perusahaan mitra. Bab ini bertujuan 
+memberikan gambaran lengkap dan terstruktur mengenai desain sistem, 
+metode yang digunakan, dan langkah -langkah implementasi yang dirancang 
+untuk memenuhi kebutuhan industri. 
+Pada bagian Deskripsi Rancangan Sistem, dijelaskan konsep besar dari 
+sistem yang akan dibangun. Penjelasan ini mencakup deskripsi umum atau 
+skema yang menggambarkan alur utama solusi teknologi yang dirancang. 
+Selanjutnya, Diagram Arsitektur disajikan untuk memvisualisasikan komponen 
+utama dalam sistem, seperti melalui diagram blok, diagram alur kerja, atau 
+diagram arsitektur yang menunjukkan hubungan antar komponen sistem 
+secara jelas. 
+Selain itu, Work Breakdown Structure (WBS) digunakan untuk memecah 
+proyek menjadi bagian -bagian yang lebih kecil, sehingga memudahkan 
+
+
+=== PAGE 70 ===
+
+63 
+ 
+ 
+manajemen waktu, pembagian tugas, dan alokasi sumber daya. WBS 
+mencakup struktur hierarki tugas yang merinci pembagian  tugas utama 
+menjadi sub-tugas yang lebih spesifik, dilengkapi dengan penanggung 
+jawabnya. Output yang diharapkan dari setiap tahap atau sub -tugas juga perlu 
+dijelaskan secara jelas. Kemudian, bagan alir digunakan untuk menggambarkan 
+alur proses utama dalam  sistem. Bagan alir ini membantu memvisualisasikan 
+bagaimana sistem akan beroperasi,  mulai dari masukan hingga keluaran. Jika 
+sistem yang dirancang memiliki antarmuka pengguna, maka Rancangan 
+Antarmuka Pengguna (UI) juga perlu disajikan, baik dalam  bentuk wireframe 
+atau mockup untuk memberikan gambaran awal desain antarmuka. Apabila  
+proyek melibatkan perangkat keras, maka Rancangan Perangkat Keras harus 
+disertakan. Hal ini mencakup rancangan mekanis, elektronik, desain PCB, atau 
+elemen perangkat  keras lainnya yang mendukung implementasi sistem. 
+Terakhir, jika sistem menggunakan basis data, maka Rancangan Basis Data juga 
+perlu dijelaskan. Hal ini meliputi diagram  hubungan entitas, skema tabel, atau 
+rancangan data lainnya yang dirancang untuk memenuhi kebutuhan 
+penyimpanan dan pengelolaan data dalam sistem.  Dengan struktur yang 
+terorganisir ini, Bab 3 memastikan bahwa rancangan sistem dalam Proyek 
+Industri dapat dipahami secara menyeluruh, memberikan panduan teknis yang 
+jelas untuk implementasi, dan menjawab kebutuhan perusahaan mitra secara 
+efektif. 
+d. Bab 4 Pengujian dan Evaluasi Produk 
+Bab ini memuat pengujian terhadap sistem atau prototipe yang telah 
+dikembangkan dalam Proyek  Industri, mencakup data uji, metode pengujian, 
+hasil pengujian, serta analisis hasilnya. Bagian ini bertujuan untuk memastikan 
+bahwa sistem yang dirancang mampu berfungsi sesuai dengan kebutuhan dan 
+memenuhi tujuan yang telah ditetapkan. Sistematika yang dapat disusun dalam 
+bab ini mencakup beberapa elemen berikut: 
+ 
+ 
+
+
+=== PAGE 71 ===
+
+64 
+ 
+ 
+1) Metode Pengujian 
+Pada bagian ini, dijelaskan metode pengujian yang digunakan untuk 
+menguji sistem atau prototipe. Misalnya, pengujian fungsional seperti 
+Black Box Testing  untuk memverifikasi bahwa semua fitur sistem bekerja 
+sesuai dengan spesifikasi tanpa melihat detail implementasi. Selain itu, 
+metode lain seperti White Box Testing atau pengujian berbasis kinerja juga 
+dapat dijelaskan sesuai dengan karakteristik sistem yang diuji. 
+2) Skenario Pengujian dan Hasilnya 
+Bagian ini berisi skenario pengujian yang mencakup data uji, 
+langkah-langkah pengujian, serta hasil yang diperoleh. Skenario pengujian 
+dirancang berdasarkan kebutuhan perusahaan mitra dan mencakup 
+berbagai kemungkinan kasus yang mungkin terjadi saat sistem digunakan. 
+Hasil pengujian dicatat dan disajikan dalam bentuk tabel atau grafik untuk 
+mempermudah analisis. 
+3) Analisis Hasil Pengujian 
+Hasil pengujian dianalisis dengan membandingkan hasil aktual 
+sistem dengan hasil yang diharapkan. Analisis ini bertujuan untuk menilai 
+sejauh mana sistem berhasil memenuhi kebutuhan dan spesifikasi yang 
+telah ditentukan. Jika terdapat hasil yang tidak sesuai, perlu dijelaskan 
+kemungkinan penyebabnya serta langkah -langkah yang diambil untuk 
+perbaikan. 
+4) Evaluasi Kinerja 
+Jika memungkinkan, dilakukan evaluasi kinerja sistem dari segi 
+parameter-parameter penting, seperti respons waktu, keakuratan, efisiensi 
+sumber daya, atau parameter lain yang relevan dengan  kebutuhan 
+industri. Evaluasi ini memberikan gambaran tentang seberapa baik sistem 
+dapat beroperasi dalam kondisi nyata dan memenuhi ekspektasi 
+perusahaan mitra. 
+ 
+ 
+
+
+=== PAGE 72 ===
+
+65 
+ 
+ 
+3. Bagian Akhir 
+Bagian ini merupakan bagian akhir TA yang berisikan Daftar Pustaka serta 
+Lampiran. 
+a. Daftar Pustaka 
+Bagian ini merupakan bagian yang wajib ada di bagian akhir yang secara 
+cermat memuat pustaka atau sumber referensi yang digunakan dalam 
+penelitian dan penulisan sebuah skripsi ilmiah akademik. Penulisan daftar 
+pustaka harus mengikuti ketentuan yang telah dituliskan pada  Sub Sub  Bab 
+1.6.11. 
+b. Lampiran 
+Lampiran adalah bagian tambahan yang berisi informasi pendukung 
+untuk TA Proyek Industri, namun terlalu panjang atau detail jika dimasukkan 
+dalam bagian utama. Lampiran juga  dapat digunakan untuk menampilkan data 
+primer yang diperoleh dalam penelitian yang tidak  dapat diinterpretasikan 
+secara langsung. Lampiran bukan merupakan arsip catatan hasil analisis seperti 
+kumpulan kromatogram, spektra atau data kasar lainnya. 
+
+
+=== PAGE 73 ===
+
+66 
+ 
+ 
+BAB 6 PUBLIKASI ILMIAH 
+6.1 Pendahuluan 
+Publikasi ilmiah merupakan salah satu bentuk TA dimana mahasiswa 
+yang mengambilnya perlu melakukan suatu penelitian yang berkualitas dengan 
+tujuan untuk menghasilkan sebuah artikel ilmiah yang bisa diterima oleh suatu 
+penerbit untuk dipublikasikan di jurnal yang mereka kelola. 
+Publikasi ilmiah memiliki  peran penting dalam mendukung karir 
+akademik mahasiswa, terutama bagi mereka yang ingin meniti karir sebagai 
+dosen atau peneliti. Dengan menerbitkan penelitian mereka, mahasiswa dapat 
+menunjukkan kemampuan analisis, pemecahan masalah, serta kontribusi 
+terhadap pengetahuan di bidang mereka. Publikasi ini juga membuka peluang 
+untuk mendapatkan pengakuan dari komunitas akademik dan memperluas 
+jaringan profesional, yang penting dalam perkembangan karir di bidang 
+akademik. 
+Untuk mencapai tujuan tersebut, selain kemampuan untuk 
+merencanakan, mengeksekusi, mengelola, dan melaporkan penelitian dengan 
+baik, mahasiswa juga harus mampu untuk: 
+1. Mengembangkan suatu tinjauan pustaka yang komprehensif (sesuai 
+dengan topik yang dipilih) serta mengidentifikasi celah/persoalan penelitian 
+secara tepat dan akurat dari tinjauan pustaka yang telah dibuat; 
+2. Mengusulkan suatu solusi baru yang asli dan efektif, yang diformulasikan 
+dan dideskripsikan secara jelas dan detail, dibuktikan dengan evaluasi 
+empiris yang memadai, serta didukung oleh analisis yang mendalam dan 
+argumentasi yang logis; 
+3. Mengidentifikasi jurnal yang tepat serta menyajikan penelitiannya dalam 
+bentuk artikel ilmiah yang memenuhi standar yang ditetapkan oleh jurnal 
+tersebut (termasuk format dan gaya penulisannya); 
+ 
+
+
+=== PAGE 74 ===
+
+67 
+ 
+ 
+4. Mampu mengikuti rangkaian proses review artikel ilmiah dengan baik 
+dimana mahasiswa harus menindaklanjuti umpan -umpan balik yang 
+diberikan secara tepat, melakukan revisi artikel secara memadai, serta 
+memberikan argumentasi lanjutan secara meyakinkan. 
+Topik penelitian yang  diambil oleh mahasiswa dapat berupa topik -topik 
+di bidang ilmu komputer, elektronika, dan instrumentasi, meliputi dan tidak 
+terbatas pada komputasi paralel/terdistribusi,  metaheuristik dan swarm 
+optimization, spesifikasi dan verifikasi formal, ppembelajaran 
+mesin/pembelajaran mendalam , penglihatan komputer, pengolahan bahasa 
+alami, sistem berbasis pengetahuan, agen cerdas , pengembangan perkakas 
+perangkat lunak, manajemen pengetahuan, penambangan data dan bisnis 
+cerdas, keamanan informasi, keamanan siber , pengembangan protokol, 
+jaringan sensor, ssensor cerdas , desain sirkuit, sistem tertanam , IoTs, 
+pengolahan sinyal, kendali, dan robotika. Topik yang diambil harus merupakan 
+salah satu topik yang ada pada roadmap penelitian di lingkungan DIKE FMIPA 
+UGM. 
+Mahasiswa dianggap telah berhasil menyelesaikan TA dalam bentuk 
+publikasi ilmiah ketika: 
+1. Artikel ilmiah yang ditulis oleh mahasiswa telah diterima oleh penerbit 
+dimana mahasiswa bertindak sebagai penulis pertama dan tim pembimbing 
+sebagai penulis pendamping dengan salah satu pembimbing sebagai 
+penulis korespondensi. Mahasiswa harus menggunakan afiliasi program 
+studi saat ini sedangkan semua pembimbing harus menggunakan afiliasi 
+DIKE FMIPA UGM. 
+2. Mahasiswa telah mengumpulkan Laporan TA Publikasi Ilmiah ke Program 
+Studi; 
+3. Mahasiswa telah mengikuti Ujian Laporan TA Publikasi Ilmiah. 
+6.2 Luaran 
+Luaran yang diharapkan dari TA Publikasi Ilmiah adalah: 
+
+
+=== PAGE 75 ===
+
+68 
+ 
+ 
+1. Artikel Ilmiah yang diterima di jurnal terakreditasi nasional atau terindeks 
+Scopus/WoS untuk jurnal internasional dimana mahasiswa sebagai penulis  
+pertama dan pembimbing sebagai penulis pendamping dengan semua 
+author berafiliasi Universitas Gadjah Mada. 
+2. Bukti Publikasi berupa letter of acceptance dan atau tautan ke artikel yang 
+sudah terbit di jurnal. 
+6.3 Sistematika Penulisan TA Publikasi Ilmiah 
+Sistematika penulisan dari TA Publikasi Ilmiah di tiap tahapnya, dari proposal, 
+seminar, hingga TA adalah sebagai berikut. 
+6.3.1 Sistematika penulisan proposal penelitian 
+ 
+1. Bagian Awal 
+Bagian awal  mencakup halaman sampul, halaman pengesahan,  daftar 
+isi, dan intisari (bahasa Indonesia). Ketentuan penulisan bagian awal mengikuti 
+ketentuan bagian awal yang telah dijelaskan di Sub Sub Bab 1.5.1. 
+2. Bagian Utama 
+a. Bab 1. Pendahuluan 
+Pendahuluan penelitian berisi beberapa elemen penting  yang 
+membangun dasar dari kajian yang  dilakukan. Bagian ini  diawali dengan latar 
+belakang yang menjelaskan alasan dan urgensi penelitian, memberikan konteks 
+tentang relevansi topik yang dipilih. Selain itu, pendahuluan menghubungkan 
+roadmap riset atau teknologi dengan roadmap departemen, fakultas,  atau 
+universitas, sehingga penelitian ini sejalan dengan arah perkembangan institusi. 
+Di samping itu, pendahuluan mengidentifikasi permasalahan penelitian yang 
+spesifik, tujuan yang ingin dicapai, serta manfaat yang diharapkan, baik bagi 
+komunitas akademik maupun masyarakat luas. 
+b. Bab 2. Penelitian Terkait 
+State of the art dalam bidang yang diteliti mencakup pemahaman 
+tentang teknologi atau metode terbaru yang digunakan dan dianggap paling 
+
+
+=== PAGE 76 ===
+
+69 
+ 
+ 
+maju saat ini. Bagian ini juga memaparkan  hasil-hasil penelitian sebelumnya 
+yang relevan, memberikan gambaran tentang apa saja yang sudah dicapai dan 
+batasan-batasan yang masih ada. 
+c. Bab 3. Metode dan Rancangan Penelitian 
+Rancangan penelitian yang diusulkan akan menjelaskan langkah -
+langkah sistematis yang akan diambil  untuk mencapai tujuan penelitian, 
+mencakup metodologi yang digunakan serta teknik pengumpulan data yang 
+relevan. Untuk memperjelas alur penelitian, dilengkapi dengan bagan alir yang 
+menggambarkan secara visual apa saja yang telah dilaksanakan dan apa  yang 
+akan dikerjakan di setiap tahap penelitian. Bagan alir ini harus mencakup 
+penahapan yang jelas, mulai dari tahap perencanaan, pelaksanaan, analisis 
+data, hingga hasil akhir yang diharapkan, dengan indikator capaian yang terukur 
+untuk menilai efektivitas dan keberhasilan setiap langkah dalam proses 
+penelitian. 
+d. Bab 4. Jadwal Penelitian 
+Jadwal penelitian dapat dibuat dengan menggunakan Gantt Chart 
+berbasis bulan. 
+3. Bagian Akhir 
+Bagian akhir mencakup daftar pustaka . Ketentuan penulisan daftar 
+pustaka mengikuti ketentuan pada Sub Sub Bab 1. 6.10 bagian nomor 2 
+(Penulisan daftar pustaka). 
+6.3.2 Sistematika penulisan laporan TA publikasi ilmiah 
+Penulisan Laporan TA Publikasi Ilmiah terdiri dari beberapa bagian 
+sebagai berikut. 
+1. Bagian Awal 
+Bagian awal  penulisan TA mencakup halaman sampul, halaman 
+pengesahan, dan daftar isi.  Ketentuan penulisan bagian awal mengikuti 
+ketentuan bagian awal yang telah dijelaskan di Sub Sub Bab 1.5.1. 
+ 
+
+
+=== PAGE 77 ===
+
+70 
+ 
+ 
+ 
+2. Bagian Utama 
+a. Bab 1. Ringkasan Publikasi Ilmiah 
+Berisi ringkasan dari artikel yang telah dinyatakan diterima atau 
+dipublikasikan oleh penerbit dengan panjang maksimal 5 halaman dengan 
+sistematika sebagai berikut: 
+a. Judul Artikel Ilmiah 
+b. Ringkasan: Pendahuluan, Tinjauan Pustaka dan Metode 
+c. Ringkasan: Hasil dan Pembahasan Serta Kesimpulan 
+d. Daftar Pustaka 
+b. Bab 2. Proses Pengiriman Publikasi Ilmiah 
+1) Kontribusi Penulis 
+Tabel  6.1 Kontribusi penulis pada TA publikasi ilmiah 
+No Nama Penulis Kontribusi Penulis 
+1 Nama Penulis 1 Kontribusi Penulis 1 
+2 Nama Penulis 2 Kontribusi Penulis 2 
+3 dst dst 
+2) Informasi Detail Tentang Jurnal 
+Nama Jurnal :  Diisikan nama jurnal yang dikirim 
+Status Jurnal  :  Pilih Salah Satu 
+a) Jurnal Internasional Bereputasi Q1/Q2 
+b) Jurnal Internasional Bereputasi Q3/Q4 
+c) Jurnal Nasional Terakreditasi SINTA 1 dan 2 
+d) Jurnal Nasional Terakreditasi SINTA 3, 4, 5 dan 6 
+e) Jurnal Internasional atau Jurnal Nasional Tidak Terakreditasi 
+f) Seminar International  
+Penerbit : Nama penerbit jurnal 
+Link Jurnal :  Link utama jurnal 
+ 
+ 
+ 
+ 
+ 
+
+
+=== PAGE 78 ===
+
+71 
+ 
+ 
+3) Histori Pengiriman Jurnal 
+Tabel  6.2 Daftar histori pengiriman jurnal 
+No Status Keterangan 
+1 Draft/Ujian Seminar Hasil Tanggal ……………………………….. 
+2 Submitted Tanggal ……………………………….. 
+3 Re-Submitted* Tanggal ……………………………….. 
+4 Under Review* Tanggal ……………………………….. 
+5 Accepted for Publication Tanggal ……………………………….. 
+6 Published 
+Tanggal ……………………………….. 
+DOI …………………………………… 
+Link Artikel …………………………… 
+*Jika review dilakukan lebih dari satu kali, maka pengisian tanggal bisa 
+lebih dari satu. 
+3. Bagian Akhir 
+Bagian ini merupakan bagian akhir TA  yang berisikan Lampiran. Bagian 
+lampiran meliputi: 
+a. Artikel yang sudah dinyatakan diterima/dipublikasikan oleh penerbit. 
+b. Bukti artikel diterima/dipublikasikan 
+c. Bukti korespondensi penulis 
+d. Bukti hasil pengecekan similaritas 
+
+
+=== PAGE 79 ===
+
+72 
+ 
+ 
+DAFTAR PUSTAKA 
+Universitas Gadjah Mada. (2024). Peraturan Rektor UGM Nomor 23 Tahun 
+2024 tentang Pendidikan. Yogyakarta: Universitas Gadjah Mada. 
+
+
+=== PAGE 80 ===
+
+73 
+ 
+ 
+LAMPIRAN 
+Template Skripsi (Ms Word dan LaTeX: Link) 

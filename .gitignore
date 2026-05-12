@@ -1,0 +1,14 @@
+**/*.aux
+**/*.bbl
+**/*.blg
+**/*.fdb_latexmk
+**/*.fls
+**/*.glo
+**/*.gls
+**/*.log
+**/*.out
+**/*.run.xml
+**/*.synctex.gz
+**/*.toc
+proposal/*.pdf
+skripsi/*.pdf
