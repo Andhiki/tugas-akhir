@@ -12,7 +12,7 @@
               "-ExecutionPolicy",
               "Bypass",
               "-File",
-              ".zed/latexmk-wrapper.ps1",
+              "C:\\.Projects\\tugas-akhir\\.zed\\latexmk-wrapper.ps1",
               "-synctex=1",
               "-pdf",
               "-interaction=nonstopmode",
