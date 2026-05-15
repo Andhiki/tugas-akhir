@@ -1,8 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 %Created by Pekik Nurwantoro, Universitas Gadjah Mada, Yogyakarta, Indonesia
-\ProvidesClass{template-ta-2025}[2010/16/01 v2.0 The University of Gadjah Mada Skripsi Class]
+\ProvidesClass{ugmskripsi}[2010/16/01 v2.0 The University of Gadjah Mada Skripsi Class]
 
-\RequirePackage[english,indonesian]{babel}
+\RequirePackage[english,bahasa]{babel}
 \RequirePackage{indentfirst}
 \RequirePackage{setspace}
 \RequirePackage[T1]{fontenc}
@@ -32,7 +32,7 @@
 \ProcessOptions
 \LoadClass[a4paper,12pt]{report}
 \RequirePackage{natbib}
-\bibliographystyle{apalike}
+\bibliographystyle{natbib}
 \RequirePackage{nomencl}%
 \renewcommand{\nomname}{\nomenclaturename}%
 \makeglossary%
@@ -57,7 +57,7 @@
 %------------------------------------------------------------
 %The form of page numbering
 %------------------------------------------------------------
-\pagestyle{plain}
+\pagestyle{myheadings}
 \markright{}
 
 %------------------------------------------------------------
@@ -229,7 +229,7 @@
 			\vspace{1.0cm}
 			\MakeUppercase{\normalfont\slshape\bfseries\@titleeng}\par\nobreak
 			\vfill
-			\includegraphics[width=5.5cm,height=5.5cm,keepaspectratio]{logo-ugm.png}
+			\includegraphics{logougm}
 			\vfill
 			{\normalfont
 				\MakeUppercase{\@fullname}\\
@@ -269,7 +269,7 @@
 			{\normalfont Usulan Penelitian}\\
 			\fi
 			\vfill
-			\includegraphics[width=5.5cm,height=5.5cm,keepaspectratio]{logo-ugm.png}
+			\includegraphics{logougm}
 			\vfill
 			{\normalfont
 				\MakeUppercase{\@fullname}\\
@@ -398,3 +398,79 @@
 %------------------------------------------------------------
 %Redefine Abstract in Indonesian
 %------------------------------------------------------------
+\def\abstractind{%
+	\clearpage
+	\phantomsection
+	\addcontentsline{toc}{chapter}{\abstractname}
+	\thispagestyle{chapterheading}%
+	{\parindent \z@ \centering \normalfont
+		{\large\textbf{\abstractname}} \\
+
+		\vspace{1.0cm}
+		{\large\textbf{\@titleind}}
+		\par\nobreak
+		\vskip 12\p@
+		\interlinepenalty\@M
+		{\normalsize Oleh\par
+			\vspace{0.5cm}
+			\@fullname\\
+			\@idnum\\
+			\vskip 10\p@
+		}\par\nobreak
+	}
+	\begin{singlespace}%
+	\vskip 20\p@
+}
+\def\endabstractind{\par\vfil\null\end{singlespace}}
+
+%------------------------------------------------------------
+%Redefine Abstract in English
+%------------------------------------------------------------
+\def\abstracteng{%
+	\clearpage
+	\selectlanguage{english}
+	\phantomsection
+	\addcontentsline{toc}{chapter}{\abstractname}
+	\thispagestyle{chapterheading}%
+	{\parindent \z@ \centering \normalfont
+		{\large\textbf{\abstractname}}\\
+
+		\vspace{1.0cm}
+		{\large\textbf{\@titleeng}}
+		\par\nobreak
+		\vskip 12\p@
+		\interlinepenalty\@M
+		{\normalsize By\par
+			\vspace{0.5cm}
+			\@fullname\\
+			\@idnum\\
+			\vskip 10\p@
+		}\par\nobreak
+	}
+	\begin{singlespace}%
+	\vskip 20\p@
+}
+\def\endabstracteng{\par\vfil\null\end{singlespace}%
+	\selectlanguage{bahasa}\clearpage\pagenumbering{arabic}\setcounter{page}{1}}
+
+
+\AtBeginDocument{%
+	\if@doublesp%
+		\doublespacing%
+	\else\if@singlesp%
+			\singlespacing%
+		\else
+			\onehalfspacing%
+		\fi%
+	\fi
+}
+
+\AtBeginDocument{%
+	\if@langindo%
+		\selectlanguage{bahasa}%
+	\else
+		\selectlanguage{english}%
+	\fi
+}
+
+\endinput

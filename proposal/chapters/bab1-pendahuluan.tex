@@ -1,5 +1,43 @@
-\chapter{Pendahuluan}
+% !TeX root = ../main.tex
+\chapter{PENDAHULUAN}
 
 \section{Latar Belakang}
+Indonesia menghadapi tantangan besar berupa \textit{regulatory lag}, di mana laju reformasi legislatif tertinggal jauh dibandingkan dengan transformasi digital yang pesat [5, 6]. Kondisi ini diperparah oleh fragmentasi hukum yang tersebar dalam ribuan peraturan, mulai dari Undang-Undang hingga Peraturan Daerah, yang seringkali memiliki redaksi tumpang tindih dan memicu kontradiksi normatif [5, 7]. Deteksi kontradiksi secara manual memerlukan sumber daya manusia dengan keahlian hukum tinggi dan waktu yang sangat lama, sehingga solusi otomatisasi menjadi kebutuhan operasional yang mendesak [5].
 
-Isi bab pendahuluan.
+Pemanfaatan \textit{Large Language Models} (LLM) telah diuji sebagai katalisator dalam analisis dokumen hukum [8]. Namun, model tunggal (\textit{single-agent}) memiliki keterbatasan besar yang dikenal sebagai \textit{"Mid-Complexity Failure Zone"} [9, 10]. Pada zona ini, LLM seringkali gagal melakukan penemuan fakta (\textit{factual recall}) yang akurat dan terjebak dalam halusinasi saat diminta menganalisis rincian pasal secara verbatim [9, 11]. Meskipun model \textit{closed-source} seperti Claude 3.5 Sonnet memiliki akurasi penalaran tinggi, biaya API yang mahal menjadi hambatan bagi skalabilitas sistem dalam skala industri dan riset berkelanjutan [12, 13].
+
+Sebagai alternatif, ekosistem model \textit{open-source} yang dapat diakses melalui platform seperti Ollama Cloud Pro menawarkan fleksibilitas yang lebih besar dan efisiensi biaya [14]. Model seperti DeepSeek R1 telah menunjukkan kemampuan penalaran (\textit{reasoning}) yang sebanding dengan model komersial dalam tugas-tugas kompleks [1, 15]. Namun, penggunaan model \textit{open-source} tunggal masih memiliki celah akurasi jika dibandingkan dengan model \textit{closed-source} papan atas [16].
+
+Penelitian ini mengusulkan solusi inovatif berupa arsitektur \textit{Multi-Agent LLM Council} menggunakan kerangka kerja \textit{Mixture-of-Agents} (MoA) [17]. Dengan mengorkestrasi berbagai model \textit{open-source} yang heterogen (seperti Llama, DeepSeek, dan Qwen), sistem ini akan mensimulasikan mekanisme "sidang ahli" di mana agen-agen berdebat untuk mencapai konsensus hukum [18, 19]. Inovasi ini akan dibangun secara \textit{end-to-end} dengan mengintegrasikan data terstruktur dari Pasal.id guna memastikan akurasi referensi [5, 20]. Pendekatan ini diharapkan tidak hanya menekan biaya operasional, tetapi juga melampaui performa model tunggal melalui mekanisme arbitrase dan verifikasi kolektif [6, 18].
+
+\section{Perumusan Produk}
+Berdasarkan identifikasi kesenjangan antara kemampuan model hukum tunggal saat ini dengan kebutuhan audit regulasi yang presisi dan murah, produk yang diusulkan dalam penelitian ini adalah:
+\begin{enumerate}
+	\item Sebuah sistem \textit{end-to-end} berbasis web yang mampu mendeteksi potensi kontradiksi antar-pasal dalam hierarki perundang-undangan Indonesia.
+	\item Implementasi mesin orkestrasi \textit{LLM Council} yang memanfaatkan berbagai model \textit{open-source} pada Ollama Cloud Pro sebagai agen cerdas terspesialisasi.
+	\item \textit{Pipeline} data otomatis yang terintegrasi dengan Pasal.id untuk validasi teks hukum yang digunakan dalam proses \textit{reasoning}.
+\end{enumerate}
+
+\section{Batasan Produk}
+Untuk memastikan fokus pengembangan sesuai dengan standar Skripsi Inovasi Produk [4], batasan produk ditetapkan sebagai berikut:
+\begin{enumerate}
+	\item Sumber data hukum dibatasi pada dokumen Undang-Undang dan Peraturan Daerah yang tersedia secara terstruktur di Pasal.id [20].
+	\item Infrastruktur kecerdasan artifisial menggunakan model \textit{open-source} yang tersedia pada platform Ollama Cloud Pro, dengan fokus pada varian model \textit{Reasoning} (seperti DeepSeek R1) [1].
+	\item Fitur deteksi kontradiksi difokuskan pada analisis teks legislatif, bukan pada interpretasi kasus hukum atau putusan pengadilan yang bersifat subjektif [21].
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+Tujuan utama dari tugas akhir ini adalah:
+\begin{enumerate}
+	\item Merancang arsitektur sistem \textit{Multi-Agent} yang mampu mengelola beban kerja penalaran hukum yang intensif secara asinkron [22, 23].
+	\item Mengembangkan prototipe aplikasi \textit{LLM Council} yang intuitif bagi praktisi hukum tanpa memerlukan pemahaman teknis baris perintah (\textit{CLI}) [24, 25].
+	\item Mengevaluasi efektivitas mekanisme konsensus antar-agen dalam mengurangi tingkat halusinasi dibandingkan dengan model tunggal [6, 26].
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+Hasil dari skripsi inovasi produk ini diharapkan dapat memberikan manfaat:
+\begin{enumerate}
+	\item \textbf{Bagi Praktisi Hukum:} Menyediakan alat bantu audit kepatuhan regulasi (\textit{regulatory compliance}) yang cepat, akurat, dan terjangkau secara biaya operasional [27].
+	\item \textbf{Bagi Komunitas IT:} Menjadi referensi dalam penerapan strategi \textit{Mixture-of-Agents} (MoA) untuk tugas-tugas NLP di domain hukum yang memiliki sumber daya terbatas (\textit{low-resource domain}) [17, 28].
+	\item \textbf{Bagi Masyarakat:} Mendorong kepastian hukum melalui transparansi deteksi tumpang tindih peraturan pemerintah [29, 30].
+\end{enumerate}
