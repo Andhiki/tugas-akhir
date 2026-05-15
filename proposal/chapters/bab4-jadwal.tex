@@ -1,6 +1,48 @@
 % !TeX root = ../main.tex
-\chapter{Jadwal Penelitian}
+\chapter{JADWAL PENELITIAN}
 
 \section{Rencana Kerja}
 
-Isi jadwal penelitian.
+Jadwal penelitian berikut disusun sebagai contoh timeline bergaya Gantt chart yang bisa disesuaikan dengan target durasi penelitian.
+
+\begin{table}[htbp]
+	\centering
+	\renewcommand{\arraystretch}{1.25}
+	\setlength{\tabcolsep}{4pt}
+	\newcommand{\taskbar}{\cellcolor{blue!30}}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|p{4.2cm}|*{16}{c|}}
+			\hline
+			\multicolumn{1}{|c|}{}      & \multicolumn{4}{c|}{April 2026} & \multicolumn{4}{c|}{Mei 2026} & \multicolumn{4}{c|}{Juni 2026} & \multicolumn{4}{c|}{Juli 2026}                                                                                                                                     \\
+			\cline{2-17}
+			\multicolumn{1}{|c|}{}      & 1                               & 2                             & 3                              & 4                              & 1        & 2        & 3        & 4        & 1        & 2        & 3        & 4        & 1        & 2        & 3        & 4        \\
+			\hline
+			\multicolumn{17}{|l|}{\textbf{Persiapan}}                                                                                                                                                                                                                                                           \\
+			\hline
+			Tinjauan pustaka            & \taskbar                        & \taskbar                      & \taskbar                       & \taskbar                       & \taskbar &          &          &          &          &          &          &          &          &          &          &          \\
+			\hline
+			Analisis model              &                                 &                               & \taskbar                       & \taskbar                       & \taskbar &          &          &          &          &          &          &          &          &          &          &          \\
+			\hline
+			Penyusunan proposal         &                                 &                               & \taskbar                       & \taskbar                       & \taskbar & \taskbar & \taskbar &          &          &          &          &          &          &          &          &          \\
+			\hline
+			Pengujian proposal          &                                 &                               &                                &                                &          &          &          & \taskbar &          &          &          &          &          &          &          &          \\
+			\hline
+			\multicolumn{17}{|l|}{\textbf{Implementasi}}                                                                                                                                                                                                                                                        \\
+			\hline
+			Implementasi model          &                                 &                               &                                &                                &          &          & \taskbar & \taskbar & \taskbar & \taskbar &          &          &          &          &          &          \\
+			\hline
+			Ideasi produk               &                                 &                               &                                &                                &          &          & \taskbar & \taskbar & \taskbar & \taskbar &          &          &          &          &          &          \\
+			\hline
+			Penelitian dan desain UI/UX &                                 &                               &                                &                                &          &          &          & \taskbar & \taskbar &          &          &          &          &          &          &          \\
+			\hline
+			Perancangan                 &                                 &                               &                                &                                &          &          &          &          & \taskbar & \taskbar & \taskbar &          & \taskbar &          &          &          \\
+			\hline
+			Pengujian                   &                                 &                               &                                &                                &          &          &          &          &          &          & \taskbar & \taskbar & \taskbar & \taskbar &          &          \\
+			\hline
+			Penyusunan laporan akhir    &                                 &                               &                                &                                &          &          &          &          &          &          &          &          &          & \taskbar & \taskbar & \taskbar \\
+			\hline
+		\end{tabular}%
+	}
+\end{table}
+
+\noindent\textit{Blok biru menunjukkan periode aktivitas utama. Bulan dan minggu bisa diganti sesuai durasi penelitian yang sebenarnya.}

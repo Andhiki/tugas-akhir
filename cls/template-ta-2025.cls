@@ -33,8 +33,8 @@
 \LoadClass[a4paper,12pt]{report}
 \RequirePackage{natbib}
 \bibliographystyle{apalike}
-\RequirePackage{nomencl}%
-\renewcommand{\nomname}{\nomenclaturename}%
+\RequirePackage[compatible]{nomencl}%
+\renewcommand{\nomname}{GLOSARIUM}%
 \makeglossary%
 
 %------------------------------------------------------------
@@ -391,8 +391,8 @@
 %------------------------------------------------------------
 \def\lambang{%
 	\clearpage\thispagestyle{chapterheading}%
-	\printglossary%
-	\addcontentsline{toc}{chapter}{\nomenclaturename}
+	\printnomenclature%
+	\addcontentsline{toc}{chapter}{\nomname}
 }
 
 %------------------------------------------------------------
