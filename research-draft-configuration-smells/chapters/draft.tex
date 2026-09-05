@@ -1,0 +1,222 @@
+% !TeX root = ../main.tex
+\chapter{Rancangan Penelitian}
+
+\section{Latar Belakang}
+
+AI coding agents dapat membaca repository, menjalankan perintah, mengubah beberapa berkas, dan memvalidasi hasil pekerjaan secara semi-otomatis. Dalam workflow tersebut, agent menerima konteks dari issue atau prompt, struktur repository, serta instruksi persisten yang disimpan dalam file seperti \texttt{AGENTS.md}, \texttt{CLAUDE.md}, atau format sejenis. File ini biasanya berisi command, aturan coding, struktur proyek, prosedur testing, dan batasan operasional.
+
+Repository-level instruction files dapat meningkatkan pemahaman agent terhadap proyek, tetapi kualitasnya tidak selalu baik. File yang terlalu panjang, mengulang aturan linter, merujuk sumber tanpa konteks, memuat instruksi usang, atau berisi aturan yang saling bertentangan dapat menambah noise dan mengarahkan agent pada tindakan yang tidak diperlukan. Masalah konfigurasi semacam ini disebut \textit{configuration smells}.
+
+Dos Santos et al. mengusulkan enam kategori configuration smells pada file instruksi coding agents, yaitu \textit{Context Bloat}, \textit{Skill Leakage}, \textit{Lint Leakage}, \textit{Blind Reference}, \textit{Init Fossilization}, dan \textit{Conflicting Instructions} \cite{configsmells2026}. Studi empiris lain memetakan isi serta evolusi file konteks agent pada banyak repository \cite{agentreadmes2025}. Selain itu, studi berpasangan mengenai keberadaan \texttt{AGENTS.md} menunjukkan bahwa token dan waktu eksekusi dapat digunakan untuk mengevaluasi efisiensi agent \cite{lulla2026agents}.
+
+Studi lain yang mengevaluasi context file pada task SWE-bench dan issue repository melaporkan bahwa keberadaan context file tidak selalu meningkatkan \textit{task success} dan dapat meningkatkan biaya inference \cite{gloaguen2026agents}. Dengan demikian, pertanyaan penelitian ini tidak lagi sekadar menguji apakah \texttt{AGENTS.md} bermanfaat, tetapi mengisolasi dampak satu configuration smell melalui manipulasi yang dapat diaudit.
+
+Penelitian terdahulu tersebut belum cukup untuk menjawab apakah smell tertentu benar-benar menyebabkan perubahan pada hasil kerja agent. Karena itu, penelitian ini mengusulkan eksperimen berpasangan: repository, task, model, tools, dan prompt dipertahankan, sedangkan kualitas instruction file diubah secara terkendali. Dengan rancangan ini, pengaruh file instruksi dapat dipisahkan dari pengaruh task dan repository.
+
+\section{Rumusan Masalah}
+
+\begin{enumerate}[leftmargin=*]
+    \item Bagaimana \textit{Context Bloat} pada repository-level instruction files memengaruhi task success, test pass rate, dan instruction compliance AI coding agents?
+    \item Bagaimana \textit{Context Bloat} memengaruhi token usage, jumlah tool calls, wall-clock time, eksplorasi repository, dan failure mode?
+    \item Apakah remediasi \textit{Context Bloat} dapat memulihkan outcome agent dan mengurangi penggunaan resource?
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+
+\begin{enumerate}[leftmargin=*]
+    \item Merancang protokol eksperimen berpasangan untuk menguji dampak \textit{Context Bloat}.
+    \item Membandingkan outcome agent pada kondisi tanpa instruksi, instruksi bersih, instruksi dengan \textit{Context Bloat}, dan instruksi yang telah diremediasi.
+    \item Mengukur pengaruh \textit{Context Bloat} terhadap keberhasilan task, kepatuhan instruksi, token, tool calls, waktu, dan failure mode.
+    \item Menyusun rekomendasi praktis untuk menulis dan meremediasi repository-level instruction files.
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+
+Secara akademik, penelitian ini memberikan bukti empiris mengenai hubungan antara kualitas konfigurasi dan perilaku AI coding agent. Secara praktis, hasilnya dapat membantu maintainer repository mengurangi konteks yang tidak efektif, menghindari konflik aturan, dan menentukan informasi yang layak dipertahankan dalam instruction file. Protokol serta manifest eksperimen juga dapat digunakan untuk penelitian lanjutan pada agent atau model yang berbeda.
+
+\section{Objek dan Batasan Penelitian}
+
+Objek penelitian adalah task perubahan kode pada repository publik yang memiliki instruction file atau dapat diberi file instruksi dalam format yang dipahami agent. Tahap awal difokuskan pada repository dengan build reproducible, test command terdokumentasi, lisensi yang memungkinkan eksperimen, dan tidak adanya secret.
+
+Penelitian dibatasi pada satu agent dan satu model dasar pada eksperimen utama agar efek perlakuan dapat diisolasi. Task, snapshot repository, prompt dasar, tools, batas token, timeout, dan parameter sampling dicatat. Pilot awal ditargetkan terdiri atas 1--2 repository dengan 2--3 task per repository dan sedikitnya 3 repeated runs per kondisi jika anggaran memungkinkan. Ukuran eksperimen utama ditentukan setelah pilot berdasarkan reproduktibilitas, variasi outcome, dan biaya.
+
+\section{Metode yang Diusulkan}
+
+Metode penelitian terdiri atas tahap berikut.
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Seleksi corpus dan task.} Mengumpulkan repository, versi commit, instruction file, task, command build, dan command test dalam manifest yang dapat direproduksi.
+    \item \textbf{Pembuatan kondisi perlakuan.} Membentuk file \textit{Clean} dari fakta repository yang relevan, lalu membuat versi \textit{Context-Bloated} dengan diff yang terdokumentasi. Versi \textit{Remediated} memperbaiki smell tanpa mengubah fakta task.
+    \item \textbf{Validasi loader.} Memastikan agent benar-benar menemukan dan membaca file pada setiap kondisi. Isi context yang diterima agent disimpan sebagai bagian dari log.
+    \item \textbf{Eksekusi berpasangan.} Menjalankan agent pada task dan snapshot yang sama untuk setiap kondisi. Setiap pasangan diulang karena agent bersifat stochastic.
+    \item \textbf{Validasi hasil.} Menjalankan test, memeriksa acceptance criteria, serta menilai kepatuhan instruksi dan failure mode.
+    \item \textbf{Analisis.} Membandingkan Clean dengan Context-Bloated dan Context-Bloated dengan Remediated menggunakan metrik deskriptif, ukuran efek, dan interval kepercayaan.
+\end{enumerate}
+
+Penelitian ini memfokuskan tahap awal pada \textit{Context Bloat}. \textit{Lint Leakage} dan \textit{Conflicting Instructions} ditunda sampai treatment integrity, validasi loader, dan pipeline pengukuran terbukti stabil.
+
+\section{Variabel Penelitian}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Variabel penelitian}
+\label{tab:variables}
+\begin{tabularx}{\textwidth}{p{3.1cm}YY}
+\toprule
+\textbf{Jenis} & \textbf{Variabel} & \textbf{Operasionalisasi} \\
+\midrule
+Independen & Kondisi instruction file & No instruction, Clean, Context-Bloated, dan Remediated \\
+Dependen & Outcome task & Task success, test pass rate, dan instruction compliance \\
+Dependen & Efisiensi agent & Input/output tokens, tool calls, dan wall-clock time \\
+Dependen & Perilaku failure & Failure mode, retry, loop, command usang, atau konflik aturan \\
+Kontrol & Konteks eksperimen & Repository snapshot, task, prompt, model, tools, resource, dan timeout \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Hipotesis Awal}
+
+\begin{description}[leftmargin=!,labelwidth=3.5cm]
+    \item[H1] Kondisi Context-Bloated menghasilkan task success, test pass rate, dan/atau instruction compliance yang berbeda dibandingkan kondisi Clean pada task yang sama.
+    \item[H2] \textit{Context Bloat} meningkatkan token usage, tool calls, wall-clock time, atau eksplorasi repository tanpa peningkatan task success yang sebanding.
+    \item[H3] Kondisi Remediated mengurangi dampak negatif terhadap resource usage dan outcome agent dibandingkan kondisi Context-Bloated.
+\end{description}
+
+\section{Kondisi Eksperimen}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Kondisi eksperimen Context Bloat}
+\label{tab:conditions}
+\begin{tabularx}{\textwidth}{p{3.0cm}YY}
+\toprule
+\textbf{Kondisi} & \textbf{Isi instruction file} & \textbf{Fungsi} \\
+\midrule
+No instruction & Tidak ada file instruksi tambahan & Mengukur kontribusi dasar file instruksi \\
+Clean & Fakta repository yang relevan, ringkas, dan tidak redundant & Kontrol kualitas konfigurasi \\
+Context-Bloated & File Clean ditambah konteks redundant atau low-value yang terkontrol & Mengukur dampak \textit{Context Bloat} \\
+Remediated & File Context-Bloated diperbaiki tanpa mengubah fakta task & Menguji pemulihan dampak \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Alur Pengembangan dan Eksperimen}
+
+\begin{center}
+\fbox{\parbox{0.90\textwidth}{\centering
+Corpus repository dan task
+\\[2mm] $\downarrow$
+\\[2mm] Seleksi snapshot, command, dan instruction file
+\\[2mm] $\downarrow$
+\\[2mm] Clean $\rightarrow$ Context-Bloated $\rightarrow$ Remediated
+\\[2mm] $\downarrow$
+\\[2mm] Agent runner dengan konfigurasi dan prompt yang sama
+\\[2mm] $\downarrow$
+\\[2mm] Patch, trajectory, test output, token, tool calls, dan waktu
+\\[2mm] $\downarrow$
+\\[2mm] Analisis outcome, efisiensi, compliance, dan failure mode
+}}
+\\[2mm]
+\refstepcounter{figure}
+\label{fig:config-flow}
+\textbf{Gambar \thefigure: Alur penelitian yang diusulkan}
+\end{center}
+
+\section{Metrik Evaluasi}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Metrik evaluasi}
+\label{tab:metrics}
+\begin{tabularx}{\textwidth}{p{3.4cm}Y}
+\toprule
+\textbf{Metrik} & \textbf{Definisi operasional} \\
+\midrule
+Task success & Patch memenuhi acceptance criteria atau test yang telah ditentukan \\
+Test pass rate & Proporsi test yang lulus pada validation akhir \\
+Instruction compliance & Proporsi aturan yang relevan dan dapat diverifikasi yang dipatuhi agent \\
+Token usage & Input dan output tokens per run, termasuk cached input jika tersedia \\
+Tool calls & Jumlah dan tipe shell, search, edit, serta test calls \\
+Wall-clock time & Durasi dari awal agent sampai selesai, gagal, atau timeout \\
+Failure mode & Kategori failure seperti konflik, command usang, loop, atau test failure \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Analisis utama membandingkan kondisi secara berpasangan. Untuk task success dan compliance, hasil dilaporkan sebagai proporsi, interval kepercayaan, dan ukuran efek. Untuk token, tool calls, dan waktu, median serta rentang interkuartil dilaporkan karena distribusi dapat menceng. Analisis tiap smell dipisahkan agar dampak satu kategori tidak tertutup oleh kategori lain.
+
+\section{Risiko dan Mitigasi}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Risiko dan mitigasi}
+\label{tab:risks}
+\begin{tabularx}{\textwidth}{p{4.0cm}Y}
+\toprule
+\textbf{Risiko} & \textbf{Mitigasi} \\
+\midrule
+Smell sulit diisolasi & Mulai dari satu smell per perlakuan dan simpan diff file instruksi. \\
+Agent tidak membaca file sesuai asumsi & Lakukan loader validation dan simpan context aktual dalam log. \\
+Agent stochastic & Gunakan repeated runs dan catat seed atau parameter sampling. \\
+Compliance sulit dinilai & Buat checklist aturan yang dapat diverifikasi dan annotasi subset secara ganda. \\
+Task terlalu heterogen & Gunakan manifest, kriteria seleksi, dan analisis berpasangan per task. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{State of the Art dan Research Gap}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Posisi penelitian terhadap studi terkait}
+\label{tab:gap}
+\begin{tabularx}{\textwidth}{p{3.8cm}YY}
+\toprule
+\textbf{Studi} & \textbf{Kontribusi} & \textbf{Keterbatasan terhadap penelitian ini} \\
+\midrule
+Dos Santos et al. \cite{configsmells2026} & Taksonomi dan heuristik configuration smells & Belum menguji dampak kausal smell pada outcome agent \\
+Chatlatanagulchai et al. \cite{agentreadmes2025} & Studi empiris isi dan evolusi context files & Belum membandingkan treatment smell pada task yang sama \\
+Lulla et al. \cite{lulla2026agents} & Mengukur efisiensi agent dengan dan tanpa AGENTS.md & Fokus pada keberadaan file, bukan kualitas dan jenis smell \\
+Gloaguen et al. \cite{gloaguen2026agents} & Mengevaluasi context files pada SWE-bench dan issue repository & Menguji kondisi context file yang luas, bukan injeksi dan remediasi satu smell tertentu \\
+Penelitian ini & Eksperimen berpasangan pada kondisi Clean, Context-Bloated, dan Remediated & Membatasi klaim pada agent, model, repository, dan task yang diuji \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Research gap penelitian ini adalah belum terjawabnya secara spesifik bagaimana satu configuration smell yang diisolasi, diinjeksikan, dan diremediasi memengaruhi outcome AI coding agent pada task yang sama. Kontribusi penelitian bukan hanya mendeteksi smell, tetapi menghubungkan treatment yang dapat diaudit dengan outcome agent, resource usage, dan failure mode.
+
+\section{Luaran dan Kriteria Go/No-Go}
+
+Luaran yang ditargetkan adalah (1) manifest repository dan task, (2) generator atau template kondisi instruction file, (3) runner eksperimen yang menyimpan trajectory dan metrik, (4) dataset hasil eksperimen, (5) analisis ukuran efek, serta (6) rekomendasi remediasi.
+
+Eksperimen utama dilanjutkan apabila loader agent terbukti membaca file, perlakuan smell dapat dibedakan secara audit, dan pilot menghasilkan variasi outcome yang cukup untuk dianalisis. Jika tidak, scope dipersempit menjadi satu smell dan satu jenis task sebelum eksperimen utama.
+
+\section{Rencana Kerja}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Rencana kerja awal}
+\label{tab:schedule}
+\begin{tabularx}{\textwidth}{p{1.1cm}p{4.2cm}Y}
+\toprule
+\textbf{Blok} & \textbf{Kegiatan} & \textbf{Luaran} \\
+\midrule
+B1 & Studi literatur dan penguncian scope & Taxonomy, loader assumption, dan RQ \\
+B2 & Seleksi repository dan persiapan runner & Manifest, environment, dan baseline \\
+B3 & Pilot empat kondisi & Laporan variasi, biaya, dan go/no-go \\
+B4 & Eksperimen utama berulang & Log trajectory, patch, test, dan resource \\
+B5 & Analisis dan validasi & Tabel, ukuran efek, dan failure taxonomy \\
+B6 & Penulisan dan revisi & Draft bab metode, hasil, dan ancaman validitas \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Batas Klaim}
+
+Penelitian ini tidak mengklaim bahwa semua instruction files bersmell atau bahwa satu agent mewakili seluruh AI coding agents. Kesimpulan dibatasi pada treatment, model, agent loader, repository, task, dan environment yang diuji. Generalisasi ke agent lain diposisikan sebagai validasi lanjutan.
