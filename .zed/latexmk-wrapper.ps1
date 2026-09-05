@@ -3,10 +3,18 @@ param(
   [string[]]$LatexmkArgs
 )
 
-$strawberryBin = 'C:\Strawberry\perl\bin'
-
 $pathEntries = @($env:Path -split ';' | Where-Object { $_ })
-$env:Path = (@($strawberryBin) + $pathEntries) -join ';'
+$perlBinCandidates = @(
+  'C:\Strawberry\perl\bin',
+  'C:\Program Files\Git\usr\bin'
+)
+$perlBin = $perlBinCandidates |
+  Where-Object { Test-Path -LiteralPath (Join-Path $_ 'perl.exe') } |
+  Select-Object -First 1
+
+if ($perlBin) {
+  $env:Path = (@($perlBin) + $pathEntries) -join ';'
+}
 
 $launchDir = (Get-Location).Path
 $repoRoot = Split-Path -Parent $PSScriptRoot

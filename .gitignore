@@ -9,6 +9,16 @@
 **/*.out
 **/*.run.xml
 **/*.synctex.gz
+**/*.sum.synctex
 **/*.toc
 proposal/*.pdf
 skripsi/*.pdf
+proposal-configuration-smells/*.pdf
+research-draft-configuration-smells/*.pdf
+research-draft-flaky-feedback/*.pdf
+proposal/tmp/
+build-ilham-render/
+research-draft/build/
+research-draft-top-picks/build/
+research-draft-configuration-smells/build/
+research-draft-flaky-feedback/build/
