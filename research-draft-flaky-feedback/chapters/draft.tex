@@ -1,0 +1,239 @@
+% !TeX root = ../main.tex
+\chapter{Rancangan Penelitian}
+
+\section{Latar Belakang}
+
+Automated Program Repair (APR) menggunakan test suite sebagai oracle praktis untuk menilai kandidat patch. AI coding agents dapat menjalankan test, membaca error output, mengubah kode, dan mengulangi proses tersebut sampai patch lulus atau batas resource tercapai. RepairAgent menunjukkan pola perbaikan program berbasis agent yang menggunakan tools dan feedback dari percobaan sebelumnya \cite{repairagent2024}. Pendekatan agentic APR yang lebih baru juga menggabungkan static analysis dan test execution feedback untuk mengarahkan iterasi perbaikan \cite{agenticrepair2025}.
+
+Masalah muncul ketika test bersifat flaky. Test yang sama pada kode, input, dan environment yang tampak sama dapat menghasilkan status atau output berbeda pada eksekusi yang berbeda. Bagi agent, false failure dapat terlihat sebagai bukti bahwa patch salah, sedangkan false pass dapat membuat patch yang belum benar tampak selesai. Agent kemudian dapat mengubah kode yang sebenarnya sudah tepat, menghabiskan retry, atau berhenti terlalu dini.
+
+Qin et al. menunjukkan bahwa flaky tests dapat memengaruhi fault localization dan menurunkan repairability dalam automated program repair \cite{qin2021flaky}. Namun, masih diperlukan evaluasi yang secara khusus mengukur ketahanan AI coding agents terhadap pola feedback yang tidak stabil, termasuk biaya rerun dan strategi stability check. Penelitian ini menguji masalah tersebut secara terkontrol tanpa mengklaim membangun flaky-test detector universal.
+
+\section{Rumusan Masalah}
+
+\begin{enumerate}[leftmargin=*]
+    \item Seberapa besar penurunan repair success dan patch correctness ketika agent menerima flaky test feedback?
+    \item Pola flakiness apa yang paling mengganggu proses agent: intermittent failure, false pass, timeout, atau output yang tidak stabil?
+    \item Apakah rerun dan stability check dapat memulihkan performa agent tanpa biaya token dan waktu yang tidak proporsional?
+    \item Bagaimana agent membedakan kegagalan kode dari kegagalan test ketika feedback berubah pada repeated execution?
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+
+\begin{enumerate}[leftmargin=*]
+    \item Merancang protokol eksperimen untuk menguji ketahanan AI coding agents terhadap flaky test feedback.
+    \item Membandingkan repair agent pada feedback deterministik, feedback flaky, dan feedback flaky dengan mitigasi.
+    \item Mengukur pengaruh flakiness terhadap repair success, patch plausibility, correctness, iterasi, retry, token, tool calls, dan waktu.
+    \item Mengidentifikasi failure mode serta trade-off antara stability checking dan biaya perbaikan.
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+
+Secara akademik, penelitian ini memberikan bukti empiris mengenai pengaruh kualitas test feedback terhadap proses AI-based program repair. Secara praktis, hasilnya dapat membantu merancang repair pipeline yang tidak langsung mempercayai satu hasil test ketika terdapat indikasi flakiness. Protokol repeated validation dan data trajectory dapat menjadi dasar penelitian lanjutan mengenai reliability pada CI dan automated repair.
+
+\section{Objek dan Batasan Penelitian}
+
+Objek penelitian adalah task APR yang memiliki test command reproducible, bug snapshot, dan validation oracle yang dapat dijalankan berulang. Benchmark awal dapat menggunakan subset Defects4J atau benchmark repository-level lain yang sesuai dengan bahasa dan agent yang dipilih. Defects4J dipertimbangkan karena banyak digunakan dalam studi APR, tetapi pilihan final ditentukan oleh hasil environment pilot.
+
+Penelitian dibatasi pada satu agent dan satu model dasar pada eksperimen utama. Setiap task dijalankan pada snapshot, dependency, dan environment yang sama. Batas jumlah feedback iteration, token, wall-clock time, dan jumlah rerun ditetapkan sebelum eksperimen. Flakiness sintetis digunakan untuk mengontrol probabilitas dan seed, sedangkan test flaky nyata, jika tersedia, digunakan sebagai validasi eksternal yang dilaporkan terpisah.
+
+\section{Metode yang Diusulkan}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Seleksi benchmark.} Memilih task dengan build reproducible, test yang dapat dieksekusi, dan validation akhir yang tersedia.
+    \item \textbf{Baseline deterministik.} Menjalankan task dengan feedback test yang konsisten untuk memperoleh repair success, cost, dan trajectory baseline.
+    \item \textbf{Konstruksi skenario flakiness.} Membuat atau memilih skenario intermittent failure, false pass, unstable timeout, dan output tidak stabil. Probabilitas, seed, dan aturan injeksi disimpan dalam manifest.
+    \item \textbf{Eksekusi agent.} Menjalankan agent pada kondisi Clean feedback, Flaky feedback, dan Flaky-aware dengan batas resource yang sama.
+    \item \textbf{Validation akhir.} Menjalankan repeated test dan, bila tersedia, test tambahan yang tidak digunakan sebagai feedback agent agar patch plausibility tidak disamakan dengan patch correctness.
+    \item \textbf{Analisis.} Membandingkan hasil per task, mengukur degradasi, recovery rate, dan overhead mitigasi, lalu mengkategorikan failure mode dari log agent.
+\end{enumerate}
+
+\section{Variabel Penelitian}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Variabel penelitian}
+\label{tab:variables}
+\begin{tabularx}{\textwidth}{p{3.1cm}YY}
+\toprule
+\textbf{Jenis} & \textbf{Variabel} & \textbf{Operasionalisasi} \\
+\midrule
+Independen & Stabilitas feedback & Deterministic, Flaky, dan Flaky-aware \\
+Independen & Pola flakiness & Intermittent failure, false pass, unstable timeout, atau output tidak stabil \\
+Dependen & Outcome repair & Repair success, patch plausibility, dan patch correctness \\
+Dependen & Ketahanan agent & Degradasi success, recovery rate, dan failure mode \\
+Dependen & Biaya repair & Feedback iterations, retry, token, tool calls, dan wall-clock time \\
+Kontrol & Konteks eksperimen & Task snapshot, model, prompt, tools, dependency, seed, dan resource limit \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Hipotesis Awal}
+
+\begin{description}[leftmargin=!,labelwidth=3.5cm]
+    \item[H1] Flaky test feedback menurunkan repair success dan patch correctness dibandingkan feedback deterministik.
+    \item[H2] False failure dan false pass menghasilkan failure mode yang berbeda pada agent.
+    \item[H3] Flaky feedback meningkatkan jumlah feedback iterations, retry, token usage, atau wall-clock time.
+    \item[H4] Rerun dan stability check meningkatkan repair success atau patch correctness, tetapi menambah biaya repair.
+\end{description}
+
+\section{Skenario Flaky Test Feedback}
+
+Feedback disebut flaky apabila test yang sama pada kode, environment, dan input yang sama menghasilkan status atau output yang berbeda pada repeated execution. Genuine failure, yaitu kegagalan yang konsisten karena patch atau program memang belum benar, dibedakan dari flaky failure.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Skenario flaky test feedback}
+\label{tab:scenarios}
+\begin{tabularx}{\textwidth}{p{3.2cm}YY}
+\toprule
+\textbf{Skenario} & \textbf{Karakteristik} & \textbf{Dampak yang diuji} \\
+\midrule
+Deterministic & Status dan output test konsisten & Kontrol dasar repair agent \\
+Intermittent failure & Test gagal dengan probabilitas tertentu tanpa perubahan patch & Sinyal error palsu \\
+False pass & Test kadang lulus walaupun patch gagal pada validation tambahan & Risiko berhenti terlalu dini \\
+Unstable timeout & Durasi atau output berubah dan kadang melewati batas & Retry, budget, dan diagnosis \\
+Flaky-aware & Flaky feedback disertai rerun dan stability check & Pemulihan dan overhead mitigasi \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Kondisi Eksperimen}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Kondisi eksperimen flaky feedback}
+\label{tab:conditions}
+\begin{tabularx}{\textwidth}{p{3.1cm}YY}
+\toprule
+\textbf{Kondisi} & \textbf{Feedback yang diterima agent} & \textbf{Fungsi} \\
+\midrule
+Clean feedback & Hasil test deterministik dan output konsisten & Baseline repair success dan cost \\
+Flaky feedback & Hasil test dapat berubah pada repeated execution & Mengukur degradasi tanpa pertahanan khusus \\
+Flaky-aware & Agent menjalankan rerun, stability check, dan diagnosis & Mengukur recovery serta overhead mitigasi \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Alur Pengembangan dan Eksperimen}
+
+\begin{center}
+\fbox{\parbox{0.90\textwidth}{\centering
+Benchmark APR dan bug snapshot
+\\[2mm] $\downarrow$
+\\[2mm] Seleksi task, test command, dan validation oracle
+\\[2mm] Baseline deterministic feedback
+\\[2mm] $\downarrow$
+\\[2mm] Injeksi atau pemilihan skenario flaky dengan seed tercatat
+\\[2mm] $\downarrow$
+\\[2mm] Clean feedback $\mid$ Flaky feedback $\mid$ Flaky-aware
+\\[2mm] $\downarrow$
+\\[2mm] Patch, test output, trajectory, retry, token, tool calls, dan waktu
+\\[2mm] $\downarrow$
+\\[2mm] Repeated validation dan analisis robustness
+}}
+\\[2mm]
+\refstepcounter{figure}
+\label{fig:flaky-flow}
+\textbf{Gambar \thefigure: Alur penelitian yang diusulkan}
+\end{center}
+
+\section{Metrik Evaluasi}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Metrik evaluasi}
+\label{tab:metrics}
+\begin{tabularx}{\textwidth}{p{3.6cm}Y}
+\toprule
+\textbf{Metrik} & \textbf{Definisi operasional} \\
+\midrule
+Repair success & Task menghasilkan patch valid dan lulus validation akhir \\
+Patch plausibility & Patch lulus test feedback yang tersedia bagi agent \\
+Patch correctness & Patch lulus validation tambahan atau oracle correctness yang ditentukan \\
+Flaky sensitivity & Penurunan outcome dari deterministic ke flaky feedback \\
+Recovery rate & Proporsi trajectory yang mengidentifikasi atau memulihkan feedback flaky \\
+Feedback iterations & Jumlah siklus test-feedback-edit sampai status akhir \\
+Retry overhead & Tambahan rerun, token, tool calls, dan waktu akibat stability check \\
+False repair rate & Perubahan kode yang tidak diperlukan atau menjauhkan patch dari solusi \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Patch plausibility dan patch correctness dilaporkan terpisah agar test pass tidak dianggap sebagai bukti kebenaran. Analisis utama membandingkan hasil per task pada tiga kondisi. Untuk skenario injeksi, variasi probabilitas failure dan jumlah repeated runs digunakan sebagai sensitivity analysis. Log agent diperiksa untuk melihat apakah agent melakukan rerun, mengubah kode, atau berhenti setelah feedback yang tidak stabil.
+
+\section{Risiko dan Mitigasi}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Risiko dan mitigasi}
+\label{tab:risks}
+\begin{tabularx}{\textwidth}{p{4.0cm}Y}
+\toprule
+\textbf{Risiko} & \textbf{Mitigasi} \\
+\midrule
+Flakiness sintetis tidak mewakili flakiness nyata & Dokumentasikan generator, gunakan beberapa pola, dan validasi pada subset test nyata jika tersedia. \\
+Rerun terlalu mahal & Tetapkan budget dan laporkan cost per successful repair. \\
+Patch benar sulit dinilai & Gunakan repeated validation, hidden test jika tersedia, dan review manual pada subset. \\
+Agent hanya mengulang tanpa diagnosis & Ukur recovery quality dan failure mode, bukan jumlah retry saja. \\
+Benchmark sulit dipasang & Lakukan environment pilot dan siapkan satu benchmark fallback. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{State of the Art dan Research Gap}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Posisi penelitian terhadap studi terkait}
+\label{tab:gap}
+\begin{tabularx}{\textwidth}{p{3.8cm}YY}
+\toprule
+\textbf{Studi} & \textbf{Kontribusi} & \textbf{Keterbatasan terhadap penelitian ini} \\
+\midrule
+Qin et al. \cite{qin2021flaky} & Menunjukkan dampak flaky tests pada fault localization dan APR & Belum berfokus pada robustness AI coding agent dalam loop feedback \\
+Bouzenia et al. \cite{repairagent2024} & Repair agent menggunakan tools dan test feedback & Tidak mengisolasi stabilitas feedback sebagai variabel perlakuan \\
+Maddila et al. \cite{agenticrepair2025} & Agentic repair dengan static analysis dan test execution feedback & Belum mengevaluasi pola false failure, false pass, dan mitigation secara terkontrol \\
+Penelitian ini & Membandingkan deterministic, flaky, dan flaky-aware feedback dengan repeated validation & Klaim dibatasi pada benchmark, agent, model, dan skenario yang diuji \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Research gap penelitian ini adalah belum tersedianya protokol eksperimen yang secara eksplisit mengisolasi stabilitas test feedback sebagai faktor yang memengaruhi ketahanan AI coding agents dalam APR. Kontribusi penelitian meliputi pengukuran degradasi, failure mode, recovery, dan trade-off biaya stability check.
+
+\section{Luaran dan Kriteria Go/No-Go}
+
+Luaran yang ditargetkan adalah (1) manifest benchmark dan environment, (2) generator atau wrapper skenario flakiness, (3) agent runner dengan log trajectory, (4) dataset patch dan test output, (5) analisis robustness serta overhead mitigasi, dan (6) rekomendasi penggunaan feedback dalam repair pipeline.
+
+Eksperimen utama dilanjutkan apabila benchmark dapat dipasang secara reproducible, skenario flaky dapat diulang dengan seed yang tercatat, dan validation akhir tersedia. Jika salah satu syarat tidak terpenuhi, scope dipersempit menjadi satu pola flakiness dan satu benchmark sebelum eksperimen utama.
+
+\section{Rencana Kerja}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Rencana kerja awal}
+\label{tab:schedule}
+\begin{tabularx}{\textwidth}{p{1.1cm}p{4.2cm}Y}
+\toprule
+\textbf{Blok} & \textbf{Kegiatan} & \textbf{Luaran} \\
+\midrule
+B1 & Studi literatur dan penguncian benchmark & APR benchmark, RQ, dan skenario flakiness \\
+B2 & Persiapan environment dan baseline & Task manifest, test runner, dan validation oracle \\
+B3 & Pilot deterministic dan flaky & Laporan reproducibility, biaya, dan go/no-go \\
+B4 & Eksperimen utama berulang & Patch, trajectory, feedback, dan resource logs \\
+B5 & Analisis robustness & Degradasi, recovery, overhead, dan failure taxonomy \\
+B6 & Penulisan dan revisi & Draft bab metode, hasil, dan ancaman validitas \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Batas Klaim}
+
+Penelitian ini tidak mengklaim bahwa semua flaky tests merusak automated repair atau bahwa satu strategi rerun cocok untuk semua agent. Kesimpulan dibatasi pada benchmark, model, agent, skenario flakiness, dan validation protocol yang diuji. Test flaky nyata dan benchmark lain diposisikan sebagai validasi lanjutan.
