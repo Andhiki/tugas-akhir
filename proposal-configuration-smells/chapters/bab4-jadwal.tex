@@ -1,0 +1,61 @@
+% !TeX root = ../main.tex
+\chapter{JADWAL PENELITIAN}
+
+\section{Rencana Kerja}
+
+Rencana kerja disusun untuk delapan bulan dan dapat disesuaikan setelah hasil pilot, ketersediaan model, serta jadwal akademik ditetapkan. Blok berwarna menunjukkan periode aktivitas utama.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\newcommand{\taskbar}{\cellcolor{blue!30}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{5.0cm}|*{8}{c|}}
+\hline
+\textbf{Kegiatan} & \textbf{Sep. 2026} & \textbf{Okt. 2026} & \textbf{Nov. 2026} & \textbf{Des. 2026} & \textbf{Jan. 2027} & \textbf{Feb. 2027} & \textbf{Mar. 2027} & \textbf{Apr. 2027} \\
+\hline
+Studi pustaka dan finalisasi taxonomy & \taskbar & \taskbar & & & & & & \\
+\hline
+Pemilihan benchmark dan task manifest & & \taskbar & \taskbar & & & & & \\
+\hline
+Konstruksi treatment dan treatment checker & & \taskbar & \taskbar & \taskbar & & & & \\
+\hline
+Implementasi loader validation dan logger & & & \taskbar & \taskbar & & & & \\
+\hline
+Smoke test dan pilot berpasangan & & & \taskbar & \taskbar & & & & \\
+\hline
+Eksperimen utama dan pengarsipan artefak & & & & \taskbar & \taskbar & & & \\
+\hline
+Analisis outcome, cost, dan failure mode & & & & & \taskbar & \taskbar & & \\
+\hline
+Penulisan hasil dan pembahasan & & & & & & \taskbar & \taskbar & \\
+\hline
+Revisi, validasi reproduksi, dan finalisasi & & & & & & & \taskbar & \taskbar \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\section{Keluaran Tiap Tahap}
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Keluaran yang ditargetkan}
+\label{tab:deliverables}
+\begin{tabularx}{\textwidth}{p{4.0cm}Y}
+\toprule
+\textbf{Tahap} & \textbf{Keluaran} \\
+\midrule
+Studi pustaka & Taxonomy enam smell, definisi operasional tiga treatment, research question, hipotesis, dan gap. \\
+Persiapan benchmark & Task manifest, pinned commit, dependency, command validasi, acceptance criterion, dan lisensi. \\
+Konstruksi treatment & File Clean, tiga varian smell, varian Remediated, diff, token count, dan treatment checker. \\
+Pilot & Laporan loader validation, reproducibility, variasi outcome, estimasi biaya, dan keputusan go/no-go. \\
+Eksperimen utama & Dataset run, patch, trajectory, raw output, validation result, dan resource log. \\
+Analisis & Tabel outcome, effect size, interval ketidakpastian, paired comparison, dan failure taxonomy. \\
+Finalisasi & Draft proposal atau skripsi, artefak reproducible yang aman dipublikasikan, serta dokumentasi batas klaim. \\
+\bottomrule
+\end{tabularx}
+\end{table}

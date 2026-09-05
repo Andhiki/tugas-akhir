@@ -1,0 +1,77 @@
+% !TeX root = ../main.tex
+\chapter{PENDAHULUAN}
+
+\section{Latar Belakang}
+
+Perkembangan \textit{Large Language Model} (LLM) telah melahirkan AI coding agent yang dapat menyelesaikan tugas rekayasa perangkat lunak secara bertahap. Agent tidak hanya menghasilkan potongan kode, tetapi juga dapat membaca berkas, mencari simbol, menjalankan perintah, memeriksa hasil test, dan mengiterasikan perubahan sampai mencapai kriteria penerimaan. Kemampuan tersebut membuat agent bergantung pada konteks repository yang tersedia selama proses pengerjaan.
+
+Salah satu mekanisme yang semakin umum digunakan untuk menyediakan konteks tersebut adalah \textit{repository-level instruction file}, misalnya \texttt{AGENTS.md} atau \texttt{CLAUDE.md}. Berkas ini biasanya berisi struktur repository, perintah build dan test, konvensi implementasi, batasan perubahan, serta prosedur validasi. Studi empiris terhadap 2.303 berkas konteks dari 1.925 repository menunjukkan bahwa berkas semacam ini telah menjadi artefak konfigurasi yang berkembang dan dipelihara seperti bagian dari kode \cite{agentreadmes2025}. Dengan kata lain, isi berkas tersebut berpotensi memengaruhi keputusan agent pada setiap task.
+
+Namun, penambahan instruksi tidak selalu berarti penambahan informasi yang berguna. Dos Santos et al. mengusulkan katalog pertama mengenai \textit{configuration smells} pada file instruksi coding agent. Katalog tersebut mencakup \textit{Lint Leakage}, \textit{Context Bloat}, \textit{Skill Leakage}, \textit{Conflicting Instructions}, \textit{Init Fossilization}, dan \textit{Blind References} \cite{configsmells2026}. Pada analisis terhadap 100 repository populer, \textit{Lint Leakage}, \textit{Context Bloat}, dan \textit{Skill Leakage} dilaporkan sebagai kategori yang paling sering ditemukan, sementara beberapa kategori juga sering muncul secara bersamaan \cite{configsmells2026}.
+
+Temuan mengenai keberadaan file konteks juga belum memberikan kesimpulan sederhana mengenai manfaatnya. Lulla et al. melaporkan bahwa keberadaan \texttt{AGENTS.md} berkaitan dengan waktu eksekusi dan jumlah token keluaran yang lebih rendah pada studi mereka, dengan perilaku penyelesaian task yang sebanding \cite{lulla2026agents}. Sebaliknya, Gloaguen et al. menemukan bahwa pemberian file konteks tidak secara umum meningkatkan task success dan meningkatkan biaya inferensi rata-rata pada evaluasi mereka \cite{gloaguen2026agents}. Perbedaan tersebut menunjukkan bahwa pertanyaan pentingnya bukan hanya apakah file konteks tersedia, tetapi instruksi seperti apa yang dimasukkan ke dalam konteks selalu aktif tersebut.
+
+Configuration smell berbeda dari bug biasa. File masih dapat dibaca, agent masih dapat berjalan, dan repository masih dapat dibangun. Masalahnya adalah adanya pola konfigurasi yang berpotensi mengurangi rasio informasi berguna, menimbulkan ambiguitas, atau mengarahkan agent untuk melakukan pekerjaan yang tidak perlu. \textit{Context Bloat}, misalnya, dapat membuat informasi penting terselip di antara uraian panjang. \textit{Lint Leakage} menghabiskan konteks dengan mengulang aturan yang sudah dapat ditegakkan oleh linter atau formatter. \textit{Conflicting Instructions} dapat membuat agent harus memilih di antara dua aturan yang tidak konsisten.
+
+Studi yang telah ada terutama melakukan katalogisasi dan pengukuran prevalensi smell, atau membandingkan kondisi ada dan tidak adanya file konteks. Berdasarkan literatur yang ditinjau dalam proposal ini, masih dibutuhkan eksperimen berpasangan yang secara langsung mengubah satu smell dengan repository, task, agent, model, prompt, dan environment yang sama. Eksperimen tersebut diperlukan agar perubahan outcome dapat lebih dekat diatribusikan kepada smell yang diuji, bukan kepada perbedaan task atau konfigurasi lain.
+
+Penelitian ini mengusulkan evaluasi dampak tiga configuration smell yang paling feasible untuk dimanipulasi secara terkontrol, yaitu \textit{Context Bloat}, \textit{Lint Leakage}, dan \textit{Conflicting Instructions}. Keenam smell tetap digunakan sebagai kerangka konseptual dan dibahas pada studi terkait, tetapi tidak semua smell dipaksakan menjadi perlakuan kausal pada eksperimen utama. Tahap pilot terlebih dahulu memeriksa apakah treatment dapat dimuat oleh agent, tetap berbeda hanya pada aspek yang dimaksud, dan dapat diukur dengan biaya yang wajar. Untuk \textit{Context Bloat}, penelitian juga menyiapkan kondisi remediasi untuk menguji apakah penghapusan konteks low-value dapat memulihkan outcome atau efisiensi agent.
+
+\section{Perumusan Masalah}
+
+Berdasarkan latar belakang tersebut, perumusan masalah penelitian ini adalah sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item Sejauh mana \textit{Context Bloat}, \textit{Lint Leakage}, dan \textit{Conflicting Instructions} memengaruhi keberhasilan penyelesaian task, hasil test, dan kepatuhan terhadap instruksi AI coding agent?
+    \item Bagaimana ketiga configuration smell tersebut memengaruhi efisiensi dan perilaku agent, yang diukur melalui token, tool calls, waktu, eksplorasi repository, iterasi, retry, dan failure mode?
+    \item Apakah remediasi \textit{Context Bloat} dapat mengurangi biaya atau memulihkan outcome agent dibandingkan kondisi yang masih mengandung smell?
+\end{enumerate}
+
+\section{Batasan Penelitian}
+
+Untuk menjaga penelitian tetap terukur dan dapat diselesaikan, batasan penelitian ditetapkan sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item Objek penelitian adalah AI coding agent yang mengerjakan task perubahan kode pada repository yang memiliki acceptance criterion, command validasi, dan environment yang dapat direproduksi.
+    \item Repository-level instruction file yang diuji berupa file yang dibaca oleh agent, terutama \texttt{AGENTS.md} atau format ekuivalen yang didukung oleh runner. Perbedaan implementasi loader antar-agent bukan fokus utama penelitian.
+    \item Tiga smell yang menjadi perlakuan utama adalah \textit{Context Bloat}, \textit{Lint Leakage}, dan \textit{Conflicting Instructions}. \textit{Skill Leakage}, \textit{Init Fossilization}, dan \textit{Blind References} digunakan sebagai kerangka taxonomy dan dapat menjadi analisis tambahan apabila lolos validasi treatment.
+    \item Eksperimen utama menggunakan satu implementasi agent, satu model, satu konfigurasi tools, satu bahasa pemrograman atau keluarga environment, dan versi dependency yang dipatok.
+    \item Benchmark utama dipilih setelah smoke test. SWE-bench Lite atau subset task repository publik menjadi kandidat utama; task yang membutuhkan secret, layanan eksternal yang tidak stabil, atau acceptance criterion yang ambigu dikeluarkan dari eksperimen.
+    \item Perlakuan dibuat dari satu file instruksi bersih yang sama. Pada setiap kondisi hanya bagian yang merepresentasikan smell yang diubah; fakta repository, command, acceptance criterion, dan prompt task tidak boleh berubah.
+    \item Penelitian mengukur dampak pada konfigurasi agent yang diuji, bukan membangun detector universal atau mengklaim bahwa setiap smell selalu menurunkan kualitas agent.
+    \item Hasil penelitian diinterpretasikan sebagai bukti empiris pada kombinasi agent, model, repository, task, dan environment yang digunakan. Generalisasi ke seluruh coding agent dibatasi.
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+
+Tujuan penelitian ini adalah:
+
+\begin{enumerate}[leftmargin=*]
+    \item Merumuskan definisi operasional dan membangun treatment terkontrol untuk tiga configuration smell terpilih.
+    \item Merancang protokol eksperimen berpasangan untuk membandingkan kondisi file instruksi bersih dan kondisi yang mengandung smell.
+    \item Mengukur pengaruh smell terhadap task success, hasil test, instruction compliance, biaya, dan perilaku AI coding agent.
+    \item Mengevaluasi remediasi \textit{Context Bloat} melalui penghapusan atau pemindahan konteks low-value tanpa mengubah fakta task yang diperlukan.
+    \item Menyediakan manifest task, konstruksi treatment, log trajectory, patch, hasil validasi, dan dokumentasi yang cukup untuk mereproduksi eksperimen.
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+
+Penelitian ini diharapkan memberikan manfaat sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Bagi penelitian AI coding agent:} memberikan bukti pada level smell, bukan hanya perbandingan ada atau tidak adanya file konteks.
+    \item \textbf{Bagi praktisi pengembangan perangkat lunak:} memberikan dasar empiris untuk menentukan informasi yang layak dimasukkan ke dalam konteks selalu aktif dan informasi yang sebaiknya dipindahkan ke tool, linter, atau dokumen on-demand.
+    \item \textbf{Bagi penelitian selanjutnya:} menyediakan protokol treatment dan format log untuk menguji smell lain, model lain, atau mekanisme remediasi yang lebih luas.
+\end{enumerate}
+
+\section{Kontribusi yang Ditargetkan}
+
+Kontribusi yang ditargetkan dari penelitian ini adalah:
+
+\begin{enumerate}[leftmargin=*]
+    \item definisi operasional yang dapat diaudit untuk \textit{Context Bloat}, \textit{Lint Leakage}, dan \textit{Conflicting Instructions};
+    \item desain eksperimen berpasangan yang memisahkan efek smell dari variasi task dan environment;
+    \item pengukuran gabungan antara outcome task, instruction compliance, resource cost, dan trajectory agent;
+    \item analisis failure mode yang menjelaskan bagaimana agent merespons konteks yang terlalu panjang, redundant, atau kontradiktif; dan
+    \item evaluasi awal remediasi \textit{Context Bloat} beserta trade-off antara pengurangan konteks dan pemeliharaan informasi yang dibutuhkan.
+\end{enumerate}

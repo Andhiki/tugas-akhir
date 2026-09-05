@@ -1,0 +1,247 @@
+% !TeX root = ../main.tex
+\chapter{METODE PENELITIAN}
+
+\section{Rancangan Penelitian}
+
+Penelitian ini menggunakan eksperimen kuantitatif berpasangan dengan analisis trajectory. Unit analisis utama adalah satu run AI coding agent pada satu task, satu kondisi file instruksi, dan satu seed. Setiap task dijalankan pada lebih dari satu kondisi dengan snapshot repository, prompt, model, tools, dan batas resource yang sama. Perbedaan antar-kondisi kemudian dianalisis sebagai paired difference.
+
+Penelitian dibagi menjadi lima tahap:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Studi pustaka dan pembekuan definisi.} Menetapkan taxonomy, research question, definisi operasional, serta batas klaim.
+    \item \textbf{Konstruksi treatment.} Membuat file instruksi bersih dan varian yang mengandung satu smell pada satu waktu.
+    \item \textbf{Validasi loader dan pilot.} Memastikan agent benar-benar menerima file, treatment termuat, task reproducible, dan metadata dapat direkam.
+    \item \textbf{Eksperimen utama.} Menjalankan task berpasangan dengan pengulangan dan urutan kondisi yang diacak.
+    \item \textbf{Analisis dan dokumentasi.} Menganalisis outcome, cost, trajectory, failure mode, serta menulis batasan reproduksi.
+\end{enumerate}
+
+\section{Objek Penelitian}
+
+Objek penelitian terdiri atas:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{File instruksi:} satu file bersih yang berisi instruksi repository yang faktual dan diperlukan, beserta varian treatment.
+    \item \textbf{AI coding agent:} satu runner yang dapat membaca repository, menjalankan tools, mengubah file, dan menyimpan trajectory.
+    \item \textbf{Task:} task perubahan kode dengan acceptance criterion dan command validasi yang jelas.
+    \item \textbf{Environment:} snapshot repository, dependency, runtime, runner, konfigurasi model, dan resource limit yang dipatok.
+\end{enumerate}
+
+Benchmark utama adalah SWE-bench Lite atau subset task repository publik yang lolos kriteria reproducibility. Pilihan final dikunci setelah smoke test. Kriteria task meliputi adanya commit awal yang jelas, instruksi reproduksi, test atau validation command yang dapat dijalankan tanpa secret, serta perubahan yang dapat dinilai secara deterministik.
+
+\section{Konstruksi File Instruksi dan Treatment}
+
+File instruksi \textit{Clean} dibuat dari fakta yang dapat diverifikasi pada repository, seperti command build, command test, lokasi source, dan batasan perubahan. File ini tidak memberikan solusi task secara langsung. Setiap treatment dibuat sebagai salinan file \textit{Clean} dengan perubahan seminimal mungkin.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Treatment configuration smell}
+\label{tab:treatment}
+\begin{tabularx}{\textwidth}{p{3.2cm}p{4.0cm}Y}
+\toprule
+\textbf{Treatment} & \textbf{Manipulasi} & \textbf{Kontrol dan validasi} \\
+\midrule
+\textit{Context Bloat} & Menambahkan konteks redundant atau low-value secara bertahap, misalnya uraian project, contoh panjang, dan prosedur jarang digunakan, tanpa menambah fakta task. & Mencatat baris, token, bagian, dan diff; memastikan command dan fakta penting tetap sama. \\
+\textit{Lint Leakage} & Menambahkan aturan style yang sama dengan aturan yang sudah ditegakkan oleh linter atau formatter repository. & Konfigurasi linter tidak diubah; aturan duplikat dipetakan ke rule yang dapat diverifikasi. \\
+\textit{Conflicting Instructions} & Menambahkan pasangan instruksi yang bertentangan untuk keputusan atau artefak yang sama. & Konflik direview manual, ditargetkan pada task yang relevan, dan tidak disertai perubahan pada test atau tooling. \\
+\textit{Remediated Context Bloat} & Menghapus bagian low-value dari treatment \textit{Context Bloat} sambil mempertahankan fakta dan aturan yang diperlukan. & Diff remediasi dicatat; file harus mempertahankan acceptance-relevant facts dari kondisi Clean. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Enam smell dari taxonomy tetap dicatat sebagai kemungkinan perluasan. Namun, eksperimen utama tidak menggabungkan beberapa smell sekaligus karena kombinasi tersebut akan menyulitkan atribusi efek. \textit{Skill Leakage}, \textit{Init Fossilization}, dan \textit{Blind References} hanya ditambahkan jika tahap pilot menghasilkan operasionalisasi yang memiliki kontrol dan validator setara.
+
+\section{Kondisi Eksperimen}
+
+Eksperimen utama menggunakan kondisi berikut:
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Kondisi eksperimen utama}
+\label{tab:conditions}
+\begin{tabularx}{\textwidth}{p{3.5cm}Y}
+\toprule
+\textbf{Kondisi} & \textbf{Tujuan} \\
+\midrule
+No instruction & Baseline untuk melihat perilaku agent tanpa file tambahan. Kondisi ini digunakan apabila loader dapat diuji secara valid. \\
+Clean & Referensi utama berisi instruksi repository yang singkat, faktual, dan relevan. \\
+Context-Bloated & Mengisolasi pengaruh konteks low-value yang ditambahkan ke file Clean. \\
+Lint-Leaky & Mengisolasi pengaruh aturan yang diduplikasi dari linter atau formatter. \\
+Conflicting & Mengisolasi pengaruh dua instruksi yang bertentangan. \\
+Remediated & Menguji pemulihan setelah konteks low-value pada Context-Bloated dihapus. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Perbandingan utama dilakukan antara Clean dan masing-masing smell. Perbandingan No instruction dan Clean digunakan untuk memisahkan efek keberadaan file dari efek kualitas isi. Perbandingan Context-Bloated dan Remediated digunakan sebagai sub-eksperimen remediasi. Apabila anggaran tidak mencukupi untuk seluruh kondisi, urutan prioritas adalah Clean, Context-Bloated, Remediated, lalu Lint-Leaky dan Conflicting setelah treatment lolos pilot.
+
+\section{Protokol Eksperimen}
+
+Protokol untuk setiap task dan kondisi adalah sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item mengambil snapshot repository dan dependency yang telah dipatok;
+    \item menjalankan baseline validation pada workspace bersih;
+    \item membuat workspace baru untuk run tersebut dan memasang file instruksi sesuai kondisi;
+    \item menjalankan agent dengan prompt, model, tools, batas waktu, dan batas iterasi yang sama;
+    \item merekam seluruh pembacaan file, tool calls, command, output, patch, dan keputusan berhenti;
+    \item menjalankan validation oracle independen setelah agent selesai;
+    \item menyimpan reported outcome, true validation result, metadata biaya, dan seed; serta
+    \item memberi identifier unik untuk task, kondisi, run, versi runner, dan environment.
+\end{enumerate}
+
+Urutan kondisi diacak per task. Setiap kondisi diulang minimal tiga kali pada tahap pilot apabila biaya memungkinkan. Pada eksperimen utama, jumlah run ditentukan berdasarkan variasi outcome dan anggaran setelah pilot. Run yang gagal memuat file instruksi, melewati batas resource secara abnormal, atau merusak treatment dicatat sebagai invalid run dan tidak dihapus dari laporan kualitas data.
+
+\section{Variabel Penelitian}
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Variabel penelitian}
+\label{tab:variables}
+\begin{tabularx}{\textwidth}{p{3.0cm}p{3.7cm}Y}
+\toprule
+\textbf{Jenis} & \textbf{Variabel} & \textbf{Operasionalisasi} \\
+\midrule
+Independen & Kondisi instruksi & No instruction, Clean, Context-Bloated, Lint-Leaky, Conflicting, dan Remediated. \\
+Independen & Intensitas Context Bloat & Jumlah baris, token, bagian low-value, dan proporsi konten tidak terpakai pada task. \\
+Dependen utama & Task success & Patch memenuhi acceptance criterion dan validation oracle independen. \\
+Dependen utama & Final test result & Status test atau validation command pada workspace akhir. \\
+Dependen utama & Instruction compliance & Proporsi item checklist instruksi yang dapat diverifikasi dari patch dan trajectory. \\
+Dependen sekunder & Resource cost & Token input/output bila tersedia, tool calls, wall-clock time, dan retry. \\
+Dependen sekunder & Trajectory behavior & File dibaca, command dijalankan, iterasi, perubahan file, eksplorasi, dan alasan berhenti. \\
+Dependen sekunder & Failure mode & Misread instruction, ignored instruction, unnecessary work, conflict resolution failure, timeout, atau premature stop. \\
+Kontrol & Konteks run & Task, commit, prompt, model, runner, tools, dependency, seed, dan resource limit. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Metrik Evaluasi}
+
+Metrik yang digunakan ditunjukkan pada Tabel~\ref{tab:metrics}.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Metrik evaluasi}
+\label{tab:metrics}
+\begin{tabularx}{\textwidth}{p{3.8cm}Y}
+\toprule
+\textbf{Metrik} & \textbf{Definisi operasional} \\
+\midrule
+Task success & Proporsi run yang menghasilkan patch yang memenuhi acceptance criterion dan lulus validation oracle. \\
+Test pass rate & Proporsi run dengan final test atau validation command berstatus lulus. \\
+Instruction compliance & Proporsi item instruksi yang dapat diverifikasi melalui diff, command, atau trajectory. \\
+Input and output tokens & Token yang digunakan oleh model, jika runner menyediakan data tersebut; proxy dicatat jika tidak tersedia. \\
+Tool calls and iterations & Jumlah pemanggilan tool dan siklus observasi-aksi sampai agent berhenti. \\
+Wall-clock time & Waktu dari agent mulai sampai selesai atau timeout. \\
+Exploration overhead & Jumlah file yang dibaca, command eksplorasi, dan output yang tidak berkontribusi pada patch. \\
+Remediation recovery & Perubahan task success atau cost dari Context-Bloated ke Remediated. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Untuk outcome biner, jumlah dan proporsi dilaporkan per kondisi serta per task. Untuk metrik biaya, median dan interquartile range digunakan karena distribusi trajectory agent biasanya tidak simetris. Setiap hasil agregat disertai jumlah run valid dan informasi missingness.
+
+\section{Pengumpulan Data}
+
+Setiap run menghasilkan artefak berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item manifest task, commit, kondisi, seed, model, runner, dependency, dan resource limit;
+    \item file instruksi yang benar-benar dipasang serta hash dan diff terhadap file Clean;
+    \item prompt dan konfigurasi tools;
+    \item trajectory action-result agent;
+    \item patch akhir dan diff seluruh perubahan;
+    \item raw output command dan hasil validation oracle;
+    \item token, tool calls, iterasi, retry, file yang dibaca, dan durasi; serta
+    \item checklist instruction compliance dan label failure mode.
+\end{enumerate}
+
+Repository dan task yang dipilih harus mempunyai lisensi yang mengizinkan penggunaan untuk eksperimen. Credential, secret, dan informasi privat tidak dimasukkan ke dataset. Jika output model mengandung data sensitif dari environment, artefak tersebut disanitasi sebelum disimpan atau dipublikasikan.
+
+\section{Analisis Data}
+
+Analisis dilakukan dalam beberapa tahap:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Pemeriksaan integritas.} Memeriksa apakah commit, file treatment, loader log, prompt, dan validation result sesuai dengan manifest.
+    \item \textbf{Validasi treatment.} Mengukur perbedaan baris dan token, memeriksa bahwa fakta Clean tidak hilang, serta memastikan smell yang dimaksud benar-benar hadir.
+    \item \textbf{Analisis outcome.} Membandingkan task success, test pass rate, dan compliance antara Clean dan tiap treatment. Untuk data berpasangan, perbedaan discordant pair, McNemar atau permutation test dapat digunakan apabila ukuran sampel memadai.
+    \item \textbf{Analisis biaya.} Membandingkan median dan paired difference untuk token, tool calls, iterasi, retry, eksplorasi, dan waktu. Wilcoxon signed-rank atau permutation test dapat digunakan setelah memeriksa karakteristik data.
+    \item \textbf{Analisis failure mode.} Mengelompokkan trajectory dan menyajikan contoh kasus yang menjelaskan mekanisme di balik perbedaan outcome.
+    \item \textbf{Analisis remediasi.} Mengukur apakah Remediated bergerak mendekati Clean dalam outcome dan cost, tanpa menganggap pemulihan harus sempurna.
+\end{enumerate}
+
+Efek utama dirangkum sebagai perbedaan berpasangan:
+
+\begin{equation}
+\Delta_{smell} = Outcome_{Clean} - Outcome_{Smell}
+\end{equation}
+
+dan untuk remediasi:
+
+\begin{equation}
+\Delta_{recovery} = Outcome_{Remediated} - Outcome_{Context\text{-}Bloat}.
+\end{equation}
+
+Penelitian melaporkan effect size dan interval ketidakpastian, bukan hanya p-value. Hasil null atau hasil yang menunjukkan smell tidak berpengaruh juga tetap dilaporkan apabila treatment terbukti termuat dan eksperimen memenuhi kriteria validitas.
+
+\section{Alat dan Bahan}
+
+Alat dan bahan yang dipersiapkan adalah sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Agent runner:} satu CLI atau framework yang dapat membaca repository, menjalankan command, mengubah file, dan mengekspor log.
+    \item \textbf{Model:} satu model dengan identifier dan parameter yang dapat dipatok selama pengumpulan data.
+    \item \textbf{Benchmark:} SWE-bench Lite atau task repository publik yang telah lolos smoke test.
+    \item \textbf{Treatment generator:} script untuk membuat, memeriksa, menghitung token, dan membandingkan file Clean dengan varian smell.
+    \item \textbf{Logger dan validator:} penyimpan trajectory, patch, command output, resource metadata, serta validation oracle independen.
+    \item \textbf{Environment isolation:} Git, container atau isolasi setara, runtime bahasa, dependency lock, dan penyimpanan artefak.
+\end{enumerate}
+
+Versi runner, model identifier, command, dependency, dan konfigurasi environment disimpan di manifest. Eksperimen berulang tidak dilakukan sebelum smoke test satu task berhasil dan biaya maksimum per run ditetapkan.
+
+\section{Ancaman terhadap Validitas}
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Ancaman terhadap validitas dan mitigasi}
+\label{tab:validity}
+\begin{tabularx}{\textwidth}{p{4.0cm}Y}
+\toprule
+\textbf{Ancaman} & \textbf{Mitigasi} \\
+\midrule
+Treatment tidak benar-benar dimuat agent & Memeriksa loader behavior, file access log, dan smoke task yang dapat membedakan file termuat atau tidak. \\
+Smell bercampur dengan perubahan fakta repository & Membuat treatment dari file Clean, menyimpan diff, dan melakukan review treatment sebelum eksperimen. \\
+Conflicting Instructions tidak relevan terhadap task & Memilih task yang memungkinkan konflik memengaruhi keputusan; run tidak relevan dilaporkan sebagai batas applicability. \\
+Task atau test tidak reproducible & Mematok commit dan dependency, menjalankan baseline berulang, serta mengecualikan external service yang tidak stabil. \\
+Variasi model dan layanan eksternal & Mematok model, parameter, runner, waktu, resource limit, dan seed jika tersedia. \\
+Patch lulus test tetapi tidak benar & Menggunakan validation oracle independen dan review manual pada subset patch. \\
+Ukuran sampel kecil atau cost tinggi & Melakukan pilot, memprioritaskan paired analysis dan effect size, serta menerapkan urutan kondisi bertingkat. \\
+Hasil tidak general ke semua agent & Membatasi klaim pada agent, model, task, dan environment yang diuji. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Kriteria Go/No-Go}
+
+Eksperimen utama dilanjutkan apabila:
+
+\begin{enumerate}[leftmargin=*]
+    \item task dan baseline validation dapat dijalankan berulang;
+    \item loader agent terbukti membaca file instruksi sesuai kondisi;
+    \item Clean, treatment, dan Remediated berbeda hanya pada aspek yang ditargetkan;
+    \item treatment dapat diukur dengan token, baris, atau checklist yang terdokumentasi;
+    \item runner dapat menyimpan patch, trajectory, command output, validation result, dan metadata cost; serta
+    \item biaya dan durasi run sesuai dengan anggaran penelitian.
+\end{enumerate}
+
+Jika tiga smell tidak dapat diuji dengan integritas yang sama, scope dipersempit secara resmi menjadi \textit{Context Bloat} sebagai primary smell. Jika \textit{Context Bloat} pun tidak dapat dimuat atau diukur secara valid, penelitian dihentikan pada tahap pilot dan desain dievaluasi kembali sebelum pengumpulan data utama.

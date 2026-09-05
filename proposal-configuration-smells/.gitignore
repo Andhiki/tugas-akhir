@@ -1,0 +1,9 @@
+tmp/
+*.aux
+*.bbl
+*.blg
+*.glo
+*.ist
+*.log
+*.out
+*.toc

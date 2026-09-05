@@ -1,0 +1,93 @@
+% !TeX root = ../main.tex
+\chapter{PENELITIAN TERKAIT}
+
+\section{Konsep Dasar}
+
+\subsection{AI Coding Agent}
+
+AI coding agent adalah sistem berbasis LLM yang menyelesaikan task perangkat lunak melalui rangkaian observasi dan aksi. Aksi tersebut dapat berupa membaca file, mencari kode, menjalankan command, menerapkan perubahan, dan memeriksa hasil validasi. Agent menerima hasil dari tools sebagai feedback lalu menentukan aksi berikutnya. RepairAgent menunjukkan pola agentic untuk program repair dengan menggabungkan pengumpulan konteks, penerapan perubahan, dan validasi patch \cite{repairagent2025}.
+
+Berbeda dari model yang hanya menghasilkan patch sekali, agent mempunyai trajectory yang dapat diamati. Trajectory mencakup urutan tool calls, file yang dibaca, perubahan yang dibuat, hasil command, retry, dan keputusan berhenti. Analisis trajectory berguna karena dua kondisi dapat mempunyai task success yang sama tetapi biaya dan cara kerja yang sangat berbeda \cite{bouzenia2025trajectories}.
+
+\subsection{Repository-Level Instruction Files}
+
+Repository-level instruction file adalah file teks yang berisi instruksi yang dimaksudkan untuk memandu agent ketika bekerja pada repository tertentu. Contohnya adalah \texttt{AGENTS.md} dan \texttt{CLAUDE.md}. Isi file dapat mencakup struktur direktori, perintah build, aturan test, konvensi kode, batasan perubahan, dan prosedur validasi.
+
+File konteks berbeda dari dokumentasi biasa karena sebagian atau seluruh isinya dapat dimasukkan ke dalam konteks agent secara persisten. Akibatnya, setiap baris memiliki biaya potensial terhadap context window, perhatian model, token input, dan waktu inferensi. Studi Agent READMEs menemukan bahwa file ini berisi tipe instruksi yang berulang dan berkembang melalui penambahan kecil dari waktu ke waktu \cite{agentreadmes2025}.
+
+\subsection{Configuration Smell}
+
+Configuration smell adalah pola struktural atau isi konfigurasi yang mengindikasikan potensi masalah pemeliharaan atau penggunaan, walaupun konfigurasi tersebut masih valid secara sintaksis. Dos Santos et al. mengusulkan enam smell untuk file konfigurasi coding agent \cite{configsmells2026}. Ringkasan taxonomy tersebut ditunjukkan pada Tabel~\ref{tab:taxonomy}.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Taxonomy configuration smell pada file instruksi coding agent}
+\label{tab:taxonomy}
+\begin{tabularx}{\textwidth}{p{3.7cm}Y}
+\toprule
+\textbf{Smell} & \textbf{Gambaran operasional} \\
+\midrule
+\textit{Lint Leakage} & Instruksi mengulang aturan style atau kualitas yang sudah ditegakkan oleh linter, formatter, type checker, atau static analyzer. \\
+\textit{Context Bloat} & File instruksi memuat konteks terlalu panjang atau terlalu banyak informasi low-value sehingga informasi penting berpotensi tertutup. \\
+\textit{Skill Leakage} & Prosedur yang hanya relevan untuk task atau kemampuan tertentu ditempatkan di konteks global yang selalu dimuat. \\
+\textit{Conflicting Instructions} & File memuat dua atau lebih aturan yang bertentangan untuk situasi atau artefak yang sama. \\
+\textit{Init Fossilization} & File hasil inisialisasi dibiarkan tanpa pemeliharaan meskipun repository dan workflow telah berubah. \\
+\textit{Blind References} & File merujuk ke path atau dokumen lain tanpa menjelaskan kapan dan untuk tujuan apa rujukan tersebut perlu dibaca. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Dalam penelitian ini, taxonomy tersebut tidak diperlakukan sebagai bukti bahwa setiap smell pasti menyebabkan kegagalan. Taxonomy menjadi dasar pemilihan treatment dan bahasa analisis. Dampak kausal diuji hanya pada smell yang dapat dimanipulasi dengan kontrol yang cukup.
+
+\subsection{Definisi Operasional Smell Terpilih}
+
+\textit{Context Bloat} diperlakukan sebagai penambahan bagian redundant atau low-value ke file instruksi bersih, tanpa menambah fakta task atau command baru. Ukuran yang dicatat meliputi jumlah baris, token, jumlah bagian, dan proporsi konten yang tidak digunakan dalam task. Ambang 200 baris dapat digunakan sebagai indikator awal karena dipakai dalam heuristik studi taxonomy, tetapi penelitian tidak menganggap angka tersebut sebagai batas universal \cite{configsmells2026}.
+
+\textit{Lint Leakage} diperlakukan sebagai duplikasi eksplisit terhadap aturan yang sudah dapat ditemukan pada konfigurasi linter atau formatter repository. Treatment tidak mengubah konfigurasi linter. Dengan demikian, perbedaan antara kondisi bersih dan treatment terletak pada saluran penyampaian aturan, bukan pada aturan kualitas kode yang sebenarnya.
+
+\textit{Conflicting Instructions} diperlakukan sebagai pasangan instruksi yang memberikan tuntutan berbeda terhadap artefak atau keputusan yang sama. Konflik dibuat eksplisit, direview sebelum eksperimen, dan diuji melalui task yang memungkinkan agent menunjukkan pilihan tersebut. Jika konflik tidak termuat atau tidak relevan terhadap task, run dicatat sebagai kegagalan treatment dan tidak dipakai untuk klaim utama.
+
+\section{Studi Empiris tentang File Konteks Agent}
+
+Chatlatanagulchai et al. menganalisis 2.303 file konteks dari 1.925 repository dan menunjukkan bahwa file tersebut berisi instruksi mengenai build, implementasi, arsitektur, dan aspek workflow lainnya \cite{agentreadmes2025}. Studi tersebut penting untuk memahami artefak yang diteliti, tetapi bersifat observasional sehingga tidak mengisolasi dampak satu smell terhadap proses penyelesaian task.
+
+Dos Santos et al. membangun katalog enam configuration smell dan mengusulkan heuristik untuk mendeteksinya pada file \texttt{AGENTS.md} atau \texttt{CLAUDE.md}. Analisis 100 repository menunjukkan bahwa smell tersebar luas, dengan \textit{Lint Leakage}, \textit{Context Bloat}, dan \textit{Skill Leakage} sebagai kategori yang sering ditemukan \cite{configsmells2026}. Kontribusi tersebut menyediakan vocabulary dan sinyal prevalensi, tetapi belum menjawab apakah perubahan satu smell mengubah keputusan agent pada task yang sama.
+
+Lulla et al. membandingkan penggunaan repository-level context file dengan kondisi tanpa file pada 10 repository dan 124 pull request. Studi tersebut melaporkan perbedaan pada waktu dan token dengan task completion yang sebanding dalam setting yang diteliti \cite{lulla2026agents}. Variabel independennya adalah keberadaan file, sehingga efek isi atau smell tertentu masih tercampur di dalam perlakuan.
+
+Gloaguen et al. mengevaluasi file konteks pada task SWE-bench dan koleksi issue tambahan dengan beberapa model serta coding agent. Mereka melaporkan bahwa file konteks tidak secara umum meningkatkan task success dan meningkatkan biaya inferensi rata-rata, meskipun instruksi tertentu mengenai praktik non-standar tetap dapat berguna \cite{gloaguen2026agents}. Temuan ini memperkuat perlunya memisahkan instruksi bernilai dari konteks yang hanya menambah beban.
+
+\section{Benchmark dan Evaluasi Software Engineering Agent}
+
+SWE-bench menyediakan task yang berasal dari issue nyata pada repository GitHub dan menilai apakah perubahan yang dibuat menyelesaikan issue serta lulus validasi yang tersedia \cite{jimenez2024swebench}. Format ini sesuai untuk menguji AI coding agent karena agent harus memahami repository, mengubah beberapa file, dan menjalankan test. Namun, variasi dependency dan biaya eksekusi perlu diperiksa melalui pilot.
+
+RepairAgent memperlihatkan bahwa proses program repair dapat dipandang sebagai loop agent yang menggabungkan informasi bug, perubahan kode, dan validasi \cite{repairagent2025}. Bouzenia dan Pradel kemudian menunjukkan bahwa trajectory software engineering agent dapat dianalisis melalui relasi thought, action, dan result \cite{bouzenia2025trajectories}. Penelitian ini memanfaatkan sudut pandang tersebut untuk mengukur bukan hanya patch akhir, tetapi juga tindakan dan biaya selama agent bekerja.
+
+\section{Sintesis dan Identifikasi Research Gap}
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Perbandingan penelitian terkait}
+\label{tab:related-work}
+\begin{tabularx}{\textwidth}{p{3.3cm}p{3.4cm}Y}
+\toprule
+\textbf{Penelitian} & \textbf{Fokus} & \textbf{Perbedaan dengan penelitian ini} \\
+\midrule
+\cite{agentreadmes2025} & Struktur dan evolusi file konteks agent & Observasional; tidak memanipulasi smell pada task berpasangan. \\
+\cite{configsmells2026} & Katalog enam configuration smell dan prevalensinya & Menyediakan taxonomy dan heuristik, tetapi bukan uji kausal terhadap task success atau trajectory. \\
+\cite{lulla2026agents} & Dampak keberadaan \texttt{AGENTS.md} terhadap efisiensi & Independent variable berupa ada atau tidak ada file, bukan smell tertentu. \\
+\cite{gloaguen2026agents} & Evaluasi file konteks pada task repository-level & Kondisi konteks bersifat luas; tidak mengisolasi tiga smell terpilih. \\
+\cite{jimenez2024swebench} & Benchmark issue-resolution pada repository nyata & Benchmark tidak menyediakan treatment configuration smell. \\
+\cite{repairagent2025,bouzenia2025trajectories} & Agentic repair dan analisis trajectory & Menjadi dasar agent dan metrik, bukan evaluasi dampak smell. \\
+\textbf{Penelitian ini} & Eksperimen berpasangan pada smell terpilih dan remediasi Context Bloat & Menghubungkan taxonomy smell dengan outcome, biaya, dan perilaku agent. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Literatur yang ditinjau dapat dipetakan ke tiga lapisan. Pertama, file konteks merupakan artefak yang nyata dan berisi pola instruksi yang dapat dianalisis. Kedua, configuration smell menyediakan nama serta indikasi otomatis untuk masalah pada artefak tersebut. Ketiga, studi ada-tidaknya file menunjukkan bahwa konteks dapat memengaruhi biaya atau outcome, tetapi hasilnya bergantung pada setting. Celah yang ditargetkan penelitian ini adalah jembatan antara lapisan kedua dan ketiga: mengubah satu smell secara auditabel, lalu mengukur konsekuensinya ketika agent mengerjakan task yang sama.
+
+Dengan demikian, kebaruan penelitian tidak diletakkan pada klaim bahwa file \texttt{AGENTS.md} selalu buruk atau bahwa semua enam smell baru ditemukan oleh penelitian ini. Kebaruannya terletak pada desain eksperimen berpasangan yang memisahkan tiga mekanisme konfigurasi dan menghubungkan treatment dengan task success, instruction compliance, resource cost, trajectory, serta hasil remediasi.
