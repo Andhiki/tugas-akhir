@@ -1,0 +1,70 @@
+% !TeX root = ../main.tex
+\chapter{PENELITIAN TERKAIT}
+
+\section{Studi Terkait}
+
+Penelitian ini beririsan dengan beberapa alur riset yang telah berkembang dalam beberapa tahun terakhir. Berikut adalah tinjauan terhadap penelitian-penelitian kunci yang relevan, beserta identifikasi kesenjangan (\textit{gap}) yang dapat diisi oleh penelitian ini.
+
+\subsection{Deteksi Kontradiksi dalam Dokumen Hukum Menggunakan Single-Agent LLM}
+
+Schumann \& Marx Gómez (2023) menguji \textit{prompt-based classifier} pada LLM tunggal untuk deteksi kontradiksi dan inkonsistensi dalam dokumen regulasi \cite{schumann2023}. Penelitian ini mencapai F1 0,851 dengan \textit{prompt engineering}, mendekati performa model \textit{supervised} (F1 0,862). Meskipun hasil ini menjanjikan, pendekatan \textit{single-agent} memiliki keterbatasan: model tunggal rentan terhadap halusinasi dan zona kegagalan kompleksitas menengah (\textit{Mid-Complexity Failure Zone}) \cite{clause2026}, serta tidak memiliki mekanisme verifikasi kolektif yang dapat meningkatkan reliabilitas deteksi di domain berisiko tinggi seperti hukum.
+
+Parker Addison (2023) mengembangkan \textit{pipeline NLI} (\textit{Natural Language Inference}) berbasis \textit{transformer embeddings} dan klasifikasi NLI untuk mendeteksi kontradiksi dalam kebijakan Departemen Pertahanan AS \cite{parker2023}. Pendekatan ini menggunakan NLP tradisional tanpa LLM, dan meskipun efektif untuk domain spesifik, keterbatasan model \textit{classifier} tradisional dalam menangkap nuansa semantik kompleks membuatnya kurang generalisabel untuk hierarki perundang-undangan yang berbeda.
+
+\subsection{Benchmark dan Evaluasi Deteksi Anomali Hukum}
+
+CLAUSE (EACL 2026) memperkenalkan benchmark komprehensif dengan 7500+ kontrak dan 10 kategori anomali untuk mengaudit kapabilitas penalaran hukum LLM \cite{clause2026}. Temuan kunci: model terbaik (Gemini 2.5) hanya mencapai F1 63\%, dan kontradiksi hukum (\textit{legal contradictions}) terbukti lebih sulit dideteksi dibandingkan anomali dalam teks biasa. Benchmark ini menetapkan \textit{baseline} yang jelas, namun fokusnya pada kontrak (bukan legislatif), dan belum menguji konfigurasi multi-agent.
+
+\subsection{Multi-Agent dan RAG untuk Domain Hukum}
+
+LegalWiz (2025) mengusulkan sistem multi-agent dengan tiga agen—\textit{content generator, contradiction miner, retrieval verifier}—untuk menghasilkan dan mendeteksi kontradiksi dalam dokumen hukum \cite{legalwiz2025}. Ini merupakan pendekatan multi-agent paling relevan di domain hukum. Namun, LegalWiz berfokus pada \textit{generation + mining} secara simultan (bukan deteksi murni), belum mengadopsi mekanisme konsensus formal, dan belum dievaluasi pada perundang-undangan Indonesia.
+
+ContRAG (2026) mengembangkan \textit{contradiction-aware RAG} menggunakan FAISS dan \textit{NLI reranking} untuk hukum Slovenia \cite{contrag2026}. Pendekatan ini mengintegrasikan retrieval-aware reasoning, namun menggunakan \textit{single-pipeline} tanpa orkestrasi multi-agent, dan fokus pada bahasa dan sistem hukum Slovenia yang sangat berbeda dari Indonesia.
+
+ComplianceNLP (2026) membangun sistem \textit{end-to-end regulatory compliance monitoring} menggunakan KG-augmented RAG yang mengcover 12.847 ketentuan \cite{compliancenlp2026}. Sistem ini berfokus pada \textit{compliance monitoring} (bukan deteksi kontradiksi), dan menggunakan \textit{single-pipeline} tanpa multi-agent.
+
+\subsection{Fondasi Multi-Agent LLM dan Tantangan Self-MoA}
+
+Wang et al.\ (2024) mengusulkan kerangka kerja \textit{Mixture-of-Agents} (MoA) yang mengorkestrasi beberapa LLM secara berlapis untuk meningkatkan kapabilitas \cite{wang2024moa}. MoA menunjukkan peningkatan signifikan pada berbagai \textit{benchmark}, menjadi fondasi arsitektur untuk orkestrasi multi-agent.
+
+Du et al.\ (2023) memperkenalkan \textit{multiagent debate} sebagai mekanisme untuk meningkatkan faktualitas dan penalaran model bahasa \cite{du2023}. Prinsip debat antar-agen menjadi fondasi teoretis bagi mekanisme konsensus dalam arsitektur \textit{LLM Council} yang diusulkan.
+
+Li et al.\ (2025) menemukan bahwa \textit{Self-MoA}—model yang sama diulang beberapa kali—seringkali mengungguli \textit{Mixed-MoA} \cite{lismoa2025}. Temuan ini menjadi tantangan kritis: penelitian ini harus membuktikan bahwa mekanisme konsensus \textit{council} memberikan nilai tambah dibanding repetisi model yang sama, terutama dengan mempertimbangkan \textit{trade-off} biaya.
+
+Oriol et al.\ (2025) menunjukkan bahwa strategi \textit{Multi-Agent Debate} untuk RE meningkatkan F1 +10,9\%, namun biaya meningkat 16$\times$ lipat \cite{oriol2025}. Meskipun domainnya berbeda (RE, bukan hukum), temuan mengenai \textit{cost scaling} menjadi peringatan bahwa peningkatan performa multi-agent harus divalidasi terhadap biaya yang dikeluarkan.
+
+\subsection{Domain Lain yang Relevan}
+
+Giroh et al.\ (2025) dari Amazon mengusulkan kerangka kerja multi-agent (\textit{Clarifier, Planner, Implementor}) untuk mentransformasikan SOP ambigu menjadi kode dengan akurasi 88,4\% \cite{giroh2025}. Meskipun domainnya berbeda (S $\rightarrow$ kode), pola orkestrasi multi-agent untuk mengatasi ambiguitas menjadi referensi arsitektur yang relevan.
+
+\subsection{Sintesis dan Identifikasi Gap}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Perbandingan Penelitian Terkait}
+	\label{tab:related-work-k2}
+	\renewcommand{\arraystretch}{1.25}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|p{2.8cm}|c|c|c|c|c|}
+			\hline
+			\textbf{Penelitian} & \textbf{Multi-Agent} & \textbf{Konsensus Formal} & \textbf{Legislasi Indonesia} & \textbf{Pure Detection} & \textbf{Cost Analysis} \\
+			\hline
+			Schumann \& Marx Gómez (2023) & $\times$ & $\times$ & $\times$ & $\checkmark$ & $\times$ \\
+			\hline
+			Parker Addison (2023) & $\times$ & $\times$ & $\times$ & $\checkmark$ & $\times$ \\
+			\hline
+			CLAUSE (2026) & $\times$ & $\times$ & $\times$ & $\checkmark$ & $\times$ \\
+			\hline
+			LegalWiz (2025) & $\checkmark$ & $\times$ & $\times$ & $\times$ & $\times$ \\
+			\hline
+			ContRAG (2026) & $\times$ & $\times$ & $\times$ & $\checkmark$ & $\times$ \\
+			\hline
+			ComplianceNLP (2026) & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ \\
+			\hline
+			\textbf{Penelitian ini} & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+			\hline
+		\end{tabular}%
+	}
+\end{table}
+
+Berdasarkan sintesis pada Tabel~\ref{tab:related-work-k2}, teridentifikasi bahwa \textbf{belum ada penelitian yang menggabungkan arsitektur Multi-Agent LLM Council dengan mekanisme konsensus formal untuk deteksi kontradiksi normatif dalam perundang-undangan Indonesia}, dan belum ada yang melakukan analisis \textit{cost-accuracy trade-off} yang komprehensif. Penelitian ini mengisi kesenjangan tersebut.

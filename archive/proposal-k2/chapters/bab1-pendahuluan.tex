@@ -1,0 +1,57 @@
+% !TeX root = ../main.tex
+\chapter{PENDAHULUAN}
+
+\section{Latar Belakang}
+
+Indonesia menghadapi tantangan struktural berupa \textit{regulatory lag}, di mana laju reformasi legislatif tertinggal jauh dibandingkan dengan transformasi sosial-ekonomi yang pesat \cite{rahmatus2017, nabilsyah2019}. Kondisi ini diperparah oleh fragmentasi hukum yang tersebar dalam ribuan peraturan, mulai dari Undang-Undang hingga Peraturan Daerah, yang seringkali memiliki redaksi tumpang tindih dan memicu kontradiksi normatif \cite{rahmatus2017, simangunsong2016}. Kontradiksi normatif terjadi ketika dua atau lebih ketentuan dalam hierarki perundang-undangan saling bertentangan, sehingga menimbulkan ketidakpastian hukum bagi warga, pelaku usaha, dan penegak hukum. Deteksi kontradiksi secara manual memerlukan sumber daya manusia dengan keahlian hukum tinggi dan waktu yang sangat lama, mengingat volume regulasi yang terus bertambah setiap tahun \cite{rahmatus2017}.
+
+Pemanfaatan \textit{Natural Language Processing} (NLP) dan \textit{Large Language Models} (LLM) telah diuji sebagai katalisator dalam analisis dokumen hukum. Schumann \& Marx Gómez (2023) menunjukkan bahwa \textit{prompt-based classifier} pada LLM tunggal mampu mencapai F1 0,851 untuk deteksi kontradiksi dalam dokumen regulasi, mendekati performa model \textit{supervised} (F1 0,862) \cite{schumann2023}. Namun, pendekatan \textit{single-agent} ini memiliki keterbatasan yang signifikan: LLM tunggal rentan terhadap zona kegagalan kompleksitas menengah (\textit{Mid-Complexity Failure Zone}), di mana model seringkali gagal melakukan penemuan fakta (\textit{factual recall}) yang akurat dan terjebak dalam halusinasi saat diminta menganalisis rincian pasal secara verbatim \cite{clause2026}. Dalam domain hukum, di mana konsekuensi kesalahan bersifat material, keterbatasan ini menjadi hambatan adopsi yang serius.
+
+Di sisi lain, benchmark terkini menunjukkan bahwa tugas deteksi kontradiksi hukum masih menantang bahkan bagi model canggih. CLAUSE (EACL 2026), benchmark dengan 7500+ kontrak dan 10 kategori anomali, menunjukkan bahwa model terbaik (Gemini 2.5) hanya mencapai F1 63\%, dan kontradiksi hukum (\textit{legal contradictions}) terbukti lebih sulit dideteksi dibandingkan anomali dalam teks biasa (\textit{in-text anomalies}) \cite{clause2026}. Temuan ini menggarisbawahi perlunya pendekatan yang lebih dari sekadar \textit{single-prompt single-model}.
+
+Paradigma \textit{multi-agent} dalam kerangka kerja \textit{Mixture-of-Agents} (MoA) \cite{wang2024moa} dan \textit{multiagent debate} \cite{du2023} telah menunjukkan potensi dalam meningkatkan faktualitas dan penalaran model bahasa. Dalam domain hukum, LegalWiz (2025) mengusulkan sistem multi-agent dengan tiga agen (\textit{content generator, contradiction miner, retrieval verifier}) untuk menghasilkan dan mendeteksi kontradiksi dalam dokumen hukum \cite{legalwiz2025}. Meskipun menjanjikan, LegalWiz berfokus pada \textit{generation + mining} secara simultan, bukan pada deteksi murni (\textit{pure detection}), dan belum mengadopsi arsitektur \textit{council} dengan mekanisme konsensus formal. Sementara itu, ContRAG (2026) mengembangkan \textit{contradiction-aware RAG} untuk hukum Slovenia \cite{contrag2026}, dan ComplianceNLP (2026) membangun \textit{end-to-end regulatory compliance monitoring} dengan KG-augmented RAG \cite{compliancenlp2026}, namun keduanya menggunakan \textit{single-pipeline} tanpa orkestrasi multi-agent.
+
+\textbf{Kesenjangan penelitian} (\textit{research gap}) yang teridentifikasi adalah: \textit{belum ada penelitian yang mengaplikasikan arsitektur Multi-Agent LLM Council dengan mekanisme konsensus formal untuk deteksi kontradiksi normatif dalam perundang-undangan Indonesia.} Yang paling mendekati adalah LegalWiz (2025) dengan arsitektur multi-agent untuk dokumen hukum, namun fokusnya pada \textit{generation + mining} (bukan \textit{pure detection}), tanpa mekanisme konsensus formal, dan tanpa evaluasi pada perundang-undangan Indonesia. Pendekatan berbasis \textit{single LLM} (Schumann \& Marx Gómez, 2023; CLAUSE, 2026) dan \textit{single-pipeline RAG} (ContRAG; ComplianceNLP) juga belum mengeksploitasi potensi orkestrasi multi-agent untuk meningkatkan reliabilitas deteksi.
+
+Arsitektur \textit{LLM Council} yang diusulkan dalam penelitian ini mengorkestrasi beberapa agen LLM yang masing-masing menganalisis pasal secara independen, kemudian mensimulasikan mekanisme ``sidang ahli'' di mana agen-agen berdebat untuk mencapai konsensus mengenai ada/tidaknya kontradiksi \cite{du2023, wang2024moa}. Inovasi utama terletak pada: (1) mekanisme konsensus formal yang membedakan arsitektur \textit{council} dari sekadar agregasi jawaban, dan (2) integrasi data terstruktur dari Pasal.id untuk memastikan akurasi referensi teks hukum yang digunakan dalam proses penalaran.
+
+Tantangan yang perlu direspons secara empiris meliputi: (a) apakah mekanisme konsensus multi-agent memberikan peningkatan performa yang signifikan dibandingkan \textit{single-agent}, ataukah repetisi model yang sama (\textit{Self-MoA}) sudah cukup \cite{lismoa2025}; (b) bagaimana \textit{trade-off} biaya-akurasi, mengingat Oriol et al.\ (2025) menunjukkan biaya multi-agent 16$\times$ lipat lebih tinggi \cite{oriol2025}; dan (c) bagaimana ketersediaan dan kualitas \textit{ground truth} yang memerlukan validasi ahli hukum.
+
+Berdasarkan identifikasi kesenjangan tersebut, penelitian ini mengusulkan arsitektur \textit{Multi-Agent LLM Council} untuk deteksi kontradiksi normatif dalam perundang-undangan Indonesia, dengan evaluasi komparatif terhadap \textit{single-agent LLM} dan integrasi data dari Pasal.id sebagai sumber terstruktur.
+
+\section{Perumusan Masalah}
+Berdasarkan uraian latar belakang, perumusan masalah dalam penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+	\item Bagaimana arsitektur \textit{Multi-Agent LLM Council} dapat dirancang untuk mendeteksi kontradiksi normatif antar-pasal dalam hierarki perundang-undangan Indonesia?
+	\item Sejauh mana mekanisme konsensus multi-agent meningkatkan akurasi deteksi kontradiksi normatif dibandingkan dengan pendekatan \textit{single-agent LLM} dan \textit{Self-MoA}?
+	\item Bagaimana perbandingan efektivitas antara model \textit{open-source} dan \textit{closed-source} sebagai \textit{backbone} agen dalam arsitektur \textit{LLM Council}?
+	\item Bagaimana \textit{trade-off} biaya-akurasi (\textit{cost-accuracy trade-off}) pada arsitektur \textit{LLM Council} dibandingkan pendekatan \textit{single-agent}?
+\end{enumerate}
+
+\section{Batasan Penelitian}
+Untuk memastikan fokus dan keterlaksanaan penelitian, batasan penelitian ditetapkan sebagai berikut:
+\begin{enumerate}
+	\item Sumber data hukum dibatasi pada dokumen Undang-Undang dan Peraturan Daerah yang tersedia secara terstruktur di Pasal.id.
+	\item Fitur deteksi difokuskan pada kontradiksi normatif antar-pasal, bukan pada interpretasi kasus hukum atau putusan pengadilan yang bersifat subjektif.
+	\item Infrastruktur AI menggunakan model \textit{open-source} yang tersedia pada platform Ollama serta model \textit{closed-source} melalui API, sesuai ketersediaan.
+	\item Mekanisme konsensus dibatasi pada skema \textit{voting} mayoritas dan \textit{iterative debate}, tanpa memasukkan verifikasi oleh ahli hukum dalam loop otomatis.
+	\item Evaluasi \textit{ground truth} bergantung pada penilaian ahli hukum sebagai \textit{oracle}, dengan tingkat persetujuan antar-annotator yang dilaporkan secara transparan.
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+Tujuan utama dari penelitian ini adalah:
+\begin{enumerate}
+	\item Merancang arsitektur \textit{Multi-Agent LLM Council} dengan mekanisme konsensus formal untuk deteksi kontradiksi normatif dalam perundang-undangan Indonesia.
+	\item Mengevaluasi secara komparatif performa deteksi kontradiksi antara arsitektur \textit{LLM Council}, \textit{Self-MoA}, dan \textit{single-agent LLM} menggunakan metrik \textit{precision}, \textit{recall}, dan F1.
+	\item Menganalisis perbandingan efektivitas model \textit{open-source} vs.\ \textit{closed-source} sebagai \textit{backbone} dalam arsitektur \textit{LLM Council}.
+	\item Mengukur \textit{trade-off} biaya-akurasi pada arsitektur \textit{LLM Council} dan mengidentifikasi konfigurasi yang optimal dari segi \textit{cost-effectiveness}.
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+Hasil dari penelitian ini diharapkan dapat memberikan manfaat:
+\begin{enumerate}
+	\item \textbf{Bagi Praktisi Hukum:} Menyediakan alat bantu audit kepatuhan regulasi (\textit{regulatory compliance}) yang cepat dan dapat membantu mengidentifikasi tumpang tindih peraturan tanpa menggantikan penilaian ahli hukum.
+	\item \textbf{Bagi Komunitas Riset Legal NLP:} Menjadi referensi pertama yang menguji arsitektur \textit{LLM Council} dengan mekanisme konsensus formal untuk deteksi kontradiksi normatif, mengisi gap yang tidak ditangani oleh LegalWiz (2025) dan CLAUSE (2026).
+	\item \textbf{Bagi Komunitas Riset Multi-Agent LLM:} Memberikan bukti empiris mengenai efektivitas mekanisme konsensus di domain hukum yang berisiko tinggi (\textit{high-stakes}), serta \textit{trade-off} biaya-akurasi yang menyertainya.
+	\item \textbf{Bagi Masyarakat Indonesia:} Mendorong kepastian hukum melalui transparansi identifikasi tumpang tindih peraturan pemerintah, mendukung upaya \textit{regulatory reform} yang sedang berjalan.
+\end{enumerate}

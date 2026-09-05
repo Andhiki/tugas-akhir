@@ -1,0 +1,114 @@
+% !TeX root = ../main.tex
+\chapter{PENELITIAN TERKAIT}
+
+\section{Konsep Dasar}
+
+\subsection{Requirement dan Ambiguitas}
+
+Requirement adalah pernyataan mengenai kebutuhan, layanan, batasan, atau perilaku yang diharapkan dari perangkat lunak. Requirement yang baik perlu dapat dipahami secara konsisten, ditelusuri, dan diverifikasi. Ambiguitas terjadi ketika satu pernyataan memungkinkan dua atau lebih interpretasi yang masuk akal. Ambiguitas tidak selalu disebabkan oleh satu kata; hubungan dengan requirement lain dan konteks penggunaan juga dapat mengubah interpretasi \cite{berry2000,kamsties1998}.
+
+Draft penelitian ini menggunakan taksonomi kerja yang diringkas pada Tabel~\ref{tab:ambiguity-taxonomy}. Kategori tersebut digunakan sebagai label analisis, bukan sebagai klaim bahwa semua jenis ambiguitas dapat dipisahkan secara sempurna. Pedoman anotasi akan memuat contoh positif, contoh negatif, dan aturan untuk kasus yang memiliki lebih dari satu label.
+
+\begin{table}[htbp]
+\centering
+\caption{Taksonomi ambiguitas requirement yang digunakan sebagai skema kerja}
+\label{tab:ambiguity-taxonomy}
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{3.0cm}|p{5.2cm}|p{5.2cm}|}
+\hline
+\textbf{Kategori} & \textbf{Pengertian operasional} & \textbf{Contoh indikasi} \\
+\hline
+Leksikal & Satu istilah atau frasa memiliki lebih dari satu makna yang relevan. & Istilah ``cepat'' digunakan tanpa definisi batas waktu. \\
+\hline
+Sintaktis & Struktur kalimat memungkinkan lebih dari satu cara pengelompokan atau hubungan antarunsur. & Keterangan waktu atau objek dapat melekat pada lebih dari satu bagian kalimat. \\
+\hline
+Semantik & Makna pernyataan tidak dapat dipastikan dari konteks yang tersedia. & Kata ``sesuai'' atau ``normal'' tidak memiliki kriteria rujukan. \\
+\hline
+Kekaburan & Requirement menggunakan ukuran atau batas yang tidak cukup spesifik. & ``Sistem harus merespons dengan baik'' tanpa ambang yang dapat diuji. \\
+\hline
+Ketidak-\\lengkapan & Informasi yang diperlukan untuk memahami atau memverifikasi requirement belum tersedia. & Aktor, kondisi awal, atau hasil yang diharapkan tidak disebutkan. \\
+\hline
+Kontradiksi & Pernyataan bertentangan dengan dirinya sendiri atau dengan requirement lain. & Dua requirement menetapkan perilaku berbeda untuk kondisi yang sama. \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Single-Agent LLM}
+
+Pada konfigurasi single-agent, satu model menerima requirement dan instruksi analisis, kemudian mengeluarkan label, kategori, bukti, dan penjelasan. Pendekatan ini sederhana serta mudah digunakan sebagai baseline, tetapi semua keputusan bergantung pada satu jalur penalaran dan satu konfigurasi prompt. Pendekatan berbasis NLI telah lebih dahulu digunakan untuk mendukung deteksi ambiguitas \cite{ferrara2014}. Studi industri Bashir et al.\ (2025) memperlihatkan bahwa LLM dapat digunakan untuk mendeteksi dan menjelaskan ambiguitas requirement, sehingga menjadi rujukan langsung bagi baseline penelitian ini \cite{bashir2025}.
+
+\subsection{Multi-Agent dan Mixture-of-Agents}
+
+MoA menggabungkan keluaran beberapa agen atau model melalui satu atau lebih tahap agregasi \cite{wang2024moa}. Setiap agen dapat menghasilkan kandidat analisis secara paralel, sedangkan aggregator menyusun keputusan akhir. Multi-Agent Debate menambahkan interaksi atau putaran kritik antar-agen untuk memperbaiki jawaban \cite{du2023}. Dua pola ini berbeda dari sekadar menjalankan single-agent berulang karena keluaran satu agen dapat menjadi konteks bagi agen lain.
+
+Role-based multi-agent memberikan instruksi, tujuan, dan kriteria perhatian yang berbeda kepada setiap agen. Dalam penelitian ini, perbedaan tersebut diwujudkan melalui tiga perspektif: stakeholder, developer, dan tester. Hipotesisnya bukan bahwa satu peran selalu lebih benar, melainkan bahwa kombinasi perspektif dapat meningkatkan cakupan temuan tanpa mengorbankan terlalu banyak biaya inferensi.
+
+\subsection{Self-MoA sebagai Pembanding}
+
+Self-MoA menggunakan model yang sama pada beberapa jalur analisis, lalu menggabungkan hasilnya. Konfigurasi ini penting karena peningkatan performa multi-agent dapat berasal dari variasi keluaran, jumlah sampel, atau agregasi, bukan dari label peran. Li et al.\ (2025) menekankan bahwa penggunaan model yang sama dapat menjadi pembanding yang kuat terhadap konfigurasi dengan model atau instruksi berbeda \cite{lismoa2025}. Oleh sebab itu, eksperimen utama menyamakan backbone, jumlah panggilan analisis, dan format keluaran antara Self-MoA dan role-based multi-agent.
+
+\section{Studi Terkait}
+
+\subsection{Deteksi Ambiguitas Menggunakan LLM}
+
+Bashir et al.\ (2025) mengevaluasi deteksi dan penjelasan ambiguitas requirement menggunakan LLM dalam konteks industri \cite{bashir2025}. Relevansinya terhadap penelitian ini terletak pada penggunaan LLM sebagai pemeriksa ambiguitas dan pada kebutuhan untuk menyertakan alasan yang dapat ditinjau manusia. Perbedaannya, penelitian ini menambahkan beberapa perspektif agen dan menguji kontribusi arsitektur tersebut secara terkontrol.
+
+Vijayvargiya et al.\ (2025) mengusulkan Ambig-SWE, yaitu agen interaktif untuk menghadapi ambiguitas pada tugas software engineering \cite{vijayvargiya2025}. Fokusnya adalah penyelesaian tugas dan interaksi agen, bukan klasifikasi kategori ambiguitas pada requirement. Penelitian tersebut tetap relevan karena menunjukkan bahwa ambiguitas dapat diperlakukan sebagai objek analisis dan umpan balik dalam alur kerja agen.
+
+\subsection{Multi-Agent untuk Requirements Engineering}
+
+Oriol et al.\ (2025) menerapkan Multi-Agent Debate pada RE dan melaporkan manfaat interaksi antar-agen untuk klasifikasi requirement \cite{oriol2025}. Pendekatan tersebut menggunakan debat, tetapi tidak mengisolasi pengaruh spesialisasi peran dalam deteksi ambiguitas. Jin et al.\ (2025) mengusulkan iReDev dengan beberapa agen berbasis peran untuk mendukung pengembangan requirement secara end-to-end \cite{jin2025}. Arsitektur tersebut memperkuat alasan penggunaan peran, tetapi ruang lingkupnya lebih luas daripada task deteksi ambiguitas yang menjadi fokus penelitian ini.
+
+Cheng et al.\ (2026) menggunakan agen yang terspesialisasi pada atribut kualitas dan negosiasi dialektis dalam RE \cite{cheng2026}. Lu et al.\ (2026) mengembangkan arsitektur dengan peran analyst, formalizer, dan coder untuk mendukung formalisasi requirement dan code generation \cite{lu2026}. Kedua studi tersebut mendukung penggunaan spesialisasi, tetapi tidak menyediakan pembanding langsung role-based versus Self-MoA untuk klasifikasi ambiguitas.
+
+\subsection{Penerapan Multi-Agent pada Domain Ambigu}
+
+Giroh et al.\ (2025) mengusulkan agen clarifier, planner, dan implementor untuk mentransformasikan Standard Operating Procedure (SOP) yang ambigu menjadi kode \cite{giroh2025}. Walaupun domain SOP berbeda dari requirement perangkat lunak, pola tersebut menunjukkan bahwa pembagian tanggung jawab dapat membantu mengurai sumber ketidakjelasan. Penelitian ini menguji pola pembagian perspektif tersebut pada task yang lebih sempit dan label yang lebih eksplisit.
+
+\section{Sintesis dan Kesenjangan Penelitian}
+
+Tabel~\ref{tab:related-work} menyajikan perbandingan ringkas berdasarkan telaah awal yang menjadi dasar draft ini. Nilai ``Ya'' menunjukkan bahwa aspek tersebut menjadi fokus utama studi, bukan sekadar muncul sebagai komponen pendukung.
+
+\begin{table}[htbp]
+\centering
+\caption{Perbandingan penelitian terkait dengan draft penelitian ini}
+\label{tab:related-work}
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{3.0cm}|c|c|c|c|c|}
+\hline
+\textbf{Penelitian} & \textbf{Multi-agent} & \textbf{Role-based} & \textbf{Ambiguitas requirement} & \textbf{Indonesia--Inggris} & \textbf{Vs. Self-MoA} \\
+\hline
+Bashir et al.\ (2025) & Tidak & Tidak & Ya & Tidak & Tidak \\
+\hline
+Vijayvargiya et al.\ (2025) & Ya$^*$ & Tidak & Tidak & Tidak & Tidak \\
+\hline
+Oriol et al.\ (2025) & Ya & Tidak & Tidak & Tidak & Tidak \\
+\hline
+Jin et al.\ (2025) & Ya & Ya & Tidak & Tidak & Tidak \\
+\hline
+Cheng et al.\ (2026) & Ya & Ya & Tidak & Tidak & Tidak \\
+\hline
+Lu et al.\ (2026) & Ya & Ya & Tidak & Tidak & Tidak \\
+\hline
+Penelitian ini & Ya & Ya & Ya & Ya & Ya \\
+\hline
+\end{tabular}%
+}
+\\[-1mm]
+\small{$^*$: agen interaktif untuk software engineering, bukan fokus utama deteksi ambiguitas requirement.}
+\end{table}
+
+Kesenjangan yang diuji dalam penelitian ini bukan klaim bahwa belum pernah ada sistem multi-agent untuk RE. Kesenjangannya lebih spesifik, yaitu belum tersedianya evaluasi terkontrol yang: (1) menjadikan deteksi ambiguitas requirement sebagai task utama, (2) membandingkan spesialisasi peran dengan Self-MoA menggunakan backbone dan anggaran keluaran yang setara, (3) menganalisis kontribusi setiap peran berdasarkan kategori ambiguitas, dan (4) melaporkan perbedaan hasil pada bahasa Indonesia dan Inggris. Validitas kesenjangan tersebut akan ditinjau kembali sebelum proposal final.
+
+\section{Hipotesis Penelitian}
+
+Hipotesis kerja yang akan diuji adalah:
+\begin{enumerate}
+\item $H_1$: Role-based multi-agent LLM menghasilkan F1-score deteksi ambiguitas yang lebih tinggi daripada single-agent LLM pada kondisi eksperimen yang sama.
+\item $H_2$: Role-based multi-agent LLM menghasilkan F1-score yang lebih tinggi atau setara dengan Self-MoA, dengan perbedaan yang dapat ditafsirkan setelah biaya dan interval kepercayaan dilaporkan.
+\item $H_3$: Pengaruh tiap peran tidak seragam pada seluruh kategori ambiguitas; misalnya, perspektif tester lebih informatif untuk ketidaklengkapan atau kontradiksi yang memengaruhi verifikasi.
+\item $H_4$: Performa dan biaya inferensi berbeda antara dataset berbahasa Indonesia dan Inggris.
+\end{enumerate}

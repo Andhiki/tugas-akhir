@@ -1,0 +1,147 @@
+% !TeX root = ../main.tex
+\chapter{METODE DAN RANCANGAN PENELITIAN}
+
+\section{Rancangan Penelitian}
+
+Penelitian ini menggunakan rancangan eksperimental komparatif dengan unit analisis berupa satu requirement perangkat lunak. Tujuannya adalah mengukur apakah spesialisasi perspektif pada role-based multi-agent LLM memberikan peningkatan yang dapat dibedakan dari efek pengulangan model yang sama. Alur penelitian terdiri atas persiapan dataset, perancangan arsitektur, pelaksanaan eksperimen, evaluasi, dan analisis validitas.
+
+\subsection{Tahap 1: Definisi Task dan Preparasi Dataset}
+
+Dataset akan dibangun dari dua kelompok bahasa:
+\begin{enumerate}
+\item \textbf{Bahasa Inggris:} requirement dari sumber publik yang dapat digunakan untuk penelitian, dengan prioritas pada sumber yang menyediakan konteks dan label ambiguitas atau memungkinkan anotasi ulang.
+\item \textbf{Bahasa Indonesia:} requirement hasil translasi terkontrol dan/atau requirement berbahasa Indonesia yang tersedia secara terbuka. Setiap item akan diperiksa agar terjemahan tidak menghapus atau menambahkan ambiguitas secara tidak sengaja.
+\end{enumerate}
+
+Target awal yang bersifat tentatif adalah sekurang-kurangnya 300 item per bahasa setelah pembersihan. Jumlah final akan ditetapkan setelah audit lisensi, duplikasi, panjang teks, dan distribusi label. Apabila distribusi kategori sangat tidak seimbang, sampling akan dilakukan dengan mempertahankan seluruh item minoritas yang layak dan melaporkan distribusi sebenarnya.
+
+Setiap item akan memiliki metadata minimal berupa identitas sumber, bahasa, teks requirement, label ambiguitas, dan alasan anotasi. Data akan dipisahkan pada tingkat sumber apabila beberapa item berasal dari dokumen atau proyek yang sama. Pemisahan ini mengurangi risiko model menerima pola atau potongan teks yang hampir sama pada tahap pengembangan dan pengujian. Pembagian awal yang akan diuji adalah 60\% untuk pengembangan prompt, 20\% untuk validasi keputusan desain, dan 20\% untuk pengujian akhir.
+
+\subsection{Tahap 2: Pedoman Anotasi dan Validasi Label}
+
+Anotasi menggunakan skema multi-label dengan enam kategori: leksikal, sintaktis, semantik, kekaburan, ketidaklengkapan, dan kontradiksi. Annotator menerima pedoman yang berisi definisi operasional, contoh, kontra-contoh, dan aturan untuk kasus yang memiliki lebih dari satu label. Selain label, annotator mencatat potongan teks yang menjadi bukti serta alasan singkat.
+
+Prosedur validasi terdiri atas langkah berikut:
+\begin{enumerate}
+\item melakukan pilot annotation pada subset yang mencakup variasi bahasa dan kategori;
+\item membandingkan hasil annotator dan memperbaiki definisi yang menimbulkan disagreement berulang;
+\item mengukur Inter-Annotator Agreement (IAA) untuk setiap label, menggunakan Cohen's $\kappa$ apabila terdapat dua annotator atau Krippendorff's $\alpha$ apabila jumlah annotator lebih dari dua;
+\item menyelesaikan disagreement melalui diskusi terarah atau annotator adjudicator, sambil menyimpan label awal agar prosesnya dapat diaudit;
+\item membekukan label test set sebelum konfigurasi model final dipilih.
+\end{enumerate}
+
+\subsection{Tahap 3: Arsitektur yang Dibandingkan}
+
+Semua konfigurasi menggunakan format keluaran terstruktur agar hasil dapat dihitung secara otomatis. Format minimal mencakup keputusan \texttt{ambiguous} dan \texttt{categories}, serta field \texttt{evidence}, \texttt{explanation}, dan \texttt{confidence}. Field \texttt{evidence} wajib merujuk pada bagian teks input; keluaran tanpa bukti tetap disimpan, tetapi dapat ditandai pada analisis failure mode.
+
+Tiga konfigurasi utama didefinisikan sebagai berikut:
+\begin{enumerate}
+\item \textbf{Single-Agent LLM:} satu model menerima requirement dan prompt analisis umum, kemudian mengeluarkan keputusan akhir. Konfigurasi ini menjadi baseline biaya dan performa.
+\item \textbf{Self-MoA:} tiga instans model yang sama menerima prompt umum yang sama secara independen. Keluaran ketiganya diteruskan ke aggregator dengan format dan batas token yang sama seperti konfigurasi role-based.
+\item \textbf{Role-Based Multi-Agent LLM:} tiga agen menerima requirement yang sama, tetapi masing-masing memiliki instruksi khusus sebagai stakeholder, developer, atau tester. Aggregator menerima requirement asli dan ketiga analisis untuk menghasilkan keputusan akhir.
+\end{enumerate}
+
+Pada konfigurasi role-based, pembagian fokus awal ditetapkan sebagai berikut:
+\begin{itemize}
+\item \textbf{Stakeholder:} kejelasan kebutuhan bisnis, aktor, tujuan, kondisi penggunaan, dan istilah yang masih samar.
+\item \textbf{Developer:} implementabilitas, interpretasi teknis, dependensi, aturan perilaku, dan struktur kalimat yang dapat menimbulkan makna ganda.
+\item \textbf{Tester:} keterujian, kriteria penerimaan, kondisi batas, ketidaklengkapan, dan konflik yang dapat menyebabkan hasil pengujian berbeda.
+\end{itemize}
+
+Aggregator tidak boleh menambahkan fakta dari luar input. Ia harus memilih label berdasarkan requirement, analisis agen, dan bukti yang dikutip. Aturan ini membantu membedakan peningkatan deteksi dari peningkatan yang hanya berasal dari pengetahuan umum model.
+
+\subsection{Tahap 4: Protokol Eksperimen}
+
+Perbandingan utama menggunakan backbone model yang sama pada ketiga konfigurasi. Variabel penelitian diringkas pada Tabel~\ref{tab:experimental-variables}.
+
+\begin{table}[htbp]
+\centering
+\caption{Variabel dan pengendalian eksperimen}
+\label{tab:experimental-variables}
+\renewcommand{\arraystretch}{1.2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{3.3cm}|p{5.2cm}|p{4.9cm}|}
+\hline
+\textbf{Jenis} & \textbf{Variabel} & \textbf{Cara pengendalian atau pengukuran} \\
+\hline
+Independen & konfigurasi single-agent, Self-MoA, dan role-based multi-agent & prompt dan jumlah peran ditentukan sebelum test run \\
+\hline
+Independen & bahasa input & blok bahasa Indonesia dan Inggris dianalisis terpisah \\
+\hline
+Independen & kategori ambiguitas & label multi-label dan metrik per kategori \\
+\hline
+Kontrol & backbone model, template keluaran, panjang input, dan batas token & model, versi, parameter, dan prompt dicatat di log \\
+\hline
+Dependen & precision, recall, F1-score, dan exact match & dihitung terhadap label test set \\
+\hline
+Dependen & biaya dan latensi & token input/output, waktu, dan biaya layanan dicatat per item \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+Prompt untuk ketiga konfigurasi akan memakai definisi kategori dan format keluaran yang ekuivalen. Prompt berbahasa Indonesia dan Inggris disusun sebagai pasangan semantik, kemudian diuji pada validation set. Setelah dipilih, prompt tidak diubah ketika test set dijalankan. Parameter inferensi utama akan menggunakan nilai deterministik atau nilai terendah yang tersedia pada layanan model; apabila layanan tidak mendukung nilai tersebut, parameter aktual akan dicatat dan diperlakukan sebagai keterbatasan.
+
+Eksperimen dijalankan secara terpisah untuk setiap item dan konfigurasi. Setiap keluaran disimpan bersama model, versi, waktu mulai, waktu selesai, token input, token output, parameter inferensi, prompt identifier, dan status error. Pengulangan terbatas dapat digunakan untuk mengukur variasi keluaran apabila model bersifat nondeterministik.
+
+\subsection{Tahap 5: Metrik Evaluasi}
+
+Untuk setiap kategori ambiguitas, hasil diklasifikasikan sebagai true positive (TP), false positive (FP), false negative (FN), atau true negative (TN). Metrik dasar dihitung sebagai berikut:
+\[
+\mathrm{Precision}=\frac{TP}{TP+FP}, \qquad
+\mathrm{Recall}=\frac{TP}{TP+FN}.
+\]
+\[
+F1=2\frac{\mathrm{Precision}\times\mathrm{Recall}}{\mathrm{Precision}+\mathrm{Recall}}.
+\]
+
+Metrik yang dilaporkan meliputi:
+\begin{itemize}
+\item \textbf{Metrik klasifikasi:} precision, recall, dan F1-score micro serta macro untuk keseluruhan label.
+\item \textbf{Metrik per kategori:} precision, recall, dan F1-score untuk enam kategori ambiguitas.
+\item \textbf{Metrik per bahasa:} hasil terpisah untuk bahasa Indonesia dan Inggris, termasuk selisih performa antarbahasa.
+\item \textbf{Metrik keputusan item:} akurasi label \texttt{ambiguous} dan exact match untuk seluruh set kategori yang diprediksi.
+\item \textbf{Metrik reliabilitas:} IAA antarannotator serta persetujuan sistem terhadap label adjudicated.
+\item \textbf{Metrik operasional:} token input/output, latensi, jumlah error, dan biaya inferensi atau estimasi biaya layanan.
+\end{itemize}
+
+Perbedaan performa akan dilengkapi interval kepercayaan 95\% melalui paired bootstrap pada item yang sama. Untuk keputusan biner, uji berpasangan seperti McNemar dapat digunakan apabila jumlah item dan asumsi datanya memadai. Nilai $p$ tidak akan menjadi satu-satunya dasar kesimpulan; besar efek, interval kepercayaan, distribusi per kategori, dan biaya juga akan dilaporkan.
+
+\subsection{Tahap 6: Ablation Study dan Analisis Failure Mode}
+
+\textit{Ablation study} dirancang untuk menjawab apakah hasil berasal dari peran tertentu atau dari proses agregasi secara umum. Ablasi yang direncanakan meliputi:
+\begin{enumerate}
+\item menjalankan setiap peran secara tunggal untuk mengukur kontribusi individual;
+\item menghapus satu peran dari arsitektur tiga peran (leave-one-role-out);
+\item membandingkan aggregator LLM dengan majority voting yang sederhana;
+\item membandingkan Self-MoA dengan jumlah instans satu, dua, dan tiga;
+\item menguji pengaruh bukti wajib dan confidence field terhadap precision serta kualitas penjelasan.
+\end{enumerate}
+
+Failure mode dikategorikan, antara lain, menjadi false positive, false negative, label kategori yang tertukar, bukti yang tidak mendukung keputusan, konflik antar-agen, dan keluaran yang tidak mengikuti schema. Beberapa kasus paling informatif dari setiap kategori akan dianalisis secara kualitatif untuk menjelaskan mengapa konfigurasi tertentu berhasil atau gagal.
+
+\section{Ancaman terhadap Validitas}
+
+Ancaman terhadap validitas dan mitigasinya adalah sebagai berikut:
+\begin{enumerate}
+\item \textbf{Validitas konstruk:} definisi ambiguitas dapat ditafsirkan berbeda oleh annotator. Mitigasi dilakukan melalui pedoman operasional, pilot annotation, IAA, dan pelaporan contoh disagreement.
+\item \textbf{Validitas internal:} perubahan model, prompt, temperatur, atau batas token dapat menjadi faktor pengganggu. Semua konfigurasi utama menggunakan backbone dan output schema yang sama, sedangkan seluruh parameter dicatat.
+\item \textbf{Kebocoran data:} item yang sama atau sangat mirip dapat muncul di split berbeda. Mitigasi dilakukan melalui deduplikasi dan pemisahan berdasarkan sumber atau proyek.
+\item \textbf{Validitas eksternal:} dua bahasa dan sumber publik belum tentu mewakili seluruh praktik RE. Generalisasi dibatasi pada karakteristik dataset yang dilaporkan.
+\item \textbf{Validitas kesimpulan:} jumlah item, ketidakseimbangan label, dan nondeterminisme model dapat menurunkan daya uji. Interval kepercayaan, pengulangan terbatas, dan analisis per kategori akan dilaporkan bersama hasil utama.
+\end{enumerate}
+
+\section{Alat dan Bahan}
+
+Alat dan bahan yang digunakan dalam tahap implementasi awal meliputi:
+\begin{enumerate}
+\item \textbf{Model LLM:} satu backbone model yang tersedia melalui Ollama atau API yang kompatibel. Model, versi, parameter, dan tanggal pengambilan hasil dicatat di konfigurasi eksperimen. Model alternatif digunakan hanya sebagai eksperimen tambahan setelah perbandingan utama selesai.
+\item \textbf{Orkestrator:} Python dengan framework multi-agent yang dipilih, dengan CrewAI sebagai kandidat implementasi awal karena mendukung definisi agent berbasis peran. Logika evaluasi dan agregasi dibuat sebagai modul terpisah agar hasil tidak bergantung pada abstraksi framework.
+\item \textbf{Pengolahan data:} format JSON atau CSV untuk dataset, keluaran model, metadata eksperimen, dan ringkasan metrik.
+\item \textbf{Evaluasi:} pustaka Python untuk precision, recall, F1-score, bootstrap, dan pengukuran IAA. Versi pustaka dicatat bersama environment eksperimen.
+\item \textbf{Infrastruktur:} komputer lokal dan/atau layanan inferensi cloud sesuai keterjangkauan. Eksperimen pilot dilakukan pada subset kecil sebelum pengujian penuh.
+\end{enumerate}
+
+\section{Keluaran Penelitian}
+
+Keluaran yang ditargetkan adalah prototipe orkestrasi, pedoman anotasi, dataset atau subset yang dapat dibagikan sesuai lisensi, konfigurasi prompt, log eksperimen, tabel metrik, analisis ablation, dan laporan failure mode. Keluaran yang memuat teks sumber pihak ketiga hanya akan dibagikan apabila izinnya memungkinkan; metadata dan kode evaluasi tetap dipisahkan agar audit dapat dilakukan tanpa menyalin data berlisensi terbatas.

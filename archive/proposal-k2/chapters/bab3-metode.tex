@@ -1,0 +1,116 @@
+% !TeX root = ../main.tex
+\chapter{METODE DAN RANCANGAN PENELITIAN}
+
+\section{Rancangan Penelitian}
+
+Penelitian ini menggunakan rancangan \textit{eksperimental komparatif} yang bertujuan mengevaluasi efektivitas arsitektur \textit{Multi-Agent LLM Council} dalam mendeteksi kontradiksi normatif dalam perundang-undangan Indonesia. Rancangan penelitian terdiri dari beberapa tahap yang diuraikan pada sub-bab berikut.
+
+\subsection{Tahap 1: Pengumpulan dan Preparasi Dataset}
+
+Dataset yang digunakan dalam penelitian ini bersumber dari Pasal.id, yang menyediakan dokumen perundang-undangan Indonesia secara terstruktur:
+\begin{enumerate}
+	\item \textbf{Pengambilan data (\textit{Data Collection}):} Mengambil dokumen Undang-Undang dan Peraturan Daerah dari Pasal.id melalui \textit{pipeline} otomatis. Data mencakup teks pasal beserta metadata (jenis peraturan, tahun, nomor pasal, hierarki).
+	\item \textbf{Pembentukan Pasangan (\textit{Pair Formation}):} Membentuk pasangan pasal yang potensially kontradiktif berdasarkan kedekatan topik dan/atau hierarki peraturan. Strategi pembentukan pasangan mencakup: (a) pasangan lintas hierarki (UU vs.\ Perda pada domain yang sama), dan (b) pasangan dalam satu peraturan (pasal dalam UU yang sama yang mengatur hal serupa).
+	\item \textbf{Pelabelan (\textit{Annotation}):} Setiap pasangan dilabeli oleh minimal dua ahli hukum sebagai ``kontradiktif'' atau ``tidak kontradiktif''. \textit{Inter-Annotator Agreement} (Cohen's $\kappa$) dilaporkan untuk mengukur reliabilitas label. Kasus \textit{disagreement} didiskusikan untuk mencapai konsensus.
+\end{enumerate}
+
+\subsection{Tahap 2: Perancangan Arsitektur Multi-Agent LLM Council}
+
+Arsitektur \textit{LLM Council} yang diusulkan terdiri dari beberapa agen LLM yang masing-masing berperan sebagai ``anggota sidang'':
+
+\begin{enumerate}
+	\item \textbf{Agen Analis (\textit{Analyst Agent}):} Menganalisis pasangan pasal dan mengidentifikasi potensi kontradiksi berdasarkan penalaran normatif. Setiap agen membaca teks pasal secara verbatim dan menghasilkan penilaian: \textit{contradictory}, \textit{potentially contradictory}, atau \textit{non-contradictory}, disertai justifikasi.
+	\item \textbf{Agen Verifikasi (\textit{Verifier Agent}):} Menerima penilaian dari Analis dan melakukan pengecekan silang terhadap teks asli pasal untuk mendeteksi halusinasi atau kesalahan penalaran. Verifikator menandai penilaian yang tidak didukung oleh kutipan verbatim.
+	\item \textbf{Agen Agregator (\textit{Aggregator Agent}):} Mengkonsolidasi seluruh penilaian dan verifikasi, mengelola konflik antar-agen, dan menghasilkan keputusan akhir melalui mekanisme konsensus.
+\end{enumerate}
+
+Mekanisme konsensus meliputi:
+\begin{itemize}
+	\item \textit{Majority Voting}: Keputusan berdasarkan suara mayoritas agen analis.
+	\item \textit{Iterative Debate}: Jika terdapat konflik signifikan, agen melakukan putaran debat tambahan (maksimal $k$ iterasi) sampai konsensus tercapai atau batas iterasi tercapai.
+	\item \textit{Confidence Weighting}: Suara agen diberi bobot berdasarkan tingkat kepercayaan (\textit{confidence}) yang dilaporkan oleh masing-masing agen.
+\end{itemize}
+
+Integrasi dengan Pasal.id memastikan bahwa setiap agen mengakses teks hukum yang terverifikasi, mengurangi risiko halusinasi yang berasal dari pengetahuan parametrik model saja.
+
+\subsection{Tahap 3: Konfigurasi Komparatif}
+
+Evaluasi dilakukan dengan membandingkan tiga konfigurasi:
+\begin{enumerate}
+	\item \textbf{Single-Agent LLM:} Satu LLM tanpa orkestrasi multi-agent, digunakan sebagai \textit{baseline}. Konfigurasi ini mereproduksi pendekatan Schumann \& Marx Gómez (2023) \cite{schumann2023}.
+	\item \textbf{Self-MoA:} Model LLM yang sama digunakan sebanyak $n$ kali sebagai agen yang identik, tanpa spesialisasi peran. Konfigurasi ini merespons temuan Li et al.\ (2025) \cite{lismoa2025}.
+	\item \textbf{LLM Council:} Arsitektur yang diusulkan dengan agen analis, verifikator, dan agregator, serta mekanisme konsensus formal.
+\end{enumerate}
+
+Seluruh konfigurasi diuji pada dataset yang sama dengan parameter yang setara (\textit{temperature}, \textit{max tokens}, dll.) untuk memastikan validitas perbandingan.
+
+Perbandingan model \textit{open-source} vs.\ \textit{closed-source} dilakukan sebagai sub-eksperimen: kedua kategori model digunakan sebagai \textit{backbone} dalam arsitektur \textit{LLM Council} untuk mengukur dampak terhadap akurasi dan biaya.
+
+\subsection{Tahap 4: Pengukuran dan Evaluasi}
+
+Metrik evaluasi yang digunakan mencakup:
+\begin{itemize}
+	\item \textbf{Metrik deteksi:} \textit{Precision}, \textit{Recall}, dan F1-Score untuk klasifikasi kontradiktif vs.\ non-kontradiktif.
+	\item \textbf{Metrik reliabilitas label:} \textit{Inter-Annotator Agreement} (Cohen's $\kappa$) antara ahli hukum sebagai \textit{oracle}, dan \textit{agreement} antara sistem dan ahli hukum.
+	\item \textbf{Metrik biaya:} Jumlah \textit{token} yang dikonsumsi, biaya API (untuk model \textit{closed-source}), waktu eksekusi, dan rasio biaya per peningkatan F1 (\textit{cost per F1 gain}).
+	\item \textbf{Metrik konsensus:} Tingkat persetujuan awal antar-agen sebelum debat, jumlah iterasi debat yang diperlukan untuk mencapai konsensus, dan tingkat perubahan keputusan setelah debat.
+\end{itemize}
+
+\textit{Ablation study} dilakukan untuk:
+\begin{enumerate}
+	\item Mengukur kontribusi tiap komponen (analis, verifikator, agregator) terhadap performa keseluruhan.
+	\item Menganalisis sensitivitas terhadap jumlah agen dan kedalaman debat.
+	\item Membandingkan dampak penggunaan model \textit{open-source} vs.\ \textit{closed-source} sebagai \textit{backbone} tiap agen.
+	\item Mengidentifikasi \textit{failure modes}—kasus di mana konsensus multi-agent justru memperburuk hasil dibandingkan \textit{single-agent} (fenomena \textit{groupthink} atau konvergensi prematur).
+\end{enumerate}
+
+\subsection{Tahap 5: Analisis Cost-Accuracy Trade-Off}
+
+Analisis biaya-akurasi dilakukan untuk:
+\begin{itemize}
+	\item Menghitung biaya relatif (\textit{token consumption}, waktu, biaya API) per konfigurasi.
+	\item Memplot kurva \textit{cost-accuracy}: F1 vs.\ biaya untuk setiap konfigurasi dan jumlah agen.
+	\item Mengidentifikasi titik optimal di mana penambahan agen memberikan peningkatan F1 yang marginal terhadap biaya tambahan (\textit{diminishing returns}).
+	\item Membandingkan efisiensi model \textit{open-source} vs.\ \textit{closed-source} dari segi \textit{cost-effectiveness}.
+\end{itemize}
+
+\section{Alat dan Bahan}
+% ============================================================
+% VERSI 1 (14 Juni 2026): Alat dan Bahan awal — sebelum update Ollama Cloud
+% VERSI 2 (saat ini): Alat dan Bahan diperbarui dengan Ollama Cloud Pro
+%      dan model cloud yang tersedia. Versi lama dipertahankan di bawah
+%      sebagai komentar LaTeX untuk keperluan audit.
+% ============================================================
+% --- VERSI 1 (sebelum update) ---
+% 1. Model LLM: Model open-source (DeepSeek R1, Llama 3, Qwen 2.5)
+%    melalui Ollama, serta model closed-source (GPT-4o, Claude Sonnet)
+%    melalui API.
+% 2. Sumber Data Hukum: Dokumen perundang-undangan dari Pasal.id
+%    yang tersedia secara terstruktur.
+% 3. Kerangka Kerja Multi-Agent: Implementasi orkestrasi agen menggunakan
+%    pustaka Python yang mendukung pola MoA dan mekanisme debat.
+% 4. Annotator Ahli Hukum: Minimal dua ahli hukum untuk pelabelan
+%    ground truth dan validasi hasil.
+% 5. Lingkungan Komputasi: Mesin lokal dengan dukungan GPU untuk
+%    inferensi model open-source, serta akses API untuk model closed-source.
+% --- AKHIR VERSI 1 ---
+%
+% --- VERSI 2 (saat ini) ---
+\begin{enumerate}
+	\item \textbf{Model LLM:} Model \textit{open-weight} yang diakses melalui platform Ollama Cloud Pro dengan langganan aktif, mencakup model \textit{cloud} berikut:
+	\begin{itemize}
+		\item \textit{DeepSeek V4 Pro} (1.6T total / 49B aktif, MoE): Model reasoning terkuat dengan tiga mode penalaran, digunakan sebagai \textit{backbone} utama untuk konfigurasi \textit{LLM Council}.
+		\item \textit{Qwen 3.5} (122B total / 10B aktif, MoE): Model multibahasa dengan kemampuan reasoning kuat, digunakan sebagai agen analis dengan kemampuan penalaran hukum.
+		\item \textit{GPT-OSS 120B} (120B total / 5.1B aktif, MoE): Model \textit{open-weight} dari OpenAI dengan arsitektur MoE yang berbeda, digunakan sebagai agen verifikasi untuk meningkatkan keragaman arsitektur.
+		\item \textit{Qwen 3.5} varian kecil (27B dan 9B): Digunakan untuk \textit{ablation study} terhadap ukuran model.
+	\end{itemize}
+	Seluruh model \textit{cloud} diakses melalui API Ollama yang kompatibel dengan OpenAI, sehingga pergantian antar model hanya memerlukan perubahan satu baris konfigurasi. Model-model ini juga tersedia secara \textit{open-weight} di HuggingFace, Ollama lokal, OpenRouter, dan Together AI, memungkinkan reproduksibilitas oleh peneliti lain tanpa biaya langganan.
+
+	\item \textbf{Sumber Data Hukum:} Dokumen perundang-undangan dari Pasal.id yang tersedia secara terstruktur, dengan \textit{pipeline} otomatis untuk pengambilan dan pembentukan pasangan pasal.
+
+	\item \textbf{Kerangka Kerja Multi-Agent:} CrewAI (v0.86+) untuk orkestrasi agen berbasis peran, dengan mekanisme konsensus yang diimplementasikan sebagai modul khusus (\textit{voting} mayoritas dan \textit{iterative debate}). Sebagai \textit{baseline} MoA tanpa konsensus, digunakan implementasi referensi Together MoA (~200 baris Python) yang dimodifikasi untuk kompatibilitas dengan Ollama.
+
+	\item \textbf{Annotator Ahli Hukum:} Minimal dua ahli hukum untuk pelabelan \textit{ground truth} dan validasi hasil, dengan pengukuran \textit{Inter-Annotator Agreement} (Cohen's $\kappa$).
+
+	\item \textbf{Lingkungan Komputasi:} Ollama Cloud Pro sebagai infrastruktur utama untuk inferensi model \textit{cloud}, dengan GPU lokal sebagai cadangan untuk model berukuran kecil (7B--14B) selama tahap pengembangan. Pelacakan konsumsi \textit{token} dilakukan melalui metrik \textit{prompt\_eval\_count} dan \textit{eval\_count} yang disediakan oleh API Ollama.
+\end{enumerate}

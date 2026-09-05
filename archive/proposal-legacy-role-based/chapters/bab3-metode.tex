@@ -1,0 +1,110 @@
+% !TeX root = ../main.tex
+% ============================================================
+% VERSI 1 (14 Juni 2026): Alat dan Bahan awal — sebelum update Ollama Cloud
+% VERSI 2 (saat ini): Alat dan Bahan diperbarui dengan Ollama Cloud Pro
+%      dan model cloud yang tersedia. Versi lama dipertahankan di bawah
+%      sebagai komentar LaTeX untuk keperluan audit.
+% ============================================================
+
+\chapter{METODE DAN RANCANGAN PENELITIAN}
+
+\section{Rancangan Penelitian}
+
+Penelitian ini menggunakan rancangan \textit{eksperimental komparatif} yang bertujuan mengevaluasi efektivitas arsitektur \textit{role-based multi-agent LLM} dalam mendeteksi ambiguitas \textit{requirement} perangkat lunak. Rancangan penelitian terdiri dari beberapa tahap yang diuraikan pada sub-bab berikut.
+
+\subsection{Tahap 1: Pengumpulan dan Preparasi Dataset}
+
+Dataset yang digunakan dalam penelitian ini terdiri dari dua sumber:
+\begin{enumerate}
+	\item \textbf{Dataset berbahasa Inggris:} Diambil dari \textit{public dataset} yang telah tersedia dalam literatur RE, seperti PROMISE Repository dan dataset yang digunakan dalam Bashir et al.\ (2025) \cite{bashir2025}. Dataset ini telah memiliki label ambiguitas yang dapat diverifikasi.
+	\item \textbf{Dataset berbahasa Indonesia:} Dikonstruksi melalui proses translasi dan augmentasi dari dataset berbahasa Inggris, kemudian divalidasi oleh \textit{annotator} yang memahami konteks RE dan bahasa Indonesia. Jika memungkinkan, dataset ini juga diperkaya dengan dokumen \textit{requirement} dari proyek-proyek perangkat lunak berbahasa Indonesia yang bersifat \textit{open-source}.
+\end{enumerate}
+
+Setiap \textit{requirement} dalam dataset dilabeli berdasarkan taksonomi ambiguitas: leksikal, sintaktis, semantik, kekaburan (\textit{vagueness}), ketidaklengkapan (\textit{incompleteness}), dan kontradiksi \cite{berry2004}. Label dapat bersifat \textit{multi-label} karena satu \textit{requirement} dapat mengandung lebih dari satu jenis ambiguitas.
+
+\subsection{Tahap 2: Perancangan Arsitektur Role-Based Multi-Agent LLM}
+
+Arsitektur yang diusulkan terdiri dari tiga agen utama dengan peran yang berbeda:
+
+\begin{enumerate}
+	\item \textbf{Agen Stakeholder:} Menganalisis \textit{requirement} dari perspektif pengguna akhir dan pihak berkepentingan. Agen ini berfokus pada deteksi ambiguitas yang memengaruhi pemahaman kebutuhan bisnis, seperti kekaburan (\textit{vagueness}) dan ketidaklengkapan (\textit{incompleteness}).
+	\item \textbf{Agen Developer:} Menganalisis \textit{requirement} dari perspektif implementasi teknis. Agen ini berfokus pada deteksi ambiguitas yang memengaruhi desain dan pengkodean, seperti ambiguitas leksikal, sintaktis, dan semantik.
+	\item \textbf{Agen Tester:} Menganalisis \textit{requirement} dari perspektif pengujian dan verifikasi. Agen ini berfokus pada deteksi ambiguitas yang memengaruhi kejelasan kriteria pengujian, seperti kontradiksi dan ketidaklengkapan.
+\end{enumerate}
+
+Mekanisme orkestrasi mengikuti kerangka kerja \textit{Mixture-of-Agents} (MoA) \cite{wang2024moa} dengan modifikasi berbasis peran:
+\begin{itemize}
+	\item Setiap agen menerima \textit{requirement} dan menghasilkan analisis ambiguitas secara independen.
+	\item Hasil analisis dari ketiga agen diagregasi oleh \textit{aggregator} yang mengkonsolidasi temuan, menghilangkan duplikasi, dan menghasilkan laporan ambiguitas terintegrasi.
+	\item Jika terdapat konflik antar-agen (misalnya, satu agen menganggap suatu aspek ambigu sementara agen lain tidak), mekanisme \textit{voting} atau \textit{debate} diaktifkan untuk mencapai konsensus.
+\end{itemize}
+
+\subsection{Tahap 3: Konfigurasi Komparatif}
+
+Evaluasi dilakukan dengan membandingkan tiga konfigurasi:
+\begin{enumerate}
+	\item \textbf{Single-Agent LLM:} Satu LLM tanpa orkestrasi multi-agent, digunakan sebagai \textit{baseline}. Konfigurasi ini mereproduksi pendekatan Bashir et al.\ (2025) \cite{bashir2025}.
+	\item \textbf{Self-MoA:} Model LLM yang sama digunakan sebanyak $n$ kali sebagai agen yang identik, tanpa spesialisasi peran. Konfigurasi ini merespons temuan Li et al.\ (2025) bahwa repetisi model seringkali mengungguli model heterogen \cite{lismoa2025}.
+	\item \textbf{Role-Based Multi-Agent:} Arsitektur yang diusulkan dengan tiga agen berspesialisasi peran (\textit{stakeholder}, \textit{developer}, \textit{tester}).
+\end{enumerate}
+
+Seluruh konfigurasi diuji pada dataset yang sama dengan parameter yang setara (\textit{temperature}, \textit{max tokens}, dll.) untuk memastikan validitas perbandingan.
+
+\subsection{Tahap 4: Pengukuran dan Evaluasi}
+
+Metrik evaluasi yang digunakan mencakup:
+\begin{itemize}
+	\item \textbf{Metrik deteksi:} \textit{Precision}, \textit{Recall}, dan F1-Score untuk setiap kategori ambiguitas dan secara keseluruhan.
+	\item \textbf{Metrik persetujuan manusia:} \textit{Inter-Annotator Agreement} ( Cohen's $\kappa$ atau Krippendorff's $\alpha$) antara hasil deteksi sistem dan penilaian \textit{annotator} manusia.
+	\item \textbf{Metrik biaya:} Jumlah \textit{token} yang dikonsumsi dan waktu eksekusi per konfigurasi, untuk mengukur \textit{cost-effectiveness} relatif.
+\end{itemize}
+
+\textit{Ablation study} dilakukan untuk:
+\begin{enumerate}
+	\item Mengukur kontribusi tiap peran (\textit{stakeholder}, \textit{developer}, \textit{tester}) terhadap performa keseluruhan.
+	\item Menganalisis sensitivitas terhadap jumlah agen dan kedalaman orkestrasi.
+	\item Membandingkan dampak penggunaan model \textit{open-source} vs.\ \textit{closed-source} sebagai \textit{backbone} tiap agen.
+\end{enumerate}
+
+\subsection{Tahap 5: Analisis Lintas Bahasa}
+
+Pengujian dilakukan pada dataset berbahasa Indonesia dan Inggris untuk mengidentifikasi:
+\begin{itemize}
+	\item Perbedaan distribusi kategori ambiguitas antar-bahasa.
+	\item Perbedaan efektivitas deteksi oleh tiap konfigurasi pada kedua bahasa.
+	\item Pola ambiguitas spesifik bahasa Indonesia yang tidak tercakup dalam taksonomi berbasis bahasa Inggris.
+\end{itemize}
+
+\section{Alat dan Bahan}
+% --- VERSI 1 (sebelum update) ---
+% 1. Model LLM: Model open-source (DeepSeek R1, Llama 3, Qwen 2.5) melalui Ollama,
+%    serta model closed-source (GPT-4o, Claude Sonnet) melalui API, sesuai ketersediaan.
+% 2. Kerangka kerja Multi-Agent: Implementasi orkestrasi agen menggunakan
+%    pustaka Python yang mendukung pola MoA.
+% 3. Dataset: Koleksi dokumen requirement berbahasa Inggris dan Indonesia
+%    dengan label ambiguitas.
+% 4. Lingkungan Komputasi: Mesin lokal dengan dukungan GPU untuk inferensi
+%    model open-source, serta akses API untuk model closed-source.
+% --- AKHIR VERSI 1 ---
+%
+% --- VERSI 2 (saat ini) ---
+\begin{enumerate}
+	\item \textbf{Model LLM:} Model \textit{open-source} yang diakses melalui platform Ollama Cloud Pro dengan langganan aktif, mencakup model \textit{cloud} berikut:
+	\begin{itemize}
+		\item \textit{DeepSeek V4 Pro} (671B MoE, 49B aktif): Model reasoning terkuat dengan tiga mode penalaran (low/medium/high), digunakan sebagai \textit{backbone} utama untuk konfigurasi \textit{role-based multi-agent} dan \textit{Self-MoA}.
+		\item \textit{Qwen 3.5} (122B MoE, 10B aktif): Model multibahasa dengan kemampuan reasoning kuat, digunakan sebagai agen \textit{stakeholder} yang memerlukan pemahaman konteks lintas bahasa (Indonesia dan Inggris).
+		\item \textit{GPT-OSS 120B} (120B MoE, 5.1B aktif): Model \textit{open-weight} dari OpenAI dengan arsitektur MoE yang berbeda dari DeepSeek dan Qwen, digunakan sebagai agen \textit{tester} untuk meningkatkan keragaman arsitektur dalam konfigurasi \textit{Mixed-MoA}.
+		\item \textit{Qwen 3.5} varian kecil (27B dan 9B): Digunakan untuk \textit{ablation study} terhadap ukuran model.
+	\end{itemize}
+	Seluruh model \textit{cloud} diakses melalui API Ollama yang kompatibel dengan OpenAI, sehingga pergantian antar model hanya memerlukan perubahan satu baris konfigurasi. Model-model ini juga tersedia secara \textit{open-weight} di HuggingFace, Ollama lokal, OpenRouter, dan Together AI, memungkinkan reproduksibilitas oleh peneliti lain tanpa biaya langganan.
+
+	\item \textbf{Kerangka kerja Multi-Agent:} CrewAI (v0.86+), kerangka kerja Python berbasis peran \textit{(role-based)} yang mendukung definisi agen dengan \textit{role}, \textit{goal}, dan \textit{backstory} secara natif. CrewAI terintegrasi dengan Ollama melalui LiteLLM, mendukung orkestrasi sekuensial dan hierarkis, serta menyediakan mekanisme delegasi tugas antar-agen. Sebagai \textit{baseline} MoA tanpa peran, digunakan implementasi referensi Together MoA (\textasciitilde200 baris Python) yang dimodifikasi untuk kompatibilitas dengan Ollama.
+
+	\item \textbf{Dataset:}
+	\begin{itemize}
+		\item \textit{Dataset berbahasa Inggris:} Orchid Benchmark (1.304 tugas \textit{requirement} berlabel ambiguitas) dan augmentasi dari Mendeley Requirements Ambiguity Dataset, dengan label tambahan untuk kategori ambiguitas yang belum tercakup (kekaburan dan kontradiksi).
+		\item \textit{Dataset berbahasa Indonesia:} Dikonstruksi melalui translasi dan augmentasi dari dataset berbahasa Inggris, divalidasi oleh \textit{annotator} yang memahami konteks RE dan bahasa Indonesia.
+	\end{itemize}
+
+	\item \textbf{Lingkungan Komputasi:} Ollama Cloud Pro sebagai infrastruktur utama untuk inferensi model \textit{cloud}, dengan GPU lokal sebagai cadangan untuk model berukuran kecil (7B--14B) selama tahap pengembangan dan iterasi cepat. Pelacakan konsumsi \textit{token} dilakukan melalui metrik \textit{prompt\_eval\_count} dan \textit{eval\_count} yang disediakan oleh API Ollama.
+\end{enumerate}

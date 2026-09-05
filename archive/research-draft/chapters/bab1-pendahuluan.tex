@@ -1,0 +1,62 @@
+% !TeX root = ../main.tex
+\chapter{PENDAHULUAN}
+
+\section{Latar Belakang}
+
+Requirement perangkat lunak menjadi media utama untuk menyepakati kebutuhan bisnis, perilaku sistem, dan kriteria penerimaan sebelum pekerjaan desain serta implementasi dilakukan. Apabila satu requirement dapat ditafsirkan dengan cara yang berbeda oleh stakeholder, pengembang, dan penguji, perbedaan tersebut dapat menyebar ke tahap berikutnya dan menimbulkan rework. Ambiguitas dalam requirement dapat muncul pada pilihan kata, struktur kalimat, makna yang tidak spesifik, informasi yang belum lengkap, maupun ketidakkonsistenan antarpernyataan \cite{berry2000,kamsties1998,wiegers2003}. Literatur Requirements Engineering (RE) umumnya membahas ambiguitas leksikal, sintaktis, semantik, kekaburan (\textit{vagueness}), ketidaklengkapan (\textit{incompleteness}), dan kontradiksi sebagai kategori yang saling melengkapi \cite{berry2004}.
+
+Deteksi ambiguitas secara manual masih bergantung pada pengalaman dan perspektif pembaca. Pendekatan berbasis aturan dan Natural Language Inference (NLI) telah digunakan untuk membantu proses tersebut \cite{ferrara2014}, tetapi aturan yang kaku dapat kesulitan menangkap konteks dan variasi bahasa. Large Language Model (LLM) kemudian digunakan sebagai \textit{single-agent} untuk mengidentifikasi ambiguitas sekaligus menjelaskan alasan deteksinya. Studi industri Bashir et al.\ (2025) menunjukkan potensi LLM untuk tugas ini melalui konfigurasi prompting yang menggunakan contoh dan keluaran penjelasan \cite{bashir2025}. Namun, satu model yang menghasilkan satu analisis tetap dapat melewatkan ambiguitas yang hanya terlihat dari sudut pandang tertentu.
+
+Perspektif yang berbeda penting karena pihak yang berkepentingan membaca requirement dengan tujuan yang berbeda. Stakeholder lebih sensitif terhadap kebutuhan bisnis yang samar atau belum lengkap. Developer lebih sensitif terhadap istilah, struktur, dan perilaku yang sulit diimplementasikan. Tester lebih sensitif terhadap kriteria penerimaan yang tidak dapat diverifikasi, kasus batas, dan konflik antarpernyataan. Perbedaan ini memberikan alasan konseptual untuk menguji arsitektur yang memberi instruksi dan tanggung jawab khusus kepada beberapa agen, bukan hanya mengulang prompt yang sama.
+
+Paradigma multi-agent dan Mixture-of-Agents (MoA) mengorkestrasi beberapa keluaran model untuk membentuk keputusan akhir \cite{wang2024moa}. Multi-Agent Debate juga menunjukkan bahwa interaksi antar-agen dapat membantu penalaran pada tugas tertentu \cite{du2023}. Di dalam RE, Oriol et al.\ (2025) mengevaluasi strategi debat multi-agen untuk klasifikasi requirement, sedangkan Jin et al.\ (2025) mengusulkan beberapa peran untuk mendukung siklus RE yang lebih luas \cite{oriol2025,jin2025}. Penelitian-penelitian tersebut menunjukkan kelayakan orkestrasi multi-agent, tetapi belum secara khusus menjawab apakah spesialisasi peran meningkatkan deteksi ambiguitas requirement.
+
+Perbandingan dengan \textit{Self-MoA} diperlukan agar manfaat role-based tidak disamakan dengan manfaat dari penambahan jumlah panggilan model. Pada Self-MoA, model yang sama dapat diminta menghasilkan beberapa analisis independen lalu digabungkan. Li et al.\ (2025) menunjukkan bahwa pengulangan model yang sama dapat menjadi konfigurasi yang kuat, sehingga keunggulan arsitektur role-based harus dibuktikan melalui eksperimen yang mengontrol model, prompt budget, dan data uji \cite{lismoa2025}. Tanpa pembanding tersebut, peningkatan hasil belum dapat dikaitkan dengan spesialisasi peran.
+
+Dimensi bahasa juga perlu dipertimbangkan. Sebagian besar kajian deteksi ambiguitas yang menjadi rujukan awal menggunakan bahasa Inggris, sedangkan requirement berbahasa Indonesia memiliki pilihan kata, struktur, dan konteks penggunaan yang berbeda. Karena itu, evaluasi pada bahasa Indonesia dan Inggris dapat menunjukkan apakah arsitektur yang sama tetap konsisten lintas bahasa atau membutuhkan penyesuaian prompt dan data. Studi ini tidak menganggap bahasa Indonesia sebagai sekadar terjemahan, tetapi mencatat proses pembentukan dan validasi dataset agar perbedaan hasil dapat ditafsirkan dengan hati-hati.
+
+Berdasarkan telaah awal tersebut, draft penelitian ini mengusulkan evaluasi empiris terhadap tiga konfigurasi: (1) single-agent LLM, (2) Self-MoA, dan (3) role-based multi-agent LLM dengan agen stakeholder, developer, dan tester. Ketiganya diuji pada unit requirement yang sama, menggunakan protokol prompting dan anggaran keluaran yang dapat dibandingkan. Evaluasi mencakup performa keseluruhan, performa setiap kategori ambiguitas, perbedaan lintas bahasa, kontribusi tiap peran, serta waktu dan konsumsi token.
+
+\section{Perumusan Masalah}
+
+Berdasarkan latar belakang tersebut, perumusan masalah dalam penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+\item Bagaimana merancang arsitektur role-based multi-agent LLM untuk memadukan perspektif stakeholder, developer, dan tester dalam deteksi ambiguitas requirement?
+\item Sejauh mana performa role-based multi-agent LLM berbeda dari single-agent LLM dan Self-MoA ketika model, data, dan anggaran keluaran dikendalikan?
+\item Peran dan kategori ambiguitas apa yang paling berkontribusi terhadap perubahan performa sistem?
+\item Bagaimana bahasa requirement (Indonesia atau Inggris) memengaruhi performa deteksi dan biaya inferensi pada setiap konfigurasi?
+\end{enumerate}
+
+\section{Batasan Penelitian}
+
+Untuk menjaga penelitian tetap terukur dan dapat diselesaikan, batasan penelitian ditetapkan sebagai berikut:
+\begin{enumerate}
+\item Unit analisis dibatasi pada requirement perangkat lunak berbentuk teks naratif dalam bahasa Indonesia dan Inggris. Model formal, diagram, dan requirement yang memerlukan akses ke sistem privat tidak termasuk dalam objek utama.
+\item Pelabelan menggunakan skema multi-label dengan enam kategori: leksikal, sintaktis, semantik, kekaburan, ketidaklengkapan, dan kontradiksi. Satu requirement dapat memiliki lebih dari satu label.
+\item Arsitektur yang diusulkan menggunakan tiga peran analisis: stakeholder, developer, dan tester. Satu komponen aggregator digunakan untuk menggabungkan keluaran, tetapi tidak diperlakukan sebagai perspektif tambahan dalam analisis kontribusi peran.
+\item Konfigurasi pembanding terdiri atas single-agent LLM, Self-MoA dengan beberapa instans model yang sama, dan role-based multi-agent LLM. Perbandingan utama menggunakan backbone model yang sama agar pengaruh orkestrasi dapat dipisahkan dari pengaruh kualitas model.
+\item Dataset dibagi menjadi bagian pengembangan, validasi, dan pengujian. Data pengujian tidak digunakan untuk memilih prompt, jumlah agen, atau aturan agregasi.
+\item Pemilihan model dan parameter akhir menyesuaikan ketersediaan infrastruktur. Model dan versinya akan dicatat agar eksperimen dapat direplikasi; klaim penelitian tidak bergantung pada satu penyedia layanan.
+\item Penelitian mengukur kemampuan deteksi dan penjelasan berbasis teks, bukan pengukuran langsung pengurangan defect pada proyek perangkat lunak yang sedang berjalan.
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+
+Tujuan penelitian ini adalah:
+\begin{enumerate}
+\item Merancang prototipe role-based multi-agent LLM untuk deteksi ambiguitas requirement perangkat lunak.
+\item Membandingkan performa single-agent LLM, Self-MoA, dan role-based multi-agent LLM menggunakan metrik precision, recall, dan F1-score.
+\item Menganalisis kontribusi peran stakeholder, developer, dan tester terhadap deteksi kategori ambiguitas tertentu.
+\item Menganalisis perbedaan performa dan biaya inferensi pada requirement berbahasa Indonesia dan Inggris.
+\item Mendokumentasikan failure modes, proses anotasi, serta kondisi eksperimen agar hasil penelitian dapat diaudit dan direplikasi.
+\end{enumerate}
+
+\section{Manfaat dan Kontribusi yang Diharapkan}
+
+Hasil penelitian diharapkan memberikan kontribusi sebagai berikut:
+\begin{enumerate}
+\item \textbf{Kontribusi metodologis:} Protokol eksperimen untuk membedakan dampak jumlah agen dari dampak spesialisasi peran pada deteksi ambiguitas requirement.
+\item \textbf{Kontribusi empiris:} Bukti perbandingan antara single-agent, Self-MoA, dan role-based multi-agent pada task, kategori, dan bahasa yang sama.
+\item \textbf{Kontribusi praktis:} Prototipe dan skema keluaran yang dapat membantu penulis requirement menemukan bagian yang perlu diklarifikasi sebelum implementasi.
+\item \textbf{Kontribusi lokal:} Analisis awal terhadap requirement berbahasa Indonesia yang dilengkapi dokumentasi proses validasi, sehingga keterbatasan data dan bahasa dapat dilaporkan secara transparan.
+\end{enumerate}

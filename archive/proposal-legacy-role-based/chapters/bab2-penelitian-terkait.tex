@@ -1,0 +1,71 @@
+% !TeX root = ../main.tex
+\chapter{PENELITIAN TERKAIT}
+
+\section{Studi Terkait}
+
+Penelitian ini beririsan dengan beberapa alur riset yang telah berkembang dalam beberapa tahun terakhir. Berikut adalah tinjauan terhadap penelitian-penelitian kunci yang relevan, beserta identifikasi kesenjangan (\textit{gap}) yang dapat diisi oleh penelitian ini.
+
+\subsection{Deteksi Ambiguitas Requirement Menggunakan Single-Agent LLM}
+
+Bashir et al.\ (2025) mengadakan studi industri yang dipresentasikan pada ICSME 2025 mengenai deteksi dan penjelasan ambiguitas \textit{requirement} menggunakan LLM \cite{bashir2025}. Penelitian ini menunjukkan bahwa \textit{10-shot prompting} pada LLM \textit{single-agent} mampu meningkatkan performa deteksi ambiguitas sebesar +20,2\% dibandingkan \textit{zero-shot}, dengan skor persetujuan manusia (\textit{human agreement}) sebesar 3,84 dari 5. Meskipun hasil ini menjanjikan, pendekatan \textit{single-agent} secara inheren terbatas pada satu perspektif analisis—LLM membaca \textit{requirement} dari satu sudut pandang dan tidak dapat secara alami mengadopsi lensa berbeda yang diperlukan untuk menangkap seluruh kategori ambiguitas. Penelitian ini juga tidak mengevaluasi dampak orkestrasi multi-agent terhadap performa deteksi.
+
+Vijayvargiya et al.\ (2025) mengusulkan \textit{Ambig-SWE}, yang mengevaluasi agen interaktif untuk mengatasi ambiguitas dalam tugas \textit{code generation} \cite{vijayvargiya2025}. Claude Sonnet mencapai akurasi 84\% pada tugas yang diberikan. Namun, fokus penelitian ini pada \textit{code generation}—bukan analisis \textit{requirement}—dan penggunaan agen interaktif tanpa spesialisasi peran membuatnya tidak secara langsung dapat dibandingkan dengan deteksi ambiguitas \textit{requirement}.
+
+\subsection{Multi-Agent LLM untuk Requirements Engineering}
+
+Oriol et al.\ (2025) merupakan penelitian pertama yang mengaplikasikan strategi \textit{Multi-Agent Debate} (MAD) pada domain RE \cite{oriol2025}. Penelitian ini menguji klasifikasi biner fungsional vs.\ non-fungsional dengan peningkatan F1 sebesar +10,9\% dibandingkan \textit{baseline}, namun biaya komputasi meningkat 16 kali lipat. Pendekatan mereka bersifat \textit{debater-vs-debater} tanpa spesialisasi peran, dan belum diaplikasikan pada tugas deteksi ambiguitas. Analisis biaya yang dilakukan masih bersifat kasar (\textit{rough}), tanpa \textit{ablation study} yang memisahkan kontribusi tiap komponen.
+
+Jin et al.\ (2025) mengusulkan iReDev, kerangka kerja berbasis pengetahuan dengan 6 agen berbasis peran—\textit{interviewer, end-user, deployer, analyst, archivist, reviewer}—untuk siklus RE end-to-end \cite{jin2025}. Meskipun arsitektur ini mendemonstrasikan konsep agen berspesialisasi peran, fokusnya pada siklus RE penuh (\textit{full lifecycle}) membuatnya tidak mengevaluasi secara mendalam kontribusi tiap peran terhadap deteksi ambiguitas secara individual.
+
+Cheng et al.\ (2026) mengembangkan QUARE, yang menggunakan agen terkualitas (\textit{quality-specialized agents}) dengan negosiasi dialektis untuk menyeimbangkan atribut kualitas dalam RE \cite{cheng2026}. Sistem ini mencapai kepatuhan 98,2\%, namun fokusnya pada \textit{quality attributes} bukan pada ambiguitas, sehingga mekanisme negosiasi yang dikembangkan tidak dapat langsung ditransfer ke domain deteksi ambiguitas.
+
+Lu et al.\ (2026) membangun ReDeFo, arsitektur multi-agent dengan agen \textit{Analyst}, \textit{Formalizer}, dan \textit{Coder} untuk transformasi \textit{requirement} menjadi kode terverifikasi \cite{lu2026}. Fokus pada formalisasi—bukan identifikasi ambiguitas—membuat pendekatan ini berada di domain yang berbeda, meskipun arsitektur multi-agent yang digunakan relevan sebagai perbandingan.
+
+\subsection{Multi-Agent LLM di Domain Lain yang Relevan}
+
+Giroh et al.\ (2025) dari Amazon mengusulkan kerangka kerja multi-agent dengan tiga agen (\textit{Clarifier, Planner, Implementor}) untuk mentransformasikan SOP ambigu menjadi kode \cite{giroh2025}. Sistem ini mencapai akurasi 88,4\% pada domain SOP. Meskipun domainnya berbeda (SOP vs.\ \textit{software requirement}), pendekatan yang mirip—menggunakan agen dengan peran khusus untuk mengatasi ambiguitas—menjadi referensi arsitektur yang relevan.
+
+\subsection{Fondasi Multi-Agent LLM dan Tantangan Self-MoA}
+
+Wang et al.\ (2024) mengusulkan kerangka kerja \textit{Mixture-of-Agents} (MoA) yang mengorkestrasi beberapa LLM secara berlapis untuk meningkatkan kapabilitas \cite{wang2024moa}. MoA menunjukkan peningkatan signifikan pada berbagai \textit{benchmark}, membuka jalan bagi arsitektur multi-agent di berbagai domain.
+
+Li et al.\ (2025) menemukan bahwa konfigurasi \textit{Self-MoA}—di mana model yang sama diulang beberapa kali sebagai agen yang berbeda—seringkali mengungguli \textit{Mixed-MoA} yang menggunakan model yang berbeda-beda \cite{lismoa2025}. Temuan ini merupakan tantangan kritis bagi penelitian multi-agent: jika repetisi model yang sama sudah mencukupi, maka kompleksitas tambahan dari spesialisasi peran perlu dibuktikan memberikan nilai tambah yang signifikan. Penelitian ini merespons tantangan tersebut dengan membandingkan secara langsung \textit{role-based multi-agent} versus \textit{Self-MoA}.
+
+Du et al.\ (2023) memperkenalkan \textit{multiagent debate} sebagai mekanisme untuk meningkatkan faktualitas dan penalaran dalam model bahasa \cite{du2023}. Prinsip bahwa interaksi dan debat antar-agen dapat menghasilkan jawaban yang lebih baik menjadi fondasi teoretis bagi pendekatan multi-agent dalam penelitian ini.
+
+\subsection{Sintesis dan Identifikasi Gap}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Perbandingan Penelitian Terkait}
+	\label{tab:related-work}
+	\renewcommand{\arraystretch}{1.25}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|p{2.8cm}|c|c|c|c|c|}
+			\hline
+			\textbf{Penelitian} & \textbf{Multi-Agent} & \textbf{Role-Based} & \textbf{Ambiguitas Req.} & \textbf{Bahasa Indonesia} & \textbf{Komparatif vs.\ Self-MoA} \\
+			\hline
+			Bashir et al.\ (2025)  & $\times$ & $\times$ & $\checkmark$ & $\times$ & $\times$ \\
+			\hline
+			Vijayvargiya et al.\ (2025) & $\checkmark^*$ & $\times$ & $\times$ & $\times$ & $\times$ \\
+			\hline
+			Oriol et al.\ (2025)   & $\checkmark$ & $\times$ & $\times$ & $\times$ & $\times$ \\
+			\hline
+			Jin et al.\ (2025)     & $\checkmark$ & $\checkmark$ & $\times$ & $\times$ & $\times$ \\
+			\hline
+			Cheng et al.\ (2026)   & $\checkmark$ & $\checkmark$ & $\times$ & $\times$ & $\times$ \\
+			\hline
+			Lu et al.\ (2026)      & $\checkmark$ & $\checkmark$ & $\times$ & $\times$ & $\times$ \\
+			\hline
+			Giroh et al.\ (2025)   & $\checkmark$ & $\checkmark$ & $\times$ & $\times$ & $\times$ \\
+			\hline
+			\textbf{Penelitian ini} & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+			\hline
+		\end{tabular}%
+	}
+	\vspace{2mm}
+
+	\small{$\checkmark^*$: Agen interaktif untuk \textit{code generation}, bukan arsitektur multi-agent untuk RE.}
+\end{table}
+
+Berdasarkan sintesis pada Tabel~\ref{tab:related-work}, teridentifikasi bahwa \textbf{belum ada penelitian yang secara spesifik menggabungkan arsitektur role-based multi-agent LLM dengan deteksi ambiguitas requirement perangkat lunak}, dan belum ada yang melakukan studi komparatif terhadap \textit{Self-MoA} dalam konteks ini. Penelitian ini mengisi kesenjangan tersebut.

@@ -1,0 +1,56 @@
+% !TeX root = ../main.tex
+\chapter{PENDAHULUAN}
+
+\section{Latar Belakang}
+
+Ambiguitas dalam \textit{requirement} perangkat lunak merupakan penyebab utama kegagalan proyek pengembangan perangkat lunak, yang berkontribusi pada lebih dari 70\% kasus kegagalan proyek \cite{chaos1995,wiegers2003}. Ambiguitas terjadi ketika suatu \textit{requirement} dapat ditafsirkan lebih dari satu cara oleh pihak yang berbeda—misalnya \textit{stakeholder}, pengembang, dan penguji—sehingga mengakibatkan kesalahpahaman yang merambat ke seluruh siklus pengembangan, mulai dari desain arsitektur yang keliru hingga \textit{rework} yang mahal pasca-implementasi \cite{berry2000, kamsties1998}. Taksonomi ambiguitas yang telah mapan dalam literatur mencakup enam kategori utama: ambiguitas leksikal, sintaktis, semantik, kekaburan (\textit{vagueness}), ketidaklengkapan (\textit{incompleteness}), dan kontradiksi \cite{berry2004, kamsties1998}. Setiap kategori memerlukan lensa analisis yang berbeda untuk dapat terdeteksi secara efektif.
+
+Upaya otomatisasi deteksi ambiguitas \textit{requirement} telah berkembang dari pendekatan berbasis aturan (\textit{rule-based}) seperti \textit{Natural Language Inference} (NLI) tradisional \cite{ferrara2014} menuju pemanfaatan \textit{Large Language Models} (LLM) sebagai \textit{single-agent} \cite{bashir2025}. Bashir et al.\ (2025) pada studi industri di ICSME menunjukkan bahwa LLM \textit{single-agent} mampu meningkatkan deteksi ambiguitas sebesar +20,2\% dengan konfigurasi \textit{10-shot prompting}, dan mendapatkan skor persetujuan manusia (\textit{human agreement}) sebesar 3,84 dari 5 \cite{bashir2025}. Meskipun hasil ini menjanjikan, pendekatan \textit{single-agent} memiliki keterbatasan fundamental: LLM tunggal membaca \textit{requirement} dari satu perspektif saja dan tidak secara alami mengadopsi sudut pandang berbeda yang diperlukan untuk menangkap seluruh jenis ambiguitas \cite{bashir2025, vijayvargiya2025}. Sebagai contoh, seorang pengembang mungkin mendeteksi ambiguitas teknis yang terlewat oleh penguji, dan sebaliknya—setiap peran memiliki kepekaan yang berbeda terhadap jenis ambiguitas tertentu.
+
+Paradigma \textit{multi-agent} dalam kerangka kerja \textit{Mixture-of-Agents} (MoA) \cite{wang2024moa} telah menunjukkan potensi signifikan dalam meningkatkan kapabilitas LLM melalui orkestrasi beberapa agen. Dalam domain \textit{Requirements Engineering} (RE), beberapa penelitian terkini telah mengadopsi pendekatan ini: Oriol et al.\ (2025) mengaplikasikan strategi \textit{Multi-Agent Debate} (MAD) untuk klasifikasi fungsional vs.\ non-fungsional dengan peningkatan F1 sebesar +10,9\% dibandingkan \textit{baseline}, namun biaya komputasi meningkat 16 kali lipat dan pendekatan mereka bersifat \textit{debater-vs-debater} tanpa spesialisasi peran \cite{oriol2025}; Jin et al.\ (2025) mengusulkan iReDev dengan 6 agen berbasis peran (\textit{interviewer, end-user, deployer, analyst, archivist, reviewer}) untuk siklus RE end-to-end, tetapi tidak secara khusus mengevaluasi kontribusi tiap peran terhadap deteksi ambiguitas \cite{jin2025}; Cheng et al.\ (2026) mengembangkan QUARE dengan agen terkualitas dan negosiasi dialektis untuk atribut kualitas dengan kepatuhan 98,2\%, namun fokusnya bukan pada ambiguitas \cite{cheng2026}; dan Lu et al.\ (2026) membangun ReDeFo dengan agen Analyst, Formalizer, dan Coder untuk formalisasi \textit{requirement} ke kode terverifikasi, bukan untuk identifikasi ambiguitas \cite{lu2026}.
+
+\textbf{Kesenjangan penelitian} (\textit{research gap}) yang teridentifikasi adalah: \textit{belum ada penelitian yang secara spesifik menguji arsitektur role-based multi-agent LLM untuk deteksi ambiguitas requirement perangkat lunak.} Yang paling mendekati adalah Oriol et al.\ (2025) dengan \textit{debate} antar-agen tanpa peran, dan Bashir et al.\ (2025) dengan LLM tunggal tanpa orkestrasi multi-agent. Kedua pendekatan ini tidak mengeksploitasi prinsip bahwa ambiguitas bersifat \textit{multi-perspectival}—yaitu, ambiguitas yang tidak terdeteksi dari satu sudut pandang mungkin terlihat jelas dari sudut pandang lain. Dengan mendesain agen-agen yang masing-masing mengemban peran \textit{stakeholder}, \textit{developer}, dan \textit{tester}, sistem diharapkan dapat menangkap spektrum ambiguitas yang lebih luas dibandingkan pendekatan \textit{single-agent} maupun \textit{multi-agent tanpa spesialisasi peran}.
+
+Namun, pendekatan \textit{multi-agent} juga menghadapi tantangan yang perlu direspons secara empiris. Li et al.\ (2025) menunjukkan bahwa konfigurasi \textit{Self-MoA}—di mana model yang sama diulang beberapa kali—seringkali mengungguli \textit{Mixed-MoA} yang menggunakan model berbeda \cite{lismoa2025}. Temuan ini menimbulkan pertanyaan kritis: \textit{apakah spesialisasi peran (role-based) memberikan nilai tambah yang signifikan dibandingkan sekadar mengulang model yang sama?} Penelitian ini dirancang untuk menjawab pertanyaan tersebut melalui studi komparatif yang mencakup tiga konfigurasi: (1) \textit{single-agent LLM}, (2) \textit{Self-MoA}, dan (3) \textit{role-based multi-agent}.
+
+Selain itu, dimensi bahasa menjadi diferensiator yang penting. Sebagian besar penelitian deteksi ambiguitas \textit{requirement} berfokus pada dokumen berbahasa Inggris, sementara ambiguitas pada dokumen berbahasa Indonesia—sebagai bahasa dengan sumber daya terbatas (\textit{low-resource language})—hampir tidak tersentuh \cite{bashir2025}. Bahasa Indonesia memiliki pola ambiguitas tersendiri, seperti ketidakhadiran penanda waktu (\textit{tense}), ambiguitas afiksasi, dan redundansi kata, yang membuat hasil penelitian berbasis bahasa Inggris tidak serta-merta dapat digeneralisasi. Oleh karena itu, penelitian ini juga mengevaluasi efektivitas arsitektur yang diusulkan pada dokumen \textit{requirement} berbahasa Indonesia dan Inggris untuk mengidentifikasi perbedaan lintas bahasa.
+
+Berdasarkan identifikasi kesenjangan tersebut, penelitian ini mengusulkan arsitektur \textit{Role-Based Multi-Agent LLM} yang mengorkestrasi agen-agen dengan perspektif berbeda—\textit{stakeholder}, \textit{developer}, dan \textit{tester}—untuk mendeteksi ambiguitas \textit{requirement} perangkat lunak secara lebih komprehensif. Evaluasi dilakukan secara komparatif terhadap \textit{single-agent LLM} dan \textit{Self-MoA}, serta meliputi analisis berdasarkan taksonomi ambiguitas dan studi lintas bahasa (Indonesia dan Inggris).
+
+\section{Perumusan Masalah}
+Berdasarkan uraian latar belakang, perumusan masalah dalam penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+	\item Bagaimana arsitektur \textit{role-based multi-agent LLM} dapat dirancang untuk mendeteksi ambiguitas \textit{requirement} perangkat lunak secara lebih komprehensif dibandingkan pendekatan \textit{single-agent LLM}?
+	\item Sejauh mana spesialisasi peran (\textit{role-based}) memberikan peningkatan performa deteksi ambiguitas dibandingkan dengan konfigurasi \textit{Self-MoA} (model yang sama diulang) dan \textit{single-agent}?
+	\item Bagaimana efektivitas arsitektur \textit{role-based multi-agent LLM} dalam mendeteksi berbagai kategori ambiguitas berdasarkan taksonomi ambiguitas (leksikal, sintaktis, semantik, kekaburan, ketidaklengkapan, dan kontradiksi)?
+	\item Bagaimana perbedaan bahasa (\textit{Indonesia vs.\ Inggris}) memengaruhi kemampuan deteksi ambiguitas \textit{requirement} oleh arsitektur yang diusulkan?
+\end{enumerate}
+
+\section{Batasan Penelitian}
+Untuk memastikan fokus dan keterlaksanaan penelitian, batasan penelitian ditetapkan sebagai berikut:
+\begin{enumerate}
+	\item Objek penelitian dibatasi pada dokumen \textit{requirement} perangkat lunak dalam format teks naratif (\textit{natural language}), bukan model formal (seperti UML atau \textit{formal specification}).
+	\item Evaluasi ambiguitas menggunakan taksonomi yang mencakup enam kategori: leksikal, sintaktis, semantik, kekaburan, ketidaklengkapan, dan kontradiksi \cite{berry2004}.
+	\item Agen yang digunakan dalam arsitektur \textit{role-based multi-agent} dibatasi pada tiga peran: \textit{stakeholder}, \textit{developer}, dan \textit{tester}.
+	\item Perbandingan komparatif dilakukan terhadap tiga konfigurasi: (1) \textit{single-agent LLM}, (2) \textit{Self-MoA}, dan (3) \textit{role-based multi-agent}.
+	\item Studi bahasa dibatasi pada perbandingan dokumen berbahasa Indonesia dan Inggris.
+	\item Model LLM yang digunakan mencakup model \textit{open-source} (melalui Ollama) dan/atau \textit{closed-source} (melalui API), sesuai ketersediaan dan keterjangkauan.
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+Tujuan utama dari penelitian ini adalah:
+\begin{enumerate}
+	\item Merancang arsitektur \textit{role-based multi-agent LLM} untuk deteksi ambiguitas \textit{requirement} perangkat lunak.
+	\item Mengevaluasi secara komparatif performa deteksi ambiguitas antara arsitektur \textit{role-based multi-agent}, \textit{Self-MoA}, dan \textit{single-agent LLM} menggunakan metrik \textit{precision}, \textit{recall}, dan F1.
+	\item Menganalisis kontribusi tiap peran (\textit{stakeholder}, \textit{developer}, \textit{tester}) terhadap deteksi kategori ambiguitas spesifik berdasarkan taksonomi ambiguitas.
+	\item Mengidentifikasi perbedaan efektivitas deteksi ambiguitas pada dokumen \textit{requirement} berbahasa Indonesia dibandingkan bahasa Inggris.
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+Hasil dari penelitian ini diharapkan dapat memberikan manfaat:
+\begin{enumerate}
+	\item \textbf{Bagi Praktisi Rekayasa Perangkat Lunak:} Menyediakan pendekatan yang lebih komprehensif untuk mendeteksi ambiguitas \textit{requirement} sejak tahap awal pengembangan, sehingga mengurangi risiko \textit{rework} dan kegagalan proyek.
+	\item \textbf{Bagi Komunitas Riset Requirements Engineering:} Menjadi referensi pertama yang menguji arsitektur \textit{role-based multi-agent LLM} secara spesifik untuk deteksi ambiguitas, mengisi kesenjangan yang belum ditangani oleh Oriol et al.\ (2025), Bashir et al.\ (2025), dan Jin et al.\ (2025).
+	\item \textbf{Bagi Komunitas Riset Multi-Agent LLM:} Memberikan bukti empiris mengenai apakah spesialisasi peran (\textit{role-based}) memberikan keunggulan signifikan dibandingkan \textit{Self-MoA}, merespons temuan Li et al.\ (2025).
+	\item \textbf{Bagi Pengembang di Indonesia:} Menawarkan evaluasi deteksi ambiguitas pada dokumen berbahasa Indonesia, yang hampir tidak memiliki penelitian sebelumnya, sehingga mendukung praktik RE yang lebih baik di konteks lokal.
+\end{enumerate}
