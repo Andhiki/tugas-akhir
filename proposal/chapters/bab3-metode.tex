@@ -3,4 +3,229 @@
 
 \section{Rancangan Penelitian}
 
-Isi metode penelitian.
+Penelitian ini menggunakan rancangan \textit{eksperimen terkontrol berpasangan} (\textit{paired controlled experiment}). Unit analisisnya adalah satu percobaan agent pada satu task perbaikan bug. Setiap task dijalankan pada snapshot kode, prompt, model, agent runner, dependency, dan batas resource yang sama. Perbedaan antar-kondisi hanya terletak pada feedback test yang diterima agent.
+
+Rancangan ini dipilih untuk menjawab pertanyaan kausal secara terbatas: apakah feedback yang tidak stabil mengubah outcome dan perilaku agent ketika faktor lain dibuat tetap? Hasil penelitian diinterpretasikan sebagai bukti pada kombinasi benchmark, task, agent, model, dan environment yang diuji, bukan sebagai ukuran universal kemampuan semua AI coding agent.
+
+\section{Objek dan Unit Analisis}
+
+Objek penelitian adalah proses perbaikan bug menggunakan AI coding agent. Satu unit analisis didefinisikan sebagai pasangan:
+
+\begin{enumerate}[leftmargin=*]
+    \item satu task perbaikan bug pada snapshot repository tertentu; dan
+    \item satu eksekusi agent pada salah satu kondisi feedback yang ditetapkan.
+\end{enumerate}
+
+Target awal untuk tahap pilot adalah tiga task dengan sekurang-kurangnya tiga pengulangan pada setiap kondisi. Apabila pilot berhasil, eksperimen utama menargetkan sekurang-kurangnya sepuluh task dengan sekurang-kurangnya tiga pengulangan per kondisi. Jumlah akhir dapat disesuaikan berdasarkan biaya, tetapi seluruh perubahan jumlah task dan pengulangan dicatat sebelum eksperimen utama.
+
+\section{Pemilihan Benchmark dan Task}
+
+Defects4J dipilih sebagai kandidat benchmark utama karena menyediakan bug nyata, test suite, dan infrastruktur untuk eksperimen terkontrol \cite{defects4j2014}. Benchmark APR lain dapat dipertimbangkan apabila bahasa pemrograman, build system, atau kebutuhan resource Defects4J tidak kompatibel dengan agent yang tersedia.
+
+Task yang dapat digunakan harus memenuhi kriteria berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item snapshot commit dapat diambil dan dibangun tanpa secret atau layanan eksternal yang tidak tersedia;
+    \item terdapat failing test atau acceptance test yang dapat memandu proses perbaikan;
+    \item command build dan test dapat dicatat secara eksplisit;
+    \item hasil baseline sebelum agent berjalan dapat direproduksi;
+    \item tersedia validation oracle untuk memeriksa hasil akhir secara independen; dan
+    \item waktu eksekusi dan kebutuhan resource masih sesuai dengan batas eksperimen.
+\end{enumerate}
+
+Sebelum task digunakan, test dijalankan berulang pada environment yang sama untuk memeriksa baseline. Task yang menunjukkan ketidakstabilan sebelum perlakuan diberikan tidak digunakan sebagai task utama, karena dapat mencampurkan flaky feedback alami dengan flakiness yang sengaja diinduksi.
+
+\section{Konstruksi Perlakuan Feedback}
+
+Perlakuan diimplementasikan melalui feedback wrapper yang memisahkan hasil test sebenarnya dari hasil yang dilaporkan kepada agent. Wrapper menyimpan dua nilai: \textit{true result}, yaitu hasil eksekusi test tanpa manipulasi, dan \textit{reported result}, yaitu hasil yang diterima agent. Perbedaan antara kedua nilai tersebut memungkinkan integritas perlakuan dan kebenaran patch diperiksa secara terpisah.
+
+Pada perlakuan utama, wrapper menggunakan intermittent false failure. Ketika test yang mendasari sebenarnya lulus setelah patch diterapkan, wrapper dapat melaporkan kegagalan dengan probabilitas tertentu. Kegagalan yang memang terjadi sebelum patch tidak diubah, sehingga agent tetap menerima sinyal bug awal yang benar. Probabilitas, seed, timestamp, command, output asli, dan output yang dilaporkan disimpan dalam manifest.
+
+False pass dan unstable timeout dapat ditambahkan sebagai analisis sensitivitas setelah perlakuan utama terbukti dapat direproduksi. Penambahan skenario tersebut tidak dilakukan secara otomatis karena masing-masing mempunyai ancaman validitas dan mekanisme dampak yang berbeda.
+
+\section{Kondisi Eksperimen}
+
+Eksperimen utama membandingkan tiga kondisi berikut:
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Kondisi eksperimen}
+\label{tab:conditions}
+\begin{tabularx}{\textwidth}{p{3.1cm}YY}
+\toprule
+\textbf{Kondisi} & \textbf{Feedback yang diterima agent} & \textbf{Tujuan} \\
+\midrule
+Deterministic & Hasil test asli dilaporkan tanpa manipulasi & Baseline outcome dan biaya repair \\
+Flaky & Hasil test dapat mengalami intermittent false failure dengan probabilitas dan seed tercatat & Mengukur degradasi akibat feedback tidak stabil \\
+Stability-aware & Test yang gagal atau dicurigai tidak stabil dijalankan ulang oleh wrapper, lalu hasil konsistensi dilaporkan & Mengukur recovery dan overhead mitigasi \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Kondisi \textit{stability-aware} merupakan perlakuan pada protokol feedback, bukan klaim bahwa model mempunyai kemampuan deteksi flakiness bawaan. Wrapper menjalankan test ulang pada kondisi yang sama dan mengembalikan informasi mengenai konsistensi hasil. Jumlah rerun ditetapkan sebelum eksperimen, misalnya dua atau tiga eksekusi tambahan setelah kegagalan pertama.
+
+\section{Protokol Eksperimen}
+
+Protokol eksperimen untuk setiap task adalah sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item mengambil snapshot repository dan dependency yang telah dipatok;
+    \item memeriksa baseline test dan menyimpan outputnya;
+    \item membuat workspace baru untuk setiap run agar perubahan dari run sebelumnya tidak terbawa;
+    \item menjalankan agent dengan prompt, tools, model, dan batas resource yang sama;
+    \item mengarahkan command test melalui wrapper sesuai kondisi eksperimen;
+    \item menyimpan trajectory, patch, true test result, reported test result, token, tool calls, retry, dan wall-clock time;
+    \item menghentikan agent ketika patch diterima, batas iterasi tercapai, batas waktu habis, atau agent gagal melanjutkan;
+    \item menjalankan validation oracle independen tanpa manipulasi feedback; dan
+    \item mengarsipkan hasil dengan identifier task, kondisi, seed, versi runner, dan timestamp.
+\end{enumerate}
+
+Urutan kondisi diacak per task untuk mengurangi efek urutan. Setiap run harus menggunakan workspace yang bersih. Run yang melewati wrapper atau mengubah konfigurasi perlakuan dinyatakan tidak valid dan dilaporkan, bukan diam-diam digabungkan dengan hasil utama.
+
+\section{Variabel Penelitian}
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Variabel penelitian}
+\label{tab:variables}
+\begin{tabularx}{\textwidth}{p{3.0cm}p{3.5cm}Y}
+\toprule
+\textbf{Jenis} & \textbf{Variabel} & \textbf{Operasionalisasi} \\
+\midrule
+Independen & Kondisi feedback & Deterministic, Flaky, dan Stability-aware \\
+Independen & Parameter flakiness & Pola, probabilitas, seed, dan jumlah rerun \\
+Dependen utama & Repair success & Patch memenuhi validation oracle dan acceptance criteria \\
+Dependen utama & Patch correctness & Patch lulus validation tambahan atau oracle correctness yang ditentukan \\
+Dependen sekunder & Patch plausibility & Patch lulus feedback yang tersedia bagi agent \\
+Dependen sekunder & Biaya repair & Token, tool calls, retry, feedback iterations, dan wall-clock time \\
+Dependen sekunder & Perilaku agent & Pola pembacaan output, perubahan kode, rerun, dan alasan berhenti \\
+Kontrol & Konteks eksperimen & Task snapshot, prompt, model, runner, tools, dependency, dan resource limit \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Metrik Evaluasi}
+
+Metrik yang digunakan dalam penelitian ini ditunjukkan pada Tabel~\ref{tab:metrics}.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Metrik evaluasi}
+\label{tab:metrics}
+\begin{tabularx}{\textwidth}{p{3.8cm}Y}
+\toprule
+\textbf{Metrik} & \textbf{Definisi operasional} \\
+\midrule
+Repair success & Proporsi run yang menghasilkan patch yang lulus validation oracle dan memenuhi acceptance criteria \\
+Patch plausibility & Proporsi run yang dianggap berhasil berdasarkan feedback yang dilihat agent \\
+Patch correctness & Proporsi patch plausibility yang juga lulus validation independen \\
+Flaky sensitivity & Perubahan outcome dari kondisi Deterministic ke Flaky pada task yang sama \\
+Recovery rate & Proporsi run pada kondisi Stability-aware yang memperbaiki kegagalan pada kondisi Flaky atau menghasilkan outcome yang benar \\
+Feedback iterations & Jumlah siklus test-feedback-edit sampai agent berhenti \\
+Retry overhead & Tambahan rerun, token, tool calls, dan waktu akibat stability check \\
+False repair rate & Proporsi run yang melakukan perubahan kode tidak perlu atau menjauh dari patch yang benar \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Untuk outcome biner, hasil dilaporkan sebagai jumlah dan proporsi per kondisi. Untuk metrik biaya, median dan interquartile range digunakan karena trajectory agent dapat mempunyai distribusi yang tidak simetris. Perbedaan utama dilaporkan sebagai paired difference per task sebelum agregasi.
+
+\section{Pengumpulan Data}
+
+Setiap run menghasilkan artefak berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item manifest yang berisi task, commit, kondisi, seed, model, runner, dependency, dan batas resource;
+    \item prompt awal dan konfigurasi tools;
+    \item trajectory action-result agent;
+    \item patch akhir dan diff seluruh perubahan;
+    \item raw test output, true result, reported result, dan catatan rerun;
+    \item jumlah token input dan output jika disediakan runner;
+    \item jumlah tool calls, feedback iterations, retry, dan durasi; serta
+    \item hasil validation oracle dan keputusan patch correctness.
+\end{enumerate}
+
+Data yang mengandung credential, secret, atau informasi privat tidak digunakan. Repository dan task yang dipilih harus mempunyai lisensi yang mengizinkan penggunaan untuk eksperimen dan publikasi artefak yang relevan.
+
+\section{Analisis Data}
+
+Analisis dilakukan dalam empat tahap:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Pemeriksaan integritas.} Memastikan true result, reported result, seed, wrapper log, dan validation result konsisten.
+    \item \textbf{Analisis outcome.} Membandingkan repair success, patch plausibility, dan patch correctness pada kondisi yang sama. Jika jumlah task mencukupi, uji berpasangan untuk outcome biner digunakan; jika tidak, perbedaan proporsi, interval kepercayaan, dan contoh per task dilaporkan.
+    \item \textbf{Analisis biaya.} Membandingkan median, sebaran, dan paired difference untuk token, tool calls, retry, iterations, dan waktu. Uji Wilcoxon atau permutation test dapat digunakan apabila asumsi dan ukuran sampel memadai.
+    \item \textbf{Analisis failure mode.} Mengelompokkan trajectory ke dalam kategori seperti unnecessary edit, repeated retry, premature stop, false diagnosis, timeout exhaustion, dan successful recovery. Contoh trajectory digunakan untuk menjelaskan mekanisme di balik perbedaan angka.
+\end{enumerate}
+
+Efek utama dirangkum dengan perbedaan antara kondisi, misalnya:
+
+\begin{equation}
+\Delta_{flaky} = Outcome_{deterministic} - Outcome_{flaky}
+\end{equation}
+
+dan:
+
+\begin{equation}
+\Delta_{recovery} = Outcome_{stability\text{-}aware} - Outcome_{flaky}.
+\end{equation}
+
+Nilai delta tidak ditafsirkan tanpa melihat interval ketidakpastian, jumlah task, dan distribusi per task. Hasil negatif atau tidak signifikan tetap dilaporkan karena menunjukkan bahwa dampak flakiness tidak konsisten pada konfigurasi yang diuji.
+
+\section{Alat dan Bahan}
+
+Alat dan bahan yang dipersiapkan adalah sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Agent runner:} satu CLI atau framework agent yang dapat membaca repository, menjalankan command, mengubah file, dan menyimpan trajectory. Runner final dikunci setelah pilot.
+    \item \textbf{Model:} satu model dasar yang aksesnya stabil dan dapat digunakan berulang dengan batas anggaran yang ditentukan. Perbandingan banyak model bukan tujuan utama.
+    \item \textbf{Benchmark:} Defects4J sebagai kandidat utama dan benchmark APR lain sebagai fallback apabila diperlukan.
+    \item \textbf{Feedback wrapper:} program yang meneruskan command test, menginduksi reported result sesuai seed, dan merekam true result serta reported result.
+    \item \textbf{Environment:} Git, Docker atau isolasi setara, runtime bahasa yang sesuai benchmark, dan penyimpanan log.
+    \item \textbf{Validation tools:} command test asli, test tambahan atau hidden test bila tersedia, serta pemeriksaan manual pada subset patch.
+\end{enumerate}
+
+Versi tool, model identifier, command, dan konfigurasi lingkungan disimpan dalam manifest. Model atau layanan berbayar tidak digunakan pada eksperimen utama sebelum smoke test satu task berhasil dan biaya maksimum per run ditetapkan.
+
+\section{Ancaman terhadap Validitas}
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Ancaman terhadap validitas dan mitigasi}
+\label{tab:validity}
+\begin{tabularx}{\textwidth}{p{4.0cm}Y}
+\toprule
+\textbf{Ancaman} & \textbf{Mitigasi} \\
+\midrule
+Flakiness sintetis tidak mewakili semua flaky test nyata & Menjelaskan model injeksi, menyimpan seed, menguji beberapa probabilitas, dan memisahkan validasi pada test flaky nyata jika tersedia. \\
+Agent melewati feedback wrapper & Memeriksa seluruh command test, menolak run yang bypass, dan mencatat true/reported result. \\
+Test pass tidak menjamin patch benar & Menggunakan validation oracle independen, test tambahan, dan review manual pada subset. \\
+Variasi model atau layanan eksternal & Mematok model identifier, versi runner, tanggal, parameter, dan batas resource. \\
+Bias benchmark dan task & Menggunakan beberapa proyek atau jenis task bila feasible serta melaporkan hasil per task. \\
+Ukuran sampel kecil & Mengutamakan effect size, interval kepercayaan, paired analysis, dan batas klaim daripada klaim generalisasi luas. \\
+Biaya rerun tinggi & Melakukan pilot, menetapkan budget, dan melaporkan overhead stability check secara eksplisit. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Kriteria Go/No-Go}
+
+Eksperimen utama dilanjutkan apabila seluruh syarat berikut terpenuhi:
+
+\begin{enumerate}[leftmargin=*]
+    \item baseline task dapat dibangun dan dijalankan berulang;
+    \item wrapper dapat memisahkan true result dan reported result;
+    \item intermittent false failure dapat diulang dengan seed yang sama;
+    \item runner dapat merekam patch, trajectory, output test, token atau proxy cost, tool calls, dan waktu; serta
+    \item validation oracle dapat membedakan patch plausibility dari patch correctness.
+\end{enumerate}
+
+Jika syarat utama belum terpenuhi, penelitian dipersempit menjadi satu benchmark, satu pola intermittent false failure, dan satu bentuk stability check. Jika agent tidak dapat diarahkan melalui wrapper secara konsisten, eksperimen agentic diposisikan sebagai tidak valid dan desain dievaluasi kembali sebelum pengumpulan data utama.

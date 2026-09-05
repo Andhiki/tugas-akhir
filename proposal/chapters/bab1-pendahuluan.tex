@@ -2,42 +2,75 @@
 \chapter{PENDAHULUAN}
 
 \section{Latar Belakang}
-Indonesia menghadapi tantangan besar berupa \textit{regulatory lag}, di mana laju reformasi legislatif tertinggal jauh dibandingkan dengan transformasi digital yang pesat [5, 6]. Kondisi ini diperparah oleh fragmentasi hukum yang tersebar dalam ribuan peraturan, mulai dari Undang-Undang hingga Peraturan Daerah, yang seringkali memiliki redaksi tumpang tindih dan memicu kontradiksi normatif [5, 7]. Deteksi kontradiksi secara manual memerlukan sumber daya manusia dengan keahlian hukum tinggi dan waktu yang sangat lama, sehingga solusi otomatisasi menjadi kebutuhan operasional yang mendesak [5].
 
-Pemanfaatan \textit{Large Language Models} (LLM) telah diuji sebagai katalisator dalam analisis dokumen hukum [8]. Namun, model tunggal (\textit{single-agent}) memiliki keterbatasan besar yang dikenal sebagai \textit{"Mid-Complexity Failure Zone"} [9, 10]. Pada zona ini, LLM seringkali gagal melakukan penemuan fakta (\textit{factual recall}) yang akurat dan terjebak dalam halusinasi saat diminta menganalisis rincian pasal secara verbatim [9, 11]. Meskipun model \textit{closed-source} seperti Claude 3.5 Sonnet memiliki akurasi penalaran tinggi, biaya API yang mahal menjadi hambatan bagi skalabilitas sistem dalam skala industri dan riset berkelanjutan [12, 13].
+Perbaikan perangkat lunak merupakan aktivitas penting dalam pengembangan dan pemeliharaan sistem. Ketika ditemukan kegagalan, pengembang perlu memahami lokasi masalah, menyusun perubahan kode, lalu memastikan bahwa perubahan tersebut tidak menimbulkan regresi pada fungsi lain. Automated Program Repair (APR) merupakan pendekatan yang mengotomatisasi sebagian proses tersebut dengan menghasilkan dan memvalidasi kandidat patch menggunakan informasi program, laporan kegagalan, serta test suite \cite{defects4j2014}.
 
-Sebagai alternatif, ekosistem model \textit{open-source} yang dapat diakses melalui platform seperti Ollama Cloud Pro menawarkan fleksibilitas yang lebih besar dan efisiensi biaya [14]. Model seperti DeepSeek R1 telah menunjukkan kemampuan penalaran (\textit{reasoning}) yang sebanding dengan model komersial dalam tugas-tugas kompleks [1, 15]. Namun, penggunaan model \textit{open-source} tunggal masih memiliki celah akurasi jika dibandingkan dengan model \textit{closed-source} papan atas [16].
+Perkembangan \textit{Large Language Model} (LLM) mendorong perubahan dari APR berbasis pencarian menuju APR berbasis agen. AI coding agent tidak hanya menghasilkan potongan kode, tetapi juga dapat membaca berkas, mencari referensi di dalam repository, menjalankan perintah, memeriksa hasil kompilasi, dan mengiterasikan patch berdasarkan umpan balik dari tools. RepairAgent, misalnya, memodelkan perbaikan program sebagai proses otonom yang menggabungkan pengumpulan informasi, pencarian konteks perbaikan, penerapan patch, dan validasi melalui test \cite{repairagent2025}. Pendekatan agentic APR pada skala yang lebih besar juga memanfaatkan umpan balik dari static analysis dan eksekusi test untuk mengarahkan iterasi perbaikan \cite{maddila2026}.
 
-Penelitian ini mengusulkan solusi inovatif berupa arsitektur \textit{Multi-Agent LLM Council} menggunakan kerangka kerja \textit{Mixture-of-Agents} (MoA) [17]. Dengan mengorkestrasi berbagai model \textit{open-source} yang heterogen (seperti Llama, DeepSeek, dan Qwen), sistem ini akan mensimulasikan mekanisme "sidang ahli" di mana agen-agen berdebat untuk mencapai konsensus hukum [18, 19]. Inovasi ini akan dibangun secara \textit{end-to-end} dengan mengintegrasikan data terstruktur dari Pasal.id guna memastikan akurasi referensi [5, 20]. Pendekatan ini diharapkan tidak hanya menekan biaya operasional, tetapi juga melampaui performa model tunggal melalui mekanisme arbitrase dan verifikasi kolektif [6, 18].
+Dalam proses tersebut, test suite berperan sebagai \textit{oracle} praktis. Agent menggunakan status lulus atau gagal, pesan error, stack trace, dan durasi eksekusi sebagai sinyal untuk menentukan langkah berikutnya. Akan tetapi, test tidak selalu memberikan sinyal yang stabil. \textit{Flaky test} adalah test yang dapat menghasilkan status atau keluaran berbeda ketika dijalankan berulang pada kode dan konfigurasi yang sama. Ketidakstabilan ini dapat disebabkan oleh urutan eksekusi, konkurensi, waktu, jaringan, keadaan eksternal, atau variasi lingkungan \cite{parry2022flaky,tahir2023flakiness}.
 
-\section{Perumusan Produk}
-Berdasarkan identifikasi kesenjangan antara kemampuan model hukum tunggal saat ini dengan kebutuhan audit regulasi yang presisi dan murah, produk yang diusulkan dalam penelitian ini adalah:
-\begin{enumerate}
-	\item Sebuah sistem \textit{end-to-end} berbasis web yang mampu mendeteksi potensi kontradiksi antar-pasal dalam hierarki perundang-undangan Indonesia.
-	\item Implementasi mesin orkestrasi \textit{LLM Council} yang memanfaatkan berbagai model \textit{open-source} pada Ollama Cloud Pro sebagai agen cerdas terspesialisasi.
-	\item \textit{Pipeline} data otomatis yang terintegrasi dengan Pasal.id untuk validasi teks hukum yang digunakan dalam proses \textit{reasoning}.
+Feedback yang tidak stabil dapat memengaruhi proses perbaikan dalam dua arah. \textit{False failure} dapat membuat agent menganggap patch yang benar masih bermasalah, sehingga agent melakukan perubahan yang tidak diperlukan atau menghabiskan iterasi tambahan. Sebaliknya, \textit{false pass} dapat membuat patch yang belum benar terlihat selesai. Timeout yang berubah-ubah juga dapat menghabiskan batas waktu dan anggaran token agent. Dengan demikian, masalahnya bukan hanya apakah test suite mengandung flaky test, tetapi juga bagaimana sinyal yang tidak dapat dipercaya tersebut memengaruhi pengambilan keputusan agent.
+
+Dampak flaky test terhadap APR konvensional telah ditunjukkan oleh Qin et al. melalui eksperimen pada Defects4J. Studi tersebut menemukan bahwa keberadaan flaky test dapat mengganggu fault localization dan mengurangi kemampuan berbagai alat APR untuk menghasilkan patch yang dapat diterima \cite{qin2021flaky}. Studi tentang flaky test secara umum juga menunjukkan bahwa rerun merupakan salah satu strategi yang sering digunakan untuk mendeteksi ketidakstabilan, tetapi rerun menimbulkan biaya tambahan \cite{parry2022flaky,tahir2023flakiness}. Pada lingkungan industri, pendekatan yang menyadari flakiness perlu menimbang akurasi diagnosis dan biaya rerun secara bersamaan \cite{flakeaware2023}.
+
+Meskipun demikian, studi klasik mengenai dampak flaky test pada APR umumnya memperlakukan APR sebagai alat perbaikan dengan alur yang relatif tetap. Di sisi lain, AI coding agent memiliki loop yang lebih terbuka: agent memilih informasi yang dibaca, menentukan kapan menjalankan test, menafsirkan output, dan memutuskan apakah harus mengubah patch atau berhenti. Studi tentang trajectory agent mulai menganalisis jumlah iterasi, konsumsi token, serta pola tindakan agent \cite{bouzenia2025trajectories}, tetapi berdasarkan studi yang ditinjau dalam proposal ini belum ditemukan evaluasi terkontrol yang secara khusus mengisolasi stabilitas test feedback sebagai perlakuan dalam loop AI coding agent.
+
+Penelitian ini mengusulkan eksperimen berpasangan untuk mengukur pengaruh \textit{flaky test feedback} terhadap AI coding agent dalam tugas APR. Eksperimen membandingkan feedback deterministik, feedback yang dibuat tidak stabil secara terkontrol, dan feedback dengan mekanisme \textit{stability check}. Flakiness sintetis digunakan pada tahap utama agar probabilitas, seed, dan jenis gangguan dapat direproduksi. Kebenaran patch tetap diperiksa menggunakan validation oracle yang terpisah dari feedback yang diterima agent. Dengan rancangan tersebut, penelitian tidak berusaha membangun detektor flaky test universal, melainkan mengukur konsekuensi flakiness dan biaya mitigasinya pada proses perbaikan program berbasis agent.
+
+\section{Perumusan Masalah}
+
+Berdasarkan latar belakang tersebut, perumusan masalah penelitian ini adalah sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item Sejauh mana flaky test feedback memengaruhi keberhasilan perbaikan program dan kebenaran patch yang dihasilkan AI coding agent?
+    \item Bagaimana flaky test feedback memengaruhi perilaku dan efisiensi agent, yang diukur melalui jumlah iterasi, retry, token, tool calls, dan waktu eksekusi?
+    \item Sejauh mana mekanisme rerun dan stability check dapat memulihkan keberhasilan perbaikan, dan berapa biaya tambahan yang ditimbulkannya?
 \end{enumerate}
 
-\section{Batasan Produk}
-Untuk memastikan fokus pengembangan sesuai dengan standar Skripsi Inovasi Produk [4], batasan produk ditetapkan sebagai berikut:
-\begin{enumerate}
-	\item Sumber data hukum dibatasi pada dokumen Undang-Undang dan Peraturan Daerah yang tersedia secara terstruktur di Pasal.id [20].
-	\item Infrastruktur kecerdasan artifisial menggunakan model \textit{open-source} yang tersedia pada platform Ollama Cloud Pro, dengan fokus pada varian model \textit{Reasoning} (seperti DeepSeek R1) [1].
-	\item Fitur deteksi kontradiksi difokuskan pada analisis teks legislatif, bukan pada interpretasi kasus hukum atau putusan pengadilan yang bersifat subjektif [21].
+\section{Batasan Penelitian}
+
+Untuk menjaga penelitian tetap terukur dan dapat diselesaikan, batasan penelitian ditetapkan sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item Objek penelitian adalah tugas perbaikan bug pada repository perangkat lunak yang memiliki test command, failing test, dan validation oracle yang dapat dijalankan secara reproducible.
+    \item Benchmark utama dipilih setelah tahap pilot. Defects4J menjadi kandidat utama karena menyediakan bug nyata, test suite, dan infrastruktur eksperimen terkontrol; benchmark APR lain dapat digunakan sebagai cadangan apabila kompatibilitas environment tidak memadai \cite{defects4j2014}.
+    \item Eksperimen utama menggunakan satu implementasi agent, satu model dasar, satu bahasa pemrograman, dan versi environment yang dipatok. Perbandingan banyak model bukan tujuan utama penelitian.
+    \item Perlakuan utama berupa feedback deterministik, intermittent false failure, dan feedback dengan stability check. False pass dan unstable timeout diposisikan sebagai analisis tambahan apabila dapat direproduksi tanpa mengubah validation oracle.
+    \item Flakiness sintetis digunakan untuk menjaga kontrol terhadap probabilitas dan seed. Test flaky nyata, jika tersedia dan dapat dipasang secara aman, digunakan sebagai validasi eksternal terpisah.
+    \item Patch plausibility, yaitu lulus terhadap feedback yang dilihat agent, dibedakan dari patch correctness, yaitu lulus terhadap validation oracle dan/atau test tambahan yang tidak diberikan sebagai feedback utama.
+    \item Penelitian tidak membangun flaky-test detector universal, tidak mengklaim bahwa semua test flaky mempunyai dampak yang sama, dan tidak menggeneralisasi hasil ke seluruh AI coding agent.
 \end{enumerate}
 
 \section{Tujuan Penelitian}
-Tujuan utama dari tugas akhir ini adalah:
-\begin{enumerate}
-	\item Merancang arsitektur sistem \textit{Multi-Agent} yang mampu mengelola beban kerja penalaran hukum yang intensif secara asinkron [22, 23].
-	\item Mengembangkan prototipe aplikasi \textit{LLM Council} yang intuitif bagi praktisi hukum tanpa memerlukan pemahaman teknis baris perintah (\textit{CLI}) [24, 25].
-	\item Mengevaluasi efektivitas mekanisme konsensus antar-agen dalam mengurangi tingkat halusinasi dibandingkan dengan model tunggal [6, 26].
+
+Tujuan penelitian ini adalah:
+
+\begin{enumerate}[leftmargin=*]
+    \item Merancang protokol eksperimen berpasangan untuk mengevaluasi AI coding agent pada kondisi feedback deterministik dan feedback flaky.
+    \item Mengukur pengaruh flaky test feedback terhadap repair success, patch plausibility, dan patch correctness.
+    \item Menganalisis perubahan perilaku agent melalui iterasi, retry, token, tool calls, waktu, serta kategori failure mode.
+    \item Mengevaluasi stability check sebagai mekanisme mitigasi dan mengukur trade-off antara pemulihan outcome dan biaya tambahan.
+    \item Menyediakan manifest benchmark, konfigurasi perlakuan, log trajectory, patch, dan hasil validasi yang dapat digunakan untuk mereproduksi eksperimen.
 \end{enumerate}
 
 \section{Manfaat Penelitian}
-Hasil dari skripsi inovasi produk ini diharapkan dapat memberikan manfaat:
-\begin{enumerate}
-	\item \textbf{Bagi Praktisi Hukum:} Menyediakan alat bantu audit kepatuhan regulasi (\textit{regulatory compliance}) yang cepat, akurat, dan terjangkau secara biaya operasional [27].
-	\item \textbf{Bagi Komunitas IT:} Menjadi referensi dalam penerapan strategi \textit{Mixture-of-Agents} (MoA) untuk tugas-tugas NLP di domain hukum yang memiliki sumber daya terbatas (\textit{low-resource domain}) [17, 28].
-	\item \textbf{Bagi Masyarakat:} Mendorong kepastian hukum melalui transparansi deteksi tumpang tindih peraturan pemerintah [29, 30].
+
+Penelitian ini diharapkan memberikan manfaat sebagai berikut:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Bagi penelitian APR dan AI coding agent:} menyediakan bukti empiris mengenai pengaruh kualitas feedback test terhadap proses perbaikan berbasis agent.
+    \item \textbf{Bagi praktisi pengembangan perangkat lunak:} memberikan dasar untuk menentukan kapan hasil test perlu diverifikasi ulang sebelum digunakan sebagai dasar perubahan kode atau keputusan berhenti.
+    \item \textbf{Bagi penelitian selanjutnya:} menyediakan protokol dan data trajectory yang dapat dikembangkan untuk penelitian robustness, observability, dan reliability pada coding agent.
+\end{enumerate}
+
+\section{Kontribusi yang Ditargetkan}
+
+Kontribusi yang ditargetkan dari penelitian ini adalah:
+
+\begin{enumerate}[leftmargin=*]
+    \item definisi operasional dan wrapper feedback untuk menghasilkan skenario flaky yang dapat diulang;
+    \item desain eksperimen berpasangan yang memisahkan efek feedback tidak stabil dari variasi task dan environment;
+    \item analisis kuantitatif mengenai degradasi repair success, patch correctness, dan biaya agent;
+    \item analisis failure mode yang menjelaskan cara agent merespons false failure, false pass, atau timeout; dan
+    \item evaluasi stability check beserta trade-off antara recovery dan overhead.
 \end{enumerate}

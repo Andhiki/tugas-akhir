@@ -1,6 +1,82 @@
 % !TeX root = ../main.tex
 \chapter{PENELITIAN TERKAIT}
 
-\section{Studi Terkait}
+\section{Konsep Dasar}
 
-penelitiant kait
+\subsection{Automated Program Repair}
+
+Automated Program Repair (APR) adalah pendekatan untuk menghasilkan perubahan kode yang dimaksudkan memperbaiki bug secara otomatis atau semi-otomatis. Secara umum, sistem APR menerima program yang bermasalah, test suite, serta informasi kegagalan. Sistem kemudian menghasilkan kandidat patch dan menggunakan hasil test untuk menyaring kandidat tersebut. Karena test suite sering digunakan sebagai \textit{oracle} praktis, kualitas dan kestabilan test berpengaruh langsung terhadap validitas hasil evaluasi APR \cite{defects4j2014,qin2021flaky}.
+
+Defects4J merupakan salah satu benchmark APR yang banyak digunakan karena menyediakan kumpulan bug nyata pada proyek Java, test suite, dan infrastruktur untuk eksperimen terkontrol \cite{defects4j2014}. Benchmark ini membantu peneliti membandingkan teknik perbaikan pada snapshot program yang sama. Namun, benchmark tidak otomatis menjamin bahwa seluruh test memberikan feedback yang stabil pada setiap environment. Karena itu, pemeriksaan reproducibility menjadi bagian penting sebelum benchmark digunakan dalam eksperimen \cite{krafczyk2026}.
+
+\subsection{AI Coding Agent}
+
+AI coding agent adalah sistem berbasis LLM yang dapat menjalankan rangkaian tindakan untuk menyelesaikan tugas perangkat lunak. Berbeda dengan pendekatan yang hanya meminta model menghasilkan patch sekali, agent dapat membaca file, mencari simbol, menjalankan test, menerima output tool, dan memutuskan tindakan selanjutnya. RepairAgent menunjukkan pola ini dengan menyediakan tool untuk mengumpulkan informasi bug, mencari bahan perbaikan, menerapkan patch, dan memvalidasi hasil \cite{repairagent2025}.
+
+Pada pendekatan agentic APR, test execution feedback tidak hanya digunakan sebagai skor akhir, tetapi juga sebagai sinyal selama proses perbaikan. Maddila et al. menggabungkan static analysis dan test execution feedback dalam loop perbaikan pada skala besar \cite{maddila2026}. Selain outcome akhir, trajectory agent dapat dianalisis melalui jumlah iterasi, penggunaan token, urutan tindakan, dan koherensi antara tindakan dengan hasil tool \cite{bouzenia2025trajectories}.
+
+\subsection{Flaky Test dan Test Feedback}
+
+Test disebut flaky apabila dapat menghasilkan status atau keluaran berbeda ketika dijalankan berulang pada kode dan kondisi yang sama. Perbedaan tersebut bukan disebabkan oleh perubahan kode yang sedang diuji. Survey dan multivocal review mengenai flaky test mengelompokkan penyebabnya ke dalam beberapa kategori, antara lain ketergantungan urutan test, konkurensi, waktu, jaringan, keadaan eksternal, dan variasi platform \cite{parry2022flaky,tahir2023flakiness}.
+
+Pada proses pengembangan, flaky test menghasilkan sinyal yang tidak dapat dipercaya. Kegagalan palsu dapat memicu investigasi atau perubahan kode yang tidak perlu, sedangkan kelulusan palsu dapat menyembunyikan bug. Salah satu cara yang umum digunakan untuk memanifestasikan flakiness adalah menjalankan test berulang, tetapi strategi ini menambah waktu dan biaya eksekusi \cite{parry2022flaky,tahir2023flakiness}.
+
+Dalam proposal ini, istilah \textit{flaky test feedback} merujuk pada feedback yang dilihat agent ketika hasil test yang sama dapat berubah antar-eksekusi. Istilah ini dibedakan dari flaky-test detection. Penelitian ini tidak bertujuan menentukan apakah sebuah test di repository produksi secara permanen flaky, melainkan mengisolasi konsekuensi feedback yang tidak stabil terhadap proses perbaikan.
+
+\section{Studi Empiris tentang Flaky Test}
+
+Parry et al. melakukan survey terhadap literatur flaky test dan membahas empat dimensi utama, yaitu penyebab, biaya dan konsekuensi, strategi deteksi, serta mitigasi dan perbaikan \cite{parry2022flaky}. Tahir et al. memperluas tinjauan tersebut melalui multivocal review yang mencakup literatur akademik dan sumber praktik, serta menekankan bahwa flaky test dapat memengaruhi efektivitas dan efisiensi proses testing \cite{tahir2023flakiness}. Kedua studi ini memberikan dasar konseptual mengenai definisi flakiness dan trade-off antara deteksi dengan biaya rerun.
+
+Parry et al. juga mengusulkan FITTER, yaitu pendekatan untuk menginduksi dan memperbaiki latent test flakiness pada konteks tertentu \cite{parry2020fitter}. Pendekatan tersebut menunjukkan bahwa flakiness dapat dipelajari melalui skenario yang dikontrol, bukan hanya melalui observasi test production. Prinsip pengendalian skenario ini relevan bagi penelitian sekarang, tetapi perlakuan dalam penelitian ini ditempatkan pada feedback yang diterima agent, bukan pada pembangunan alat perbaikan flaky test.
+
+Qin et al. menguji dampak flaky test terhadap fault localization dan APR dengan mengembalikan flaky test ke benchmark Defects4J \cite{qin2021flaky}. Hasil penelitian mereka menunjukkan bahwa asumsi test suite bebas dari flakiness dapat mengubah hasil fault localization dan mengurangi repairability alat APR. Penelitian tersebut menjadi dasar penting bagi penelitian ini, tetapi objek eksperimennya berfokus pada APR konvensional dan pengaruh flaky test terhadap pipeline APR, bukan pada keputusan agent yang secara dinamis membaca dan merespons feedback.
+
+Pada konteks continuous integration, Henderson et al. mengembangkan Flake Aware Culprit Finding untuk mencari perubahan yang menjadi penyebab kegagalan dengan mempertimbangkan noise dari flaky test \cite{flakeaware2023}. Studi tersebut juga memperlihatkan bahwa rerun memiliki konsekuensi biaya sehingga akurasi dan jumlah eksekusi perlu dianalisis bersama. Penelitian ini mengadopsi prinsip trade-off tersebut untuk mengevaluasi stability check pada agentic APR.
+
+\section{AI Coding Agent dalam Automated Program Repair}
+
+RepairAgent memperlakukan LLM sebagai agent yang dapat merencanakan tindakan, menjalankan tool, mengumpulkan konteks, menerapkan patch, dan memvalidasi perbaikan \cite{repairagent2025}. Model agentic ini relevan karena feedback test menjadi bagian dari percakapan dan trajectory, bukan hanya kondisi akhir.
+
+Maddila et al. mengembangkan agentic program repair yang menerima test failure, static analysis, dan test execution feedback untuk menyempurnakan patch secara iteratif \cite{maddila2026}. Studi ini memperkuat bahwa kualitas feedback merupakan komponen penting dalam agentic repair. Namun, feedback pada studi tersebut diperlakukan sebagai informasi yang tersedia untuk agent, bukan sebagai variabel perlakuan yang sengaja dibuat stabil atau tidak stabil.
+
+Bouzenia dan Pradel menganalisis trajectory dari beberapa software engineering agent berdasarkan hubungan thought, action, dan result \cite{bouzenia2025trajectories}. Metrik seperti jumlah iterasi dan konsumsi token dapat digunakan untuk melihat biaya proses, sedangkan log tindakan dapat membantu menjelaskan apakah agent menggunakan feedback secara masuk akal. Penelitian ini memanfaatkan gagasan tersebut dengan menambahkan kondisi feedback yang berbeda dan mencatat perubahan perilaku per task.
+
+\section{Benchmark dan Validasi Patch}
+
+Defects4J dipertimbangkan sebagai benchmark utama karena menyediakan bug yang telah diketahui, test yang memicu bug, dan human patch sebagai referensi \cite{defects4j2014}. Alternatif benchmark dapat dipertimbangkan apabila bahasa atau build system Defects4J tidak kompatibel dengan agent dan environment yang tersedia. SWE-bench merupakan benchmark lain yang berisi isu nyata dari repository GitHub dan menilai kemampuan model menyelesaikan perubahan pada repository \cite{jimenez2024swebench}, tetapi kebutuhan resource dan variasi environment-nya dapat membuatnya kurang sesuai untuk pilot awal.
+
+Patch yang lulus test yang diberikan kepada agent belum tentu benar secara semantik. Oleh karena itu, penelitian ini membedakan patch plausibility dan patch correctness. Patch plausibility berarti patch lulus feedback yang tersedia dalam loop agent, sedangkan patch correctness ditentukan melalui validation oracle yang independen, test tambahan, atau pemeriksaan manual pada subset. Pemisahan ini penting karena feedback flaky dapat membuat patch yang salah terlihat berhasil atau patch yang benar terlihat gagal.
+
+\section{Sintesis dan Identifikasi Research Gap}
+
+Tabel~\ref{tab:related-work} merangkum posisi penelitian ini terhadap studi yang relevan.
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Perbandingan penelitian terkait}
+\label{tab:related-work}
+\begin{tabularx}{\textwidth}{p{3.1cm}YY}
+\toprule
+\textbf{Penelitian} & \textbf{Fokus utama} & \textbf{Perbedaan dengan penelitian ini} \\
+\midrule
+\citet{defects4j2014} & Benchmark bug nyata dan infrastruktur eksperimen APR & Tidak menguji respons AI coding agent terhadap feedback tidak stabil \\
+\citet{parry2022flaky} & Survey penyebab, dampak, deteksi, dan mitigasi flaky test & Tidak berfokus pada loop agentic APR \\
+\citet{tahir2023flakiness} & Multivocal review akademik dan praktik tentang flakiness & Tidak melakukan manipulasi feedback dan pengukuran trajectory agent \\
+\citet{qin2021flaky} & Dampak flaky test pada fault localization dan APR & Tidak mengisolasi stabilitas feedback sebagai perlakuan pada agent otonom \\
+RepairAgent \cite{repairagent2025} & Agent LLM yang memakai tool dan test feedback untuk APR & Menggunakan feedback sebagai bagian dari loop, tetapi bukan variabel flaky yang dikontrol \\
+\citet{maddila2026} & Agentic APR dengan static analysis dan test execution feedback & Tidak membandingkan feedback deterministik, flaky, dan stability-aware \\
+\citet{bouzenia2025trajectories} & Analisis trajectory software engineering agent & Tidak menguji pengaruh kualitas feedback terhadap trajectory \\
+Penelitian ini & Eksperimen berpasangan pada feedback deterministik, flaky, dan stability-aware & Mengukur success, correctness, cost, failure mode, dan recovery pada agentic APR \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Berdasarkan penelitian terkait, flaky test telah banyak dibahas sebagai masalah testing dan telah terbukti memengaruhi APR konvensional. Agentic APR juga telah memanfaatkan test execution feedback untuk mengarahkan iterasi perbaikan. Namun, masih terdapat ruang untuk menguji secara terkontrol pertanyaan berikut: ketika task, kode, agent, model, dan environment dijaga sama, bagaimana perubahan stabilitas feedback memengaruhi keberhasilan, kebenaran patch, biaya, dan tindakan agent?
+
+Research gap penelitian ini dirumuskan secara terbatas sebagai belum adanya protokol eksperimen dalam corpus literatur yang ditinjau yang mengisolasi stabilitas test feedback sebagai faktor perlakuan pada AI coding agent dalam APR dan sekaligus menguji stability check sebagai mitigasi. Klaim tersebut tidak berarti bahwa belum ada penelitian mengenai flaky test, APR, atau agentic repair secara umum.
+
+\section{Kerangka Pemikiran}
+
+Kerangka pemikiran penelitian ini terdiri dari tiga hubungan. Pertama, agent menggunakan test feedback untuk memperbarui hipotesis mengenai bug dan patch. Kedua, flaky feedback dapat menghasilkan observasi yang berbeda dari keadaan sebenarnya, sehingga meningkatkan risiko perubahan yang tidak perlu, berhenti terlalu dini, atau penggunaan resource yang berlebihan. Ketiga, stability check dapat memperbaiki kualitas sinyal dengan menjalankan test berulang, tetapi menimbulkan overhead waktu dan eksekusi. Hubungan tersebut diuji dengan membandingkan outcome dan trajectory pada kondisi yang sama.

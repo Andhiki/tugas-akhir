@@ -3,46 +3,59 @@
 
 \section{Rencana Kerja}
 
-Jadwal penelitian berikut disusun sebagai contoh timeline bergaya Gantt chart yang bisa disesuaikan dengan target durasi penelitian.
+Rencana kerja disusun untuk delapan bulan dan dapat disesuaikan setelah hasil pilot, ketersediaan model, serta jadwal akademik ditetapkan. Blok berwarna menunjukkan periode aktivitas utama.
 
 \begin{table}[htbp]
-	\centering
-	\renewcommand{\arraystretch}{1.25}
-	\setlength{\tabcolsep}{4pt}
-	\newcommand{\taskbar}{\cellcolor{blue!30}}
-	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{|p{4.2cm}|*{16}{c|}}
-			\hline
-			\multicolumn{1}{|c|}{}      & \multicolumn{4}{c|}{April 2026} & \multicolumn{4}{c|}{Mei 2026} & \multicolumn{4}{c|}{Juni 2026} & \multicolumn{4}{c|}{Juli 2026}                                                                                                                                     \\
-			\cline{2-17}
-			\multicolumn{1}{|c|}{}      & 1                               & 2                             & 3                              & 4                              & 1        & 2        & 3        & 4        & 1        & 2        & 3        & 4        & 1        & 2        & 3        & 4        \\
-			\hline
-			\multicolumn{17}{|l|}{\textbf{Persiapan}}                                                                                                                                                                                                                                                           \\
-			\hline
-			Tinjauan pustaka            & \taskbar                        & \taskbar                      & \taskbar                       & \taskbar                       & \taskbar &          &          &          &          &          &          &          &          &          &          &          \\
-			\hline
-			Analisis model              &                                 &                               & \taskbar                       & \taskbar                       & \taskbar &          &          &          &          &          &          &          &          &          &          &          \\
-			\hline
-			Penyusunan proposal         &                                 &                               & \taskbar                       & \taskbar                       & \taskbar & \taskbar & \taskbar &          &          &          &          &          &          &          &          &          \\
-			\hline
-			Pengujian proposal          &                                 &                               &                                &                                &          &          &          & \taskbar &          &          &          &          &          &          &          &          \\
-			\hline
-			\multicolumn{17}{|l|}{\textbf{Implementasi}}                                                                                                                                                                                                                                                        \\
-			\hline
-			Implementasi model          &                                 &                               &                                &                                &          &          & \taskbar & \taskbar & \taskbar & \taskbar &          &          &          &          &          &          \\
-			\hline
-			Ideasi produk               &                                 &                               &                                &                                &          &          & \taskbar & \taskbar & \taskbar & \taskbar &          &          &          &          &          &          \\
-			\hline
-			Penelitian dan desain UI/UX &                                 &                               &                                &                                &          &          &          & \taskbar & \taskbar &          &          &          &          &          &          &          \\
-			\hline
-			Perancangan                 &                                 &                               &                                &                                &          &          &          &          & \taskbar & \taskbar & \taskbar &          & \taskbar &          &          &          \\
-			\hline
-			Pengujian                   &                                 &                               &                                &                                &          &          &          &          &          &          & \taskbar & \taskbar & \taskbar & \taskbar &          &          \\
-			\hline
-			Penyusunan laporan akhir    &                                 &                               &                                &                                &          &          &          &          &          &          &          &          &          & \taskbar & \taskbar & \taskbar \\
-			\hline
-		\end{tabular}%
-	}
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\newcommand{\taskbar}{\cellcolor{blue!30}}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{5.0cm}|*{8}{c|}}
+\hline
+\textbf{Kegiatan} & \textbf{Sep. 2026} & \textbf{Okt. 2026} & \textbf{Nov. 2026} & \textbf{Des. 2026} & \textbf{Jan. 2027} & \textbf{Feb. 2027} & \textbf{Mar. 2027} & \textbf{Apr. 2027} \\
+\hline
+Studi pustaka dan finalisasi scope & \taskbar & \taskbar & & & & & & \\
+\hline
+Penguncian benchmark dan task manifest & & \taskbar & \taskbar & & & & & \\
+\hline
+Implementasi feedback wrapper dan logger & & \taskbar & \taskbar & \taskbar & & & & \\
+\hline
+Smoke test environment dan baseline & & & \taskbar & & & & & \\
+\hline
+Pilot deterministic, flaky, dan stability-aware & & & \taskbar & \taskbar & & & & \\
+\hline
+Eksperimen utama dan pengarsipan artefak & & & & \taskbar & \taskbar & & & \\
+\hline
+Analisis outcome, biaya, dan failure mode & & & & & \taskbar & \taskbar & & \\
+\hline
+Penulisan hasil dan pembahasan & & & & & & \taskbar & \taskbar & \\
+\hline
+Revisi, validasi reproduksi, dan finalisasi & & & & & & & \taskbar & \taskbar \\
+\hline
+\end{tabular}%
+}
 \end{table}
 
-\noindent\textit{Blok biru menunjukkan periode aktivitas utama. Bulan dan minggu bisa diganti sesuai durasi penelitian yang sebenarnya.}
+\section{Keluaran Tiap Tahap}
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Keluaran yang ditargetkan}
+\label{tab:deliverables}
+\begin{tabularx}{\textwidth}{p{4.0cm}Y}
+\toprule
+\textbf{Tahap} & \textbf{Keluaran} \\
+\midrule
+Studi pustaka & Definisi flaky feedback, research question, hipotesis, dan gap \\
+Persiapan benchmark & Task manifest, pinned commit, command test, dan validation oracle \\
+Implementasi & Feedback wrapper, seed policy, logger, dan format trajectory \\
+Pilot & Laporan reproducibility, estimasi biaya, serta keputusan go/no-go \\
+Eksperimen utama & Dataset run, patch, raw feedback, true result, reported result, dan resource log \\
+Analisis & Tabel outcome, effect size, interval ketidakpastian, dan failure taxonomy \\
+Finalisasi & Draft proposal/skripsi, artefak reproducible yang aman dipublikasikan, dan dokumentasi batas klaim \\
+\bottomrule
+\end{tabularx}
+\end{table}

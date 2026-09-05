@@ -1,10 +1,19 @@
 
-\documentclass[proposal,satusetengahspasi,indonesia]{cls/template-ta-2025}
-\graphicspath{{assets/}}
+\documentclass[proposal,satusetengahspasi,indonesia]{../cls/template-ta-2025}
+\graphicspath{{../assets/}}
 \usepackage[table]{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\urlstyle{same}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlength{\emergencystretch}{3em}
 
-\titleind{ini Judul Proposal really wtf}
-\titleeng{abc Proposal Titlea}
+\titleind{Evaluasis Pengaruh Flaky Test Feedback terhadap Keberhasilan dan Efisiensi AI Coding Agent dalam Automated Program Repair}
+\titleeng{Evaluating the Effect of Flaky Test Feedback on AI Coding Agent Repair Success and Efficiency in Automated Program Repair}
 \fullname{Andreandhiki Riyanta Putra}
 \idnum{23/517511/PA/22191}
 \yearsubmit{2026}
@@ -21,7 +30,7 @@
 \pagenumbering{arabic}
 
 \input{chapters/bab1-pendahuluan}
-\input{chapters/bab2-penelitian-terkait.tex}
+\input{chapters/bab2-penelitian-terkait}
 \input{chapters/bab3-metode}
 \input{chapters/bab4-jadwal}
 \input{chapters/glosarium}
